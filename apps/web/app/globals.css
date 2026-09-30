@@ -1,10 +1,11 @@
 :root {
-	--ink: #05080d;
-	--text: #fafafa;
-	--muted: #737373;
-	--faint: #525d6e;
-	--accent: #4ba0fa;
-	--line: rgba(82, 89, 102, 0.2);
+	--ink: #06080d;
+	--text: #f5f7fb;
+	--muted: #8993a5;
+	--faint: #5e6878;
+	--accent: #75aefa;
+	--accent-soft: rgba(117, 174, 250, 0.12);
+	--line: rgba(141, 157, 180, 0.18);
 }
 
 * {
@@ -56,89 +57,54 @@ body {
 
 .brand {
 	position: relative;
-	padding: 28px 32px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 30px 5vw;
 }
 
-.brand img {
-	display: block;
-	height: 22px;
-	width: auto;
-}
+.brand a { display: inline-flex; }
+.brand img { display: block; height: 22px; width: auto; }
+.brand-meta, .eyebrow, .status, .footer { color: var(--faint); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.brand-meta { display: flex; align-items: center; gap: 8px; }
+.live-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
 
 .notice {
 	position: relative;
 	flex: 1;
 	display: flex;
 	align-items: center;
-	padding: 24px 32px 96px;
+	justify-content: space-between;
+	gap: 6vw;
+	padding: 7vh 12vw 10vh 14vw;
 }
 
-.notice-inner {
-	width: 100%;
-	max-width: 560px;
-}
+.notice-inner { width: 100%; max-width: 620px; }
+.eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; color: var(--accent); }
+.eyebrow svg { width: 14px; }
+.headline { margin: 0 0 26px; font-size: clamp(48px, 7vw, 86px); font-weight: 500; line-height: .98; letter-spacing: -.06em; }
+.headline span { color: var(--accent); }
+.body { margin: 0 0 32px; max-width: 47ch; font-size: 17px; line-height: 1.6; color: var(--muted); }
 
-.headline {
-	margin: 0 0 32px;
-	font-size: clamp(40px, 7vw, 64px);
-	font-weight: 600;
-	line-height: 1;
-	letter-spacing: -0.03em;
-}
+.route-card { width: min(100%, 480px); margin-bottom: 30px; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(135deg, rgba(25, 33, 46, .6), rgba(10, 14, 21, .7)); box-shadow: 0 20px 60px rgba(0,0,0,.18); }
+.route-label { margin-bottom: 8px; color: var(--faint); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.route-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--faint); font-size: 15px; }
+.route-row svg { width: 16px; }
+.route-old { text-decoration: line-through; text-decoration-color: var(--faint); }
+.route-divider { height: 1px; margin: 18px 0; background: var(--line); }
+.route-destination { color: var(--accent); font-weight: 600; }
+.route-destination svg { color: var(--accent); }
 
-.hosts {
-	margin: 0 0 28px;
-	padding: 0;
-	list-style: none;
-	font-size: clamp(20px, 3.2vw, 28px);
-	font-weight: 500;
-	letter-spacing: -0.01em;
-	line-height: 1.35;
-}
+.action { display: inline-block; width: 100%; max-width: 300px; }
+.button { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px 20px; border-radius: 10px; background: var(--text); color: var(--ink); font: inherit; font-size: 15px; font-weight: 600; text-align: center; text-decoration: none; transition: transform 160ms ease, background-color 160ms ease; }
+.button svg { width: 16px; }
+.button:hover { background: #fff; transform: translateY(-2px); }
 
-.host-old {
-	color: var(--faint);
-	text-decoration: line-through;
-	text-decoration-color: var(--faint);
-	text-decoration-thickness: 1.5px;
-}
-
-.host-new {
-	color: var(--accent);
-}
-
-.body {
-	margin: 0 0 36px;
-	max-width: 44ch;
-	font-size: 16px;
-	line-height: 1.55;
-	color: var(--muted);
-}
-
-.action {
-	display: inline-block;
-	width: 100%;
-	max-width: 280px;
-}
-
-.button {
-	display: block;
-	width: 100%;
-	padding: 14px 20px;
-	border-radius: 10px;
-	background: var(--text);
-	color: var(--ink);
-	font: inherit;
-	font-size: 15px;
-	font-weight: 600;
-	text-align: center;
-	text-decoration: none;
-	transition: background-color 120ms ease;
-}
-
-.button:hover {
-	background: #e5e5e5;
-}
+.assurance { display: flex; gap: 14px; align-items: flex-start; width: 250px; padding-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.assurance strong { display: block; margin-bottom: 4px; color: var(--text); font-size: 14px; font-weight: 500; }
+.assurance p { margin: 0; }
+.assurance-icon { display: grid; flex: 0 0 auto; place-items: center; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 10px; background: var(--accent-soft); color: var(--accent); }
+.assurance-icon svg { width: 17px; }
 
 .button:focus-visible {
 	outline: 2px solid var(--accent);
@@ -186,15 +152,49 @@ body {
 	}
 }
 
-@media (max-width: 640px) {
-	.brand {
-		padding: 22px 20px;
-	}
-	.notice {
-		align-items: flex-start;
-		padding: 40px 20px 64px;
-	}
-	.action {
-		max-width: none;
-	}
+.footer { display: flex; gap: 16px; align-items: center; justify-content: center; padding: 32px 5vw 24px; border-top: 1px solid var(--line); font-size: 12px; text-align: center; }
+.footer span:last-child { flex: 1; }
+
+@media (max-width: 1024px) {
+	.notice { flex-direction: column; justify-content: flex-start; gap: 48px; padding: 6vh 8vw 8vh; }
+	.assurance { width: 100%; max-width: 380px; }
+}
+
+@media (max-width: 768px) {
+	.brand { padding: 24px 5vw; }
+	.brand-meta { display: none; }
+	.notice { padding: 5vh 6vw 12vh; }
+	.headline { font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px; }
+	.body { font-size: 16px; margin-bottom: 24px; }
+	.route-card { width: 100%; }
+	.button { padding: 14px 18px; font-size: 14px; }
+	.assurance { gap: 12px; font-size: 12px; width: 100%; }
+	.assurance-icon { width: 32px; height: 32px; }
+	.assurance-icon svg { width: 15px; }
+	.footer { flex-direction: column; gap: 8px; font-size: 11px; }
+	.footer span:last-child { flex: initial; }
+}
+
+@media (max-width: 480px) {
+	html, body { font-size: 14px; }
+	.brand { padding: 20px 4vw; }
+	.notice { padding: 4vh 4vw 10vh; }
+	.notice-inner { max-width: 100%; }
+	.eyebrow { font-size: 11px; margin-bottom: 16px; }
+	.eyebrow svg { width: 12px; }
+	.headline { font-size: clamp(32px, 8vw, 44px); margin-bottom: 16px; line-height: 1; }
+	.body { font-size: 15px; line-height: 1.5; margin-bottom: 20px; max-width: 100%; }
+	.route-card { padding: 16px; margin-bottom: 20px; }
+	.route-label { font-size: 10px; margin-bottom: 6px; }
+	.route-row { font-size: 14px; gap: 10px; }
+	.action { max-width: 100%; }
+	.button { padding: 12px 16px; font-size: 13px; gap: 8px; }
+	.button svg { width: 14px; }
+	.assurance { gap: 10px; font-size: 11px; padding-top: 4px; }
+	.assurance strong { font-size: 13px; }
+	.assurance-icon { width: 28px; height: 28px; }
+	.assurance-icon svg { width: 13px; }
+	.status { font-size: 12px; margin-top: 8px; }
+	.status-key { display: inline-flex; align-items: center; gap: 4px; }
+	.status-key svg { width: 12px; }
 }
