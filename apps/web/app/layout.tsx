@@ -10,8 +10,8 @@ const font = DM_Sans({
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://app.supermemory.ai"),
-	title: "Supermemory has moved",
-	description: "Supermemory now lives at console.supermemory.ai",
+	title: "Your memory, in one place. | Supermemory",
+	description: "Supermemory now lives at console.supermemory.ai. Your memories, API keys, and connections are ready.",
 	icons: {
 		icon: [
 			{ url: "/favicon.ico", sizes: "any" },
