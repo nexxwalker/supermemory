@@ -1,20 +1,20 @@
 /**
- * VoltAgent integration for Supermemory.
+ * VoltAgent integration for Emberspack Brain.
  *
  * Provides a wrapper function that enhances VoltAgent agent configurations
- * with Supermemory hooks for automatic memory injection and storage.
+ * with Emberspack Brain hooks for automatic memory injection and storage.
  *
  * @module
  */
 
-import { createSupermemoryHooks, mergeHooks } from "./hooks"
-import type { VoltAgentConfig, SupermemoryVoltAgent } from "./types"
+import { createEmberspack BrainHooks, mergeHooks } from "./hooks"
+import type { VoltAgentConfig, Emberspack BrainVoltAgent } from "./types"
 
 /**
- * Configuration options for withSupermemory.
+ * Configuration options for withEmberspack Brain.
  */
-interface WithSupermemoryOptions<T extends VoltAgentConfig>
-	extends SupermemoryVoltAgent {
+interface WithEmberspack BrainOptions<T extends VoltAgentConfig>
+	extends Emberspack BrainVoltAgent {
 	/**
 	 * The VoltAgent agent configuration to enhance
 	 */
@@ -27,21 +27,21 @@ interface WithSupermemoryOptions<T extends VoltAgentConfig>
 }
 
 /**
- * Enhances a VoltAgent agent configuration with Supermemory memory capabilities.
+ * Enhances a VoltAgent agent configuration with Emberspack Brain memory capabilities.
  *
  * The function injects hooks that automatically:
  * - Retrieve relevant memories before LLM calls (via onPrepareMessages)
  * - Inject memories into the system prompt
  * - Optionally save conversations after completion (via onEnd)
  *
- * @param options - Configuration object containing agent config and Supermemory options
+ * @param options - Configuration object containing agent config and Emberspack Brain options
  * @param options.agentConfig - The VoltAgent agent configuration to enhance
  * @param options.containerTag - Required. The container tag/user ID for scoping memories (e.g., "user-123")
  * @param options.mode - Memory retrieval mode: "profile" (default), "query", or "full"
  * @param options.addMemory - Memory persistence: "always" (default for VoltAgent) or "never"
  * @param options.customId - Required. Custom ID to group messages into a single document
- * @param options.apiKey - Supermemory API key (falls back to SUPERMEMORY_API_KEY env var)
- * @param options.baseUrl - Custom Supermemory API base URL
+ * @param options.apiKey - Emberspack Brain API key (falls back to SUPERMEMORY_API_KEY env var)
+ * @param options.baseUrl - Custom Emberspack Brain API base URL
  * @param options.promptTemplate - Custom function to format memory data into prompt
  * @param options.threshold - Search sensitivity: 0 (more results) to 1 (more accurate)
  * @param options.limit - Maximum number of memory results to return (integer from 1 to 100)
@@ -52,16 +52,16 @@ interface WithSupermemoryOptions<T extends VoltAgentConfig>
  * @param options.metadata - Optional metadata to attach to saved conversations
  * @param options.searchMode - Search mode: "memories" (atomic facts), "documents" (chunks), or "hybrid" (both)
  * @param options.entityContext - Deprecated and ignored; configure entity context on the container tag instead
- * @returns Enhanced agent config with Supermemory hooks injected
+ * @returns Enhanced agent config with Emberspack Brain hooks injected
  *
  * @example
  * Basic usage with profile memories:
  * ```typescript
- * import { withSupermemory } from "@supermemory/tools/voltagent"
+ * import { withEmberspack Brain } from "@emberspack-brain/tools/voltagent"
  * import { Agent } from "@voltagent/core"
  * import { openai } from "@ai-sdk/openai"
  *
- * const configWithMemory = withSupermemory({
+ * const configWithMemory = withEmberspack Brain({
  *   agentConfig: {
  *     name: "my-agent",
  *     instructions: "You are a helpful assistant",
@@ -77,7 +77,7 @@ interface WithSupermemoryOptions<T extends VoltAgentConfig>
  * @example
  * Advanced usage with full memory mode and conversation saving:
  * ```typescript
- * const configWithMemory = withSupermemory({
+ * const configWithMemory = withEmberspack Brain({
  *   agentConfig: {
  *     name: "my-agent",
  *     instructions: "You are a helpful assistant",
@@ -108,7 +108,7 @@ interface WithSupermemoryOptions<T extends VoltAgentConfig>
  * @example
  * Custom prompt template:
  * ```typescript
- * const configWithMemory = withSupermemory({
+ * const configWithMemory = withEmberspack Brain({
  *   agentConfig: {
  *     name: "my-agent",
  *     instructions: "...",
@@ -129,21 +129,21 @@ interface WithSupermemoryOptions<T extends VoltAgentConfig>
  * ```
  *
  * @throws {Error} When neither `options.apiKey` nor `process.env.SUPERMEMORY_API_KEY` are set
- * @throws {Error} When Supermemory API request fails
+ * @throws {Error} When Emberspack Brain API request fails
  */
-export function withSupermemory<T extends VoltAgentConfig>(
-	options: WithSupermemoryOptions<T>,
+export function withEmberspack Brain<T extends VoltAgentConfig>(
+	options: WithEmberspack BrainOptions<T>,
 ): T & { hooks: NonNullable<VoltAgentConfig["hooks"]> } {
-	const { agentConfig, containerTag, ...supermemoryOptions } = options
+	const { agentConfig, containerTag, ...emberspack-brainOptions } = options
 
-	// Create Supermemory hooks (internally creates its own context, validates API key)
-	const supermemoryHooks = createSupermemoryHooks(
+	// Create Emberspack Brain hooks (internally creates its own context, validates API key)
+	const emberspack-brainHooks = createEmberspack BrainHooks(
 		containerTag,
-		supermemoryOptions,
+		emberspack-brainOptions,
 	)
 
 	// Merge with existing hooks if present
-	const mergedHooks = mergeHooks(agentConfig.hooks, supermemoryHooks)
+	const mergedHooks = mergeHooks(agentConfig.hooks, emberspack-brainHooks)
 
 	// Return enhanced config with merged hooks
 	return {
@@ -154,7 +154,7 @@ export function withSupermemory<T extends VoltAgentConfig>(
 
 // Export types for consumers
 export type {
-	SupermemoryVoltAgent,
+	Emberspack BrainVoltAgent,
 	VoltAgentConfig,
 	VoltAgentMessage,
 	VoltAgentHooks,
@@ -166,9 +166,9 @@ export type {
 	MemoryPromptData,
 } from "./types"
 
-export type { WithSupermemoryOptions }
+export type { WithEmberspack BrainOptions }
 
-// Note: WithSupermemoryOptions is exported above separately because it's generic
+// Note: WithEmberspack BrainOptions is exported above separately because it's generic
 
 // Export hook creation utilities for advanced use cases
-export { createSupermemoryHooks } from "./hooks"
+export { createEmberspack BrainHooks } from "./hooks"

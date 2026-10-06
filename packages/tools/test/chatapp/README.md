@@ -1,11 +1,11 @@
 # Chat App - Test Application
 
-This is a basic Next.js chat application created for testing the Supermemory packages and tools. It demonstrates how to integrate Supermemory with a simple chat interface.
+This is a basic Next.js chat application created for testing the Emberspack Brain packages and tools. It demonstrates how to integrate Emberspack Brain with a simple chat interface.
 
 ## Features
 
 - **Real-time Chat Interface**: Clean, modern chat UI with message bubbles
-- **Supermemory Integration**: Uses Supermemory tools for enhanced AI conversations
+- **Emberspack Brain Integration**: Uses Emberspack Brain tools for enhanced AI conversations
 - **Responsive Design**: Works on desktop and mobile devices
 - **Dark Mode Support**: Automatic theme switching based on system preferences
 - **Loading States**: Visual feedback during AI processing
@@ -18,7 +18,7 @@ This is a basic Next.js chat application created for testing the Supermemory pac
 - **TypeScript**: Full type safety
 - **Tailwind CSS**: Utility-first styling
 - **AI SDK**: OpenAI integration for chat functionality
-- **Supermemory**: Memory management and retrieval
+- **Emberspack Brain**: Memory management and retrieval
 
 ## Getting Started
 
@@ -31,7 +31,7 @@ This is a basic Next.js chat application created for testing the Supermemory pac
    Create a `.env.local` file with your API keys:
    ```env
    OPENAI_API_KEY=your_openai_api_key_here
-   SUPERMEMORY_API_KEY=your_supermemory_api_key_here
+   SUPERMEMORY_API_KEY=your_emberspack-brain_api_key_here
    ```
 
 3. **Run the Development Server**:
@@ -45,11 +45,11 @@ This is a basic Next.js chat application created for testing the Supermemory pac
 ## Usage
 
 - Type a message in the input field and press Enter or click Send
-- The AI will respond using Supermemory for context-aware conversations
+- The AI will respond using Emberspack Brain for context-aware conversations
 - Messages are displayed in a chat bubble format
 - Loading indicator shows when the AI is processing
 
-## Testing Supermemory Features
+## Testing Emberspack Brain Features
 
 This app is specifically designed to test:
 - Memory storage and retrieval
@@ -61,7 +61,7 @@ This app is specifically designed to test:
 ## Development
 
 This is a test application and should not be used in production. It's designed for:
-- Testing Supermemory package functionality
+- Testing Emberspack Brain package functionality
 - Demonstrating integration patterns
 - UI/UX experimentation
 - Development and debugging

@@ -32,16 +32,16 @@ export type {
 export type { RequestContext } from "@mastra/core/request-context"
 
 /**
- * Configuration options for the Supermemory Mastra processor.
+ * Configuration options for the Emberspack Brain Mastra processor.
  */
-export interface SupermemoryMastraOptions {
+export interface Emberspack BrainMastraOptions {
 	/** Container tag/user ID for scoping memories. Required. */
 	containerTag: string
 	/** Custom ID to group messages into a single document for contextual memory generation. Required. */
 	customId: string
-	/** Supermemory API key (falls back to SUPERMEMORY_API_KEY env var) */
+	/** Emberspack Brain API key (falls back to SUPERMEMORY_API_KEY env var) */
 	apiKey?: string
-	/** Custom Supermemory API base URL */
+	/** Custom Emberspack Brain API base URL */
 	baseUrl?: string
 	/** Memory retrieval mode */
 	mode?: MemoryMode

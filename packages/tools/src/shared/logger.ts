@@ -19,25 +19,25 @@ export const createLogger = (verbose: boolean): Logger => {
 	return {
 		debug: (message: string, data?: unknown) => {
 			console.log(
-				`[supermemory] ${message}`,
+				`[emberspack-brain] ${message}`,
 				data ? JSON.stringify(data, null, 2) : "",
 			)
 		},
 		info: (message: string, data?: unknown) => {
 			console.log(
-				`[supermemory] ${message}`,
+				`[emberspack-brain] ${message}`,
 				data ? JSON.stringify(data, null, 2) : "",
 			)
 		},
 		warn: (message: string, data?: unknown) => {
 			console.warn(
-				`[supermemory] ${message}`,
+				`[emberspack-brain] ${message}`,
 				data ? JSON.stringify(data, null, 2) : "",
 			)
 		},
 		error: (message: string, data?: unknown) => {
 			console.error(
-				`[supermemory] ${message}`,
+				`[emberspack-brain] ${message}`,
 				data ? JSON.stringify(data, null, 2) : "",
 			)
 		},

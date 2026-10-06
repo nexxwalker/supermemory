@@ -9,14 +9,14 @@ export function ContextPanel({
 	containerTag,
 	lastUserMessage,
 	refreshKey,
-	supermemoryApiKey,
-	supermemoryKeyReady,
+	emberspack-brainApiKey,
+	emberspack-brainKeyReady,
 }: {
 	containerTag: string
 	lastUserMessage?: string
 	refreshKey: number
-	supermemoryApiKey: string
-	supermemoryKeyReady: boolean
+	emberspack-brainApiKey: string
+	emberspack-brainKeyReady: boolean
 }) {
 	const [context, setContext] = useState<ContainerContext | null>(null)
 	const [loading, setLoading] = useState(false)
@@ -26,8 +26,8 @@ export function ContextPanel({
 	const activeRequest = useRef<AbortController | null>(null)
 
 	const load = useCallback(async () => {
-		if (!supermemoryKeyReady) {
-			setError("Enter a Supermemory API key or set SUPERMEMORY_API_KEY")
+		if (!emberspack-brainKeyReady) {
+			setError("Enter a Emberspack Brain API key or set SUPERMEMORY_API_KEY")
 			setContext(null)
 			return
 		}
@@ -51,10 +51,10 @@ export function ContextPanel({
 				body: JSON.stringify({
 					containerTag: normalizedContainerTag,
 					...(useQuery && lastUserMessage ? { query: lastUserMessage } : {}),
-					...(supermemoryApiKey.trim()
+					...(emberspack-brainApiKey.trim()
 						? {
 								apiKeys: {
-									supermemoryApiKey: supermemoryApiKey.trim(),
+									emberspack-brainApiKey: emberspack-brainApiKey.trim(),
 								},
 							}
 						: {}),
@@ -78,14 +78,14 @@ export function ContextPanel({
 		containerTag,
 		lastUserMessage,
 		useQuery,
-		supermemoryApiKey,
-		supermemoryKeyReady,
+		emberspack-brainApiKey,
+		emberspack-brainKeyReady,
 	])
 
 	useEffect(() => {
 		// The counter changes after a successful chat and explicitly refreshes context.
 		void refreshKey
-		if (!supermemoryKeyReady || !containerTag.trim()) {
+		if (!emberspack-brainKeyReady || !containerTag.trim()) {
 			activeRequest.current?.abort()
 			activeRequest.current = null
 			setLoading(false)
@@ -102,7 +102,7 @@ export function ContextPanel({
 			window.clearTimeout(timeout)
 			activeRequest.current?.abort()
 		}
-	}, [load, refreshKey, supermemoryKeyReady, containerTag])
+	}, [load, refreshKey, emberspack-brainKeyReady, containerTag])
 
 	useEffect(() => {
 		// A different container must not retain the previous document selection.
@@ -123,7 +123,7 @@ export function ContextPanel({
 				<button
 					type="button"
 					onClick={() => void load()}
-					disabled={!supermemoryKeyReady || !containerTag.trim()}
+					disabled={!emberspack-brainKeyReady || !containerTag.trim()}
 					className="text-xs text-zinc-400 hover:text-zinc-200 disabled:cursor-not-allowed disabled:text-zinc-700"
 				>
 					Refresh
@@ -140,9 +140,9 @@ export function ContextPanel({
 			</label>
 
 			{loading && <p className="text-xs text-zinc-500">Loading…</p>}
-			{!supermemoryKeyReady && (
+			{!emberspack-brainKeyReady && (
 				<p className="text-xs text-zinc-500">
-					Enter a Supermemory key or set SUPERMEMORY_API_KEY to load context.
+					Enter a Emberspack Brain key or set SUPERMEMORY_API_KEY to load context.
 				</p>
 			)}
 			{error && <p className="text-xs text-red-400">{error}</p>}

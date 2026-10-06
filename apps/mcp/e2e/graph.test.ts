@@ -46,7 +46,7 @@ describeWithAuth("MCP — graph, resources & prompts", () => {
 	})
 
 	it("reads the profile resource", async () => {
-		const res = await s.client.readResource({ uri: "supermemory://profile" })
+		const res = await s.client.readResource({ uri: "emberspack-brain://profile" })
 		expect(res.contents.length).toBeGreaterThan(0)
 		expect(res.contents[0].mimeType).toBe("text/plain")
 		expect(res.contents[0].text).toMatch(/# Active Space Profile/)
@@ -58,7 +58,7 @@ describeWithAuth("MCP — graph, resources & prompts", () => {
 
 	it("reads all spaces in a compact human-readable format", async () => {
 		const res = await s.client.readResource({
-			uri: "supermemory://spaces",
+			uri: "emberspack-brain://spaces",
 		})
 		const text = res.contents[0].text as string
 		expect(res.contents[0].mimeType).toBe("text/plain")
@@ -77,7 +77,7 @@ describeWithAuth("MCP — graph, resources & prompts", () => {
 		const res = await s.client.getPrompt({ name: "context", arguments: {} })
 		expect(res.messages.length).toBeGreaterThan(0)
 		const text = res.messages[0].content.text as string
-		expect(text).toMatch(/# Supermemory Context/)
+		expect(text).toMatch(/# Emberspack Brain Context/)
 		expect(text).toMatch(/Active space:/)
 	})
 })

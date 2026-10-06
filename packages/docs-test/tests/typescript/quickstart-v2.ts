@@ -2,9 +2,9 @@
  * End-to-end test of apps/docs/quickstart.mdx flow
  */
 import "dotenv/config"
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 
-const client = new Supermemory()
+const client = new Emberspack Brain()
 const user = `qs-test-${Date.now()}`
 const sessionId = `chat_offsite_${Date.now()}`
 

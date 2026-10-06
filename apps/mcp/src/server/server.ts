@@ -5,7 +5,7 @@ import {
 } from "@modelcontextprotocol/server"
 import { instrumentPosthogMcp, type WaitUntil } from "./analytics"
 import { fetchSession } from "./auth"
-import { DEFAULT_PROJECT_ID, SupermemoryClient } from "./client"
+import { DEFAULT_PROJECT_ID, Emberspack BrainClient } from "./client"
 import { registerContextPrompt } from "./prompts/context"
 import { registerContainerTagsResource } from "./resources/container-tags"
 import { registerProfileResource } from "./resources/profile"
@@ -19,10 +19,10 @@ import {
 } from "./space"
 import { uploadStateName } from "./space-state"
 
-const DEFAULT_API_URL = "https://api.supermemory.ai"
+const DEFAULT_API_URL = "https://api.emberspack-brain.ai"
 const UPLOAD_SESSION_TTL_MS = 2 * 60 * 1000
 const SERVER_INSTRUCTIONS =
-	"Supermemory is the authenticated user's persistent memory and knowledge layer across conversations and spaces. Use these tools whenever the user wants to recall something they may have saved, inspect stored sources or extracted memories, remember or upload new information, check their Supermemory account or access, change their active space, or explore their memory graph, even if they do not mention Supermemory by name. Use the active or account-default space when none is named. Resolve a named space with list_spaces and pass its key to the relevant tool; change the active space only when the user explicitly asks."
+	"Emberspack Brain is the authenticated user's persistent memory and knowledge layer across conversations and spaces. Use these tools whenever the user wants to recall something they may have saved, inspect stored sources or extracted memories, remember or upload new information, check their Emberspack Brain account or access, change their active space, or explore their memory graph, even if they do not mention Emberspack Brain by name. Use the active or account-default space when none is named. Resolve a named space with list_spaces and pass its key to the relevant tool; change the active space only when the user explicitly asks."
 
 type ClientInfo = { name: string; version?: string }
 
@@ -42,7 +42,7 @@ function clientInfoFromContext(context: ServerContext): ClientInfo | null {
 	}
 }
 
-export function createSupermemoryServer(
+export function createEmberspack BrainServer(
 	env: ServerEnv,
 	actor: ActorContext,
 	waitUntil: WaitUntil,
@@ -50,7 +50,7 @@ export function createSupermemoryServer(
 ): McpServer {
 	const server = new McpServer(
 		{
-			name: "supermemory",
+			name: "emberspack-brain",
 			version: "1.0.0",
 		},
 		{ instructions: SERVER_INSTRUCTIONS },
@@ -60,7 +60,7 @@ export function createSupermemoryServer(
 	const spaceState = env.SPACE_STATE.getByName(spaceStateName(actor))
 
 	const getClient = (containerTag?: string) =>
-		new SupermemoryClient(actor.bearerToken, containerTag, apiUrl)
+		new Emberspack BrainClient(actor.bearerToken, containerTag, apiUrl)
 	const getActiveContainerTag = () => spaceState.getActiveContainerTag()
 	const setActiveContainerTag = (containerTag: string) =>
 		spaceState.setActiveContainerTag(containerTag)

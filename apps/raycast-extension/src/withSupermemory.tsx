@@ -10,13 +10,13 @@ import {
 } from "@raycast/api"
 import type { ComponentType } from "react"
 
-export function withSupermemory<P extends object>(Component: ComponentType<P>) {
-	return function SupermemoryWrappedComponent(props: P) {
+export function withEmberspack Brain<P extends object>(Component: ComponentType<P>) {
+	return function Emberspack BrainWrappedComponent(props: P) {
 		const { isLoading, data } = usePromise(fetchSettings, [], {
 			failureToastOptions: {
 				title: "Invalid API Key",
 				message:
-					"Invalid API key. Please check your API key in preferences. Get a new one from https://supermemory.link/raycast",
+					"Invalid API key. Please check your API key in preferences. Get a new one from https://emberspack-brain.link/raycast",
 			},
 		})
 
@@ -28,7 +28,7 @@ export function withSupermemory<P extends object>(Component: ComponentType<P>) {
 					<List.EmptyView
 						icon={Icon.ExclamationMark}
 						title="API Key Required"
-						description="Please configure your Supermemory API key to search memories"
+						description="Please configure your Emberspack Brain API key to search memories"
 						actions={
 							<ActionPanel>
 								<Action

@@ -1,6 +1,6 @@
 # SDK Agent Playground
 
-Chat with a **real agent** and switch which Supermemory SDK integration powers it.
+Chat with a **real agent** and switch which Emberspack Brain SDK integration powers it.
 
 > [!WARNING]
 > This is a local, single-user development tool. It makes real API calls, stores
@@ -13,14 +13,14 @@ Chat with a **real agent** and switch which Supermemory SDK integration powers i
 
 | SDK | Style | What happens |
 |-----|-------|----------------|
-| AI SDK + middleware | automatic | `withSupermemory` injects context + saves chat |
+| AI SDK + middleware | automatic | `withEmberspack Brain` injects context + saves chat |
 | OpenAI + middleware | automatic | same, via OpenAI client wrapper |
 | AI SDK + tools | explicit | model calls 7 memory tools via `generateText` |
 | OpenAI + tools | explicit | OpenAI function-calling loop |
-| `@supermemory/ai-sdk` | explicit | re-export of tools/ai-sdk |
-| Python OpenAI middleware | automatic | `with_supermemory` |
-| Python OpenAI tools | explicit | `SupermemoryTools` loop |
-| Python supermemory direct | manual | `profile()` + OpenAI + `add()` |
+| `@emberspack-brain/ai-sdk` | explicit | re-export of tools/ai-sdk |
+| Python OpenAI middleware | automatic | `with_emberspack-brain` |
+| Python OpenAI tools | explicit | `Emberspack BrainTools` loop |
+| Python emberspack-brain direct | manual | `profile()` + OpenAI + `add()` |
 
 ## Setup
 
@@ -39,8 +39,8 @@ cp apps/sdk-playground/.env.example apps/sdk-playground/.env.local
 # OPENAI_API_KEY=...
 ```
 
-The playground scripts build `@supermemory/tools` first and
-`@supermemory/ai-sdk` second before starting, type-checking, or building the
+The playground scripts build `@emberspack-brain/tools` first and
+`@emberspack-brain/ai-sdk` second before starting, type-checking, or building the
 Next.js app. Development mode also watches both workspace packages.
 
 ## Run
@@ -51,7 +51,7 @@ bun run --cwd apps/sdk-playground dev
 
 Opens:
 
-- **Chat UI** — https://sdk.dev.supermemory.ai via Portless
+- **Chat UI** — https://sdk.dev.emberspack-brain.ai via Portless
 - **Next.js server** — http://127.0.0.1:3005
 - **Python server** — http://127.0.0.1:8792
 
@@ -90,5 +90,5 @@ Try:
 | `SDK_PLAYGROUND_ALLOW_ENV_KEYS` | optional; set `true` only when a trusted non-local hostname must use server env keys |
 
 Server environment keys are exposed to the playground routes only on loopback
-hosts and `sdk.dev.supermemory.ai` by default. Browser-provided keys remain
+hosts and `sdk.dev.emberspack-brain.ai` by default. Browser-provided keys remain
 request-scoped and are never copied into process-global environment variables.

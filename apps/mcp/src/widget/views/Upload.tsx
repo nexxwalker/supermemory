@@ -79,7 +79,7 @@ export function Upload({
 			formData.append("containerTag", selectedTag)
 			formData.append(
 				"metadata",
-				JSON.stringify({ sm_source: "supermemory-mcp" }),
+				JSON.stringify({ sm_source: "emberspack-brain-mcp" }),
 			)
 
 			const response = await fetch(preparation.data.uploadUrl, {
@@ -111,10 +111,10 @@ export function Upload({
 			}
 			onAdvance(result)
 			await handoffToModel({
-				context: `Supermemory widget action completed. "${file.name}" was uploaded to space "${selectedTag}" with document ID "${uploaded.data.id}". It is already uploaded; do not upload it again.`,
-				message: `I used the Supermemory widget to upload "${file.name}" to space "${selectedTag}" (document ID: ${uploaded.data.id}). The file is already uploaded; do not upload it again.`,
+				context: `Emberspack Brain widget action completed. "${file.name}" was uploaded to space "${selectedTag}" with document ID "${uploaded.data.id}". It is already uploaded; do not upload it again.`,
+				message: `I used the Emberspack Brain widget to upload "${file.name}" to space "${selectedTag}" (document ID: ${uploaded.data.id}). The file is already uploaded; do not upload it again.`,
 				structuredContent: {
-					supermemory: {
+					emberspack-brain: {
 						action: "file-uploaded",
 						activeSpace: selectedTag,
 						documentId: uploaded.data.id,

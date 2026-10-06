@@ -51,15 +51,15 @@ export interface SearchResponse {
 	total: number
 }
 
-const API_BASE_URL = "https://api.supermemory.ai"
+const API_BASE_URL = "https://api.emberspack-brain.ai"
 
-class SupermemoryAPIError extends Error {
+class Emberspack BrainAPIError extends Error {
 	constructor(
 		message: string,
 		public status?: number,
 	) {
 		super(message)
-		this.name = "SupermemoryAPIError"
+		this.name = "Emberspack BrainAPIError"
 	}
 }
 
@@ -96,7 +96,7 @@ async function makeAuthenticatedRequest<T>(
 		if (!response.ok) {
 			if (response.status === 401) {
 				throw new AuthenticationError(
-					"Invalid API key. Please check your API key in preferences. Get a new one from https://supermemory.link/raycast",
+					"Invalid API key. Please check your API key in preferences. Get a new one from https://emberspack-brain.link/raycast",
 				)
 			}
 
@@ -110,11 +110,11 @@ async function makeAuthenticatedRequest<T>(
 				// Ignore JSON parsing errors, use default message
 			}
 
-			throw new SupermemoryAPIError(errorMessage, response.status)
+			throw new Emberspack BrainAPIError(errorMessage, response.status)
 		}
 
 		if (!response.headers.get("content-type")?.includes("application/json")) {
-			throw new SupermemoryAPIError("Invalid response format from API")
+			throw new Emberspack BrainAPIError("Invalid response format from API")
 		}
 
 		const data = (await response.json()) as T
@@ -122,13 +122,13 @@ async function makeAuthenticatedRequest<T>(
 	} catch (err) {
 		if (
 			err instanceof AuthenticationError ||
-			err instanceof SupermemoryAPIError
+			err instanceof Emberspack BrainAPIError
 		) {
 			throw err
 		}
 
 		// Handle network errors or other fetch errors
-		throw new SupermemoryAPIError(
+		throw new Emberspack BrainAPIError(
 			`Network error: ${err instanceof Error ? err.message : "Unknown error"}`,
 		)
 	}
@@ -160,7 +160,7 @@ export async function addProject(request: AddProjectRequest): Promise<Project> {
 	await showToast({
 		style: Toast.Style.Success,
 		title: "Project Added",
-		message: "Successfully added project to Supermemory",
+		message: "Successfully added project to Emberspack Brain",
 	})
 
 	return response
@@ -176,7 +176,7 @@ export async function addMemory(request: AddMemoryRequest): Promise<Memory> {
 		await showToast({
 			style: Toast.Style.Success,
 			title: "Memory Added",
-			message: "Successfully added memory to Supermemory",
+			message: "Successfully added memory to Emberspack Brain",
 		})
 
 		return response

@@ -1,5 +1,5 @@
 /**
- * Client for the Supermemory Conversations API
+ * Client for the Emberspack Brain Conversations API
  *
  * This module provides a helper function to ingest conversations using the
  * /v4/conversations endpoint, which supports structured messages with smart
@@ -90,7 +90,7 @@ export interface AddConversationResponse {
 const CONVERSATION_REQUEST_TIMEOUT_MS = 30_000
 
 /**
- * Adds a conversation to Supermemory using the /v4/conversations endpoint
+ * Adds a conversation to Emberspack Brain using the /v4/conversations endpoint
  *
  * This endpoint supports:
  * - Structured messages with roles (user, assistant, system, tool)
@@ -117,7 +117,7 @@ const CONVERSATION_REQUEST_TIMEOUT_MS = 30_000
 export async function addConversation(
 	params: AddConversationParams,
 ): Promise<AddConversationResponse> {
-	const baseUrl = params.baseUrl || "https://api.supermemory.ai"
+	const baseUrl = params.baseUrl || "https://api.emberspack-brain.ai"
 	const url = `${baseUrl}/v4/conversations`
 
 	const response = await fetch(url, {

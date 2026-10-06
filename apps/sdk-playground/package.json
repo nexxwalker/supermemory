@@ -2,7 +2,7 @@
   "name": "sdk-playground",
   "version": "0.1.0",
   "private": true,
-  "portless": { "name": "sdk.dev.supermemory", "script": "dev:app" },
+  "portless": { "name": "sdk.dev.emberspack-brain", "script": "dev:app" },
   "scripts": {
     "dev": "portless",
     "dev:app": "bun run build:dependencies && concurrently -k -n tools,ai-sdk,next,py -c yellow,magenta,blue,green \"bun run --cwd ../../packages/tools dev\" \"bun run --cwd ../../packages/ai-sdk dev\" \"next dev --hostname 127.0.0.1 --port ${PORT:-3005}\" \"bun run dev:python\"",
@@ -18,14 +18,14 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^2.0.22",
-    "@supermemory/ai-sdk": "workspace:*",
-    "@supermemory/tools": "workspace:*",
+    "@emberspack-brain/ai-sdk": "workspace:*",
+    "@emberspack-brain/tools": "workspace:*",
     "ai": "^5.0.113",
     "next": "^16.3.3",
     "openai": "^4.104.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "supermemory": "^4.25.4"
+    "emberspack-brain": "^4.25.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

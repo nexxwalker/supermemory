@@ -1,10 +1,10 @@
 /**
- * Supermemory configuration
+ * Emberspack Brain configuration
  * Only one of `projectId` or `containerTags` can be provided.
  */
-export interface SupermemoryToolsConfig {
+export interface Emberspack BrainToolsConfig {
 	/**
-	 * Custom base URL for the supermemory API
+	 * Custom base URL for the emberspack-brain API
 	 */
 	baseUrl?: string
 	/**

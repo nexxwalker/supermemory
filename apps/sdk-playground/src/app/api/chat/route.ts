@@ -3,7 +3,7 @@ import { CHAT_SDK_REGISTRY, PYTHON_SERVER_URL } from "@/lib/sdk-registry"
 import {
 	resolveApiKeys,
 	resolveOpenAiApiKey,
-	resolveSupermemoryApiKey,
+	resolveEmberspack BrainApiKey,
 } from "@/lib/api-keys"
 import {
 	PlaygroundChatTimeoutError,
@@ -46,8 +46,8 @@ export async function GET(request: Request) {
 
 	return NextResponse.json({
 		sdks: CHAT_SDK_REGISTRY,
-		hasSupermemoryKey: Boolean(
-			resolveSupermemoryApiKey(null, { allowEnvironment }),
+		hasEmberspack BrainKey: Boolean(
+			resolveEmberspack BrainApiKey(null, { allowEnvironment }),
 		),
 		hasOpenAiKey: Boolean(resolveOpenAiApiKey(null, { allowEnvironment })),
 		pythonUrl: PYTHON_SERVER_URL,
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
 				{
 					ok: false,
 					error:
-						"Supermemory and OpenAI API keys are required — enter them in the dashboard or set env vars.",
+						"Emberspack Brain and OpenAI API keys are required — enter them in the dashboard or set env vars.",
 				},
 				{ status: 400 },
 			)

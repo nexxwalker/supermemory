@@ -1,25 +1,25 @@
-# @supermemory/memory-graph
+# @emberspack-brain/memory-graph
 
 Interactive graph visualization for documents and their memory connections.
 
-[![npm version](https://img.shields.io/npm/v/@supermemory/memory-graph.svg)](https://www.npmjs.com/package/@supermemory/memory-graph)
+[![npm version](https://img.shields.io/npm/v/@emberspack-brain/memory-graph.svg)](https://www.npmjs.com/package/@emberspack-brain/memory-graph)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
 
 ```bash
-npm install @supermemory/memory-graph
+npm install @emberspack-brain/memory-graph
 # or
-bun add @supermemory/memory-graph
+bun add @emberspack-brain/memory-graph
 # or
-pnpm add @supermemory/memory-graph
+pnpm add @emberspack-brain/memory-graph
 ```
 
 ## Quick Start
 
 ```tsx
-import { MemoryGraph } from '@supermemory/memory-graph';
-import type { DocumentWithMemories } from '@supermemory/memory-graph';
+import { MemoryGraph } from '@emberspack-brain/memory-graph';
+import type { DocumentWithMemories } from '@emberspack-brain/memory-graph';
 
 function App() {
   const [documents, setDocuments] = useState<DocumentWithMemories[]>([]);
@@ -77,14 +77,14 @@ For paginated initial loading, pass `hasMore` and `isLoadingMore` alongside `doc
 
 ## Documentation
 
-Full documentation available at [docs.supermemory.ai](https://docs.supermemory.ai):
+Full documentation available at [docs.emberspack-brain.ai](https://docs.emberspack-brain.ai):
 
-- [Overview](https://docs.supermemory.ai/memory-graph/overview) - What it is and when to use it
-- [Installation](https://docs.supermemory.ai/memory-graph/installation) - Setup and requirements
-- [Quick Start](https://docs.supermemory.ai/memory-graph/quickstart) - Get running in 2 minutes
-- [API Reference](https://docs.supermemory.ai/memory-graph/api-reference) - Complete API documentation
-- [Examples](https://docs.supermemory.ai/memory-graph/examples) - Common use cases
-- [Troubleshooting](https://docs.supermemory.ai/memory-graph/troubleshooting) - Common issues
+- [Overview](https://docs.emberspack-brain.ai/memory-graph/overview) - What it is and when to use it
+- [Installation](https://docs.emberspack-brain.ai/memory-graph/installation) - Setup and requirements
+- [Quick Start](https://docs.emberspack-brain.ai/memory-graph/quickstart) - Get running in 2 minutes
+- [API Reference](https://docs.emberspack-brain.ai/memory-graph/api-reference) - Complete API documentation
+- [Examples](https://docs.emberspack-brain.ai/memory-graph/examples) - Common use cases
+- [Troubleshooting](https://docs.emberspack-brain.ai/memory-graph/troubleshooting) - Common issues
 
 ## Requirements
 
@@ -97,6 +97,6 @@ MIT
 
 ## Links
 
-- [GitHub](https://github.com/supermemoryai/supermemory/tree/main/packages/memory-graph)
-- [Issues](https://github.com/supermemoryai/supermemory/issues)
-- [Supermemory](https://supermemory.ai)
+- [GitHub](https://github.com/emberspack-brainai/emberspack-brain/tree/main/packages/memory-graph)
+- [Issues](https://github.com/emberspack-brainai/emberspack-brain/issues)
+- [Emberspack Brain](https://emberspack-brain.ai)

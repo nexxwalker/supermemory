@@ -1,9 +1,9 @@
 /**
- * Re-export the canonical Supermemory AI SDK tools from @supermemory/tools.
- * Prefer @supermemory/tools for middleware, OpenAI, Mastra, and VoltAgent integrations.
+ * Re-export the canonical Emberspack Brain AI SDK tools from @emberspack-brain/tools.
+ * Prefer @emberspack-brain/tools for middleware, OpenAI, Mastra, and VoltAgent integrations.
  */
 export {
-	supermemoryTools,
+	emberspack-brainTools,
 	searchMemoriesTool,
 	addMemoryTool,
 	getProfileTool,
@@ -12,6 +12,6 @@ export {
 	documentAddTool,
 	memoryForgetTool,
 	getContainerTags,
-} from "@supermemory/tools/ai-sdk"
+} from "@emberspack-brain/tools/ai-sdk"
 
-export type { SupermemoryToolsConfig } from "@supermemory/tools"
+export type { Emberspack BrainToolsConfig } from "@emberspack-brain/tools"

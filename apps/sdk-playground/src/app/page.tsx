@@ -34,22 +34,22 @@ type DisplayMessage = UserOrAssistantMessage | ToolMessage | DebugMessage
 
 export default function AgentPlaygroundPage() {
 	const [sdks, setSdks] = useState(CHAT_SDK_REGISTRY)
-	const [hasSupermemoryKey, setHasSupermemoryKey] = useState(false)
+	const [hasEmberspack BrainKey, setHasEmberspack BrainKey] = useState(false)
 	const [hasOpenAiKey, setHasOpenAiKey] = useState(false)
 	const [pythonOk, setPythonOk] = useState(false)
 	const [model, setModel] = useState("gpt-4o-mini")
 	const [pythonUrl, setPythonUrl] = useState("http://127.0.0.1:8792")
 
-	const [supermemoryApiKey, setSupermemoryApiKey] = useState("")
+	const [emberspack-brainApiKey, setEmberspack BrainApiKey] = useState("")
 	const [openaiApiKey, setOpenaiApiKey] = useState("")
 	const apiKeys = useMemo(
-		() => ({ supermemoryApiKey, openaiApiKey }),
-		[supermemoryApiKey, openaiApiKey],
+		() => ({ emberspack-brainApiKey, openaiApiKey }),
+		[emberspack-brainApiKey, openaiApiKey],
 	)
-	const supermemoryKeyReady =
-		supermemoryApiKey.trim().length > 0 || hasSupermemoryKey
+	const emberspack-brainKeyReady =
+		emberspack-brainApiKey.trim().length > 0 || hasEmberspack BrainKey
 	const openAiKeyReady = openaiApiKey.trim().length > 0 || hasOpenAiKey
-	const keysReady = supermemoryKeyReady && openAiKeyReady
+	const keysReady = emberspack-brainKeyReady && openAiKeyReady
 
 	const [sdkId, setSdkId] = useState("ts-ai-sdk-middleware")
 	const [containerTag, setContainerTag] = useState("sdk-playground")
@@ -88,7 +88,7 @@ export default function AgentPlaygroundPage() {
 			const res = await fetch("/api/chat")
 			const data = await res.json()
 			if (data.sdks) setSdks(data.sdks)
-			setHasSupermemoryKey(Boolean(data.hasSupermemoryKey))
+			setHasEmberspack BrainKey(Boolean(data.hasEmberspack BrainKey))
 			setHasOpenAiKey(Boolean(data.hasOpenAiKey))
 			setPythonOk(Boolean(data.pythonOk))
 			if (data.pythonUrl) setPythonUrl(data.pythonUrl)
@@ -172,7 +172,7 @@ export default function AgentPlaygroundPage() {
 			<header className="mb-4 shrink-0 space-y-3 border-b border-zinc-800 pb-4">
 				<div>
 					<h1 className="text-xl font-semibold tracking-tight">
-						Supermemory Agent Playground
+						Emberspack Brain Agent Playground
 					</h1>
 					<p className="text-sm text-zinc-400">
 						Talk to a real agent. Switch the underlying SDK integration in the
@@ -181,7 +181,7 @@ export default function AgentPlaygroundPage() {
 					</p>
 				</div>
 				<div className="flex flex-wrap gap-2 text-xs">
-					<Status ok={supermemoryKeyReady} label="Supermemory key" />
+					<Status ok={emberspack-brainKeyReady} label="Emberspack Brain key" />
 					<Status ok={openAiKeyReady} label="OpenAI key" />
 					<Status
 						ok={pythonOk}
@@ -192,11 +192,11 @@ export default function AgentPlaygroundPage() {
 					</span>
 				</div>
 				<ApiKeysPanel
-					supermemoryApiKey={supermemoryApiKey}
+					emberspack-brainApiKey={emberspack-brainApiKey}
 					openaiApiKey={openaiApiKey}
-					hasSupermemoryEnvKey={hasSupermemoryKey}
+					hasEmberspack BrainEnvKey={hasEmberspack BrainKey}
 					hasOpenAiEnvKey={hasOpenAiKey}
-					onSupermemoryChange={setSupermemoryApiKey}
+					onEmberspack BrainChange={setEmberspack BrainApiKey}
 					onOpenAiChange={setOpenaiApiKey}
 				/>
 			</header>
@@ -524,8 +524,8 @@ export default function AgentPlaygroundPage() {
 						containerTag={containerTag}
 						lastUserMessage={lastUserMessage}
 						refreshKey={contextRefreshKey}
-						supermemoryApiKey={supermemoryApiKey}
-						supermemoryKeyReady={supermemoryKeyReady}
+						emberspack-brainApiKey={emberspack-brainApiKey}
+						emberspack-brainKeyReady={emberspack-brainKeyReady}
 					/>
 				</aside>
 			</div>

@@ -151,7 +151,7 @@ export function Studio() {
 					className="text-(length:--text-base) font-semibold"
 					style={{ fontFamily: "var(--font-brand)" }}
 				>
-					Supermemory MCP · Studio
+					Emberspack Brain MCP · Studio
 				</span>
 				<div className="flex items-center gap-(--space-4)">
 					<div className="flex items-center gap-(--space-2)">
@@ -422,7 +422,7 @@ export function Studio() {
 							</WidgetShell>
 						</Frame>
 
-						<Frame label="Graph (@supermemory/memory-graph)" width={frameWidth}>
+						<Frame label="Graph (@emberspack-brain/memory-graph)" width={frameWidth}>
 							<WidgetShell immersive>
 								<Graph
 									documents={mockDocuments}

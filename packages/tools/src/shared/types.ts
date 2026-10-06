@@ -82,7 +82,7 @@ export interface Logger {
 }
 
 /**
- * Response structure from the Supermemory profile API.
+ * Response structure from the Emberspack Brain profile API.
  */
 export interface ProfileStructure {
 	profile: {
@@ -127,12 +127,12 @@ export interface ProfileMarkdownData {
 }
 
 /**
- * Base options shared across all integrations for Supermemory configuration.
+ * Base options shared across all integrations for Emberspack Brain configuration.
  */
-export interface SupermemoryBaseOptions {
-	/** Supermemory API key (falls back to SUPERMEMORY_API_KEY env var) */
+export interface Emberspack BrainBaseOptions {
+	/** Emberspack Brain API key (falls back to SUPERMEMORY_API_KEY env var) */
 	apiKey?: string
-	/** Custom Supermemory API base URL */
+	/** Custom Emberspack Brain API base URL */
 	baseUrl?: string
 	/** Optional conversation/thread ID to group messages for contextual memory generation */
 	threadId?: string

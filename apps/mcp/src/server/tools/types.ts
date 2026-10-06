@@ -5,7 +5,7 @@ import type {
 	TextContent,
 } from "@modelcontextprotocol/server"
 import type { SessionInfo } from "../../shared/types"
-import type { SupermemoryClient } from "../client"
+import type { Emberspack BrainClient } from "../client"
 import type { ActorContext } from "../types"
 
 export interface PreparedUpload {
@@ -19,7 +19,7 @@ export interface PreparedUpload {
 export interface ToolDeps {
 	server: Pick<McpServer, "registerTool">
 	actor: ActorContext
-	getClient: (containerTag?: string) => SupermemoryClient
+	getClient: (containerTag?: string) => Emberspack BrainClient
 	getSession: () => Promise<SessionInfo>
 	resolveContainerTag: (explicit?: string) => Promise<string>
 	getActiveContainerTag: () => Promise<string | undefined>

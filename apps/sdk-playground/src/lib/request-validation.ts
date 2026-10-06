@@ -107,7 +107,7 @@ export function mayUseEnvironmentKeys(request: Request): boolean {
 		hostname === "127.0.0.1" ||
 		hostname === "[::1]" ||
 		hostname.endsWith(".localhost") ||
-		hostname === "sdk.dev.supermemory.ai"
+		hostname === "sdk.dev.emberspack-brain.ai"
 	)
 }
 
@@ -333,9 +333,9 @@ export function parseApiKeys(value: unknown): Partial<PlaygroundApiKeys> {
 	}
 
 	return {
-		supermemoryApiKey: parseOptionalApiKey(
-			value.supermemoryApiKey,
-			"Supermemory API key",
+		emberspack-brainApiKey: parseOptionalApiKey(
+			value.emberspack-brainApiKey,
+			"Emberspack Brain API key",
 		),
 		openaiApiKey: parseOptionalApiKey(value.openaiApiKey, "OpenAI API key"),
 	}

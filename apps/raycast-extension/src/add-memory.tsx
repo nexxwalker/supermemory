@@ -11,14 +11,14 @@ import {
 import { useState, useEffect } from "react"
 import { addMemory, fetchProjects } from "./api"
 import { usePromise } from "@raycast/utils"
-import { withSupermemory } from "./withSupermemory"
+import { withEmberspack Brain } from "./withEmberspack Brain"
 
 interface FormValues {
 	content: string
 	project: string
 }
 
-export default withSupermemory(Command)
+export default withEmberspack Brain(Command)
 function Command() {
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [initialContent, setInitialContent] = useState("")

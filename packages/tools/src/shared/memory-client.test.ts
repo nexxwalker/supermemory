@@ -3,7 +3,7 @@ import { buildMemoriesText } from "./memory-client"
 import { createLogger } from "./logger"
 
 const API_KEY = "sm_test_key"
-const BASE_URL = "https://api.supermemory.ai"
+const BASE_URL = "https://api.emberspack-brain.ai"
 const CONTAINER_TAG = "user-123"
 
 const logger = createLogger(false)

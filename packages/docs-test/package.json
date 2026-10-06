@@ -16,11 +16,11 @@
     "@ai-sdk/anthropic": "^3.0.15",
     "@ai-sdk/openai": "latest",
     "@anthropic-ai/sdk": "latest",
-    "@supermemory/tools": "workspace:*",
+    "@emberspack-brain/tools": "workspace:*",
     "ai": "latest",
     "dotenv": "latest",
     "openai": "latest",
-    "supermemory": "latest",
+    "emberspack-brain": "latest",
     "zod": "latest"
   }
 }

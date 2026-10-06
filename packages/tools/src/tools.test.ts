@@ -3,11 +3,11 @@ import { generateText } from "ai"
 import { describe, expect, it } from "vitest"
 import * as aiSdk from "./ai-sdk"
 import * as openAi from "./openai"
-import type { SupermemoryToolsConfig } from "./types"
+import type { Emberspack BrainToolsConfig } from "./types"
 
 import "dotenv/config"
 
-describe("@supermemory/tools", () => {
+describe("@emberspack-brain/tools", () => {
 	// Required API keys - tests will fail if not provided
 	const testApiKey = process.env.SUPERMEMORY_API_KEY
 	const testOpenAIKey = process.env.OPENAI_API_KEY
@@ -28,8 +28,8 @@ describe("@supermemory/tools", () => {
 	describe("aiSdk module", () => {
 		describe("client initialization", () => {
 			it("should create tools with default configuration", () => {
-				const config: SupermemoryToolsConfig = {}
-				const tools = aiSdk.supermemoryTools(testApiKey, config)
+				const config: Emberspack BrainToolsConfig = {}
+				const tools = aiSdk.emberspack-brainTools(testApiKey, config)
 
 				expect(tools).toBeDefined()
 				expect(tools.searchMemories).toBeDefined()
@@ -42,10 +42,10 @@ describe("@supermemory/tools", () => {
 			})
 
 			it("should create tools with custom baseUrl", () => {
-				const config: SupermemoryToolsConfig = {
+				const config: Emberspack BrainToolsConfig = {
 					baseUrl: testBaseUrl,
 				}
-				const tools = aiSdk.supermemoryTools(testApiKey, config)
+				const tools = aiSdk.emberspack-brainTools(testApiKey, config)
 
 				expect(tools).toBeDefined()
 				expect(tools.searchMemories).toBeDefined()
@@ -110,7 +110,7 @@ describe("@supermemory/tools", () => {
 						},
 					],
 					tools: {
-						...aiSdk.supermemoryTools(testApiKey, {
+						...aiSdk.emberspack-brainTools(testApiKey, {
 							projectId: "test-ai-integration",
 							baseUrl: testBaseUrl,
 						}),
@@ -127,7 +127,7 @@ describe("@supermemory/tools", () => {
 					apiKey: testOpenAIKey,
 				})
 
-				const tools = aiSdk.supermemoryTools(testApiKey, {
+				const tools = aiSdk.emberspack-brainTools(testApiKey, {
 					projectId: "test-tool-usage",
 					baseUrl: testBaseUrl,
 				})
@@ -159,7 +159,7 @@ describe("@supermemory/tools", () => {
 					apiKey: testOpenAIKey,
 				})
 
-				const tools = aiSdk.supermemoryTools(testApiKey, {
+				const tools = aiSdk.emberspack-brainTools(testApiKey, {
 					projectId: "test-profile-tool",
 					baseUrl: testBaseUrl,
 				})
@@ -191,7 +191,7 @@ describe("@supermemory/tools", () => {
 					apiKey: testOpenAIKey,
 				})
 
-				const tools = aiSdk.supermemoryTools(testApiKey, {
+				const tools = aiSdk.emberspack-brainTools(testApiKey, {
 					projectId: "test-document-tools",
 					baseUrl: testBaseUrl,
 				})
@@ -281,7 +281,7 @@ describe("@supermemory/tools", () => {
 	describe("openAi module", () => {
 		describe("function-based tools", () => {
 			it("should create function-based tools", () => {
-				const tools = openAi.supermemoryTools(testApiKey, {
+				const tools = openAi.emberspack-brainTools(testApiKey, {
 					projectId: "test-openai-functions",
 				})
 

@@ -1,9 +1,9 @@
 /**
- * Mastra Processors for Supermemory Integration
+ * Mastra Processors for Emberspack Brain Integration
  *
  * This module provides input and output processors for Mastra agents that enable:
  * - Memory injection: Fetches relevant user memories before LLM calls
- * - Conversation saving: Persists conversations to Supermemory after responses
+ * - Conversation saving: Persists conversations to Emberspack Brain after responses
  *
  * Processors integrate with Mastra's processor pipeline:
  * - InputProcessor runs before the LLM call, injecting memories into system messages
@@ -30,7 +30,7 @@ import {
 } from "../conversations-client"
 import { MASTRA_THREAD_ID_KEY } from "@mastra/core/request-context"
 import type {
-	SupermemoryMastraOptions,
+	Emberspack BrainMastraOptions,
 	Processor,
 	ProcessInputArgs,
 	ProcessInputResult,
@@ -58,7 +58,7 @@ interface ProcessorContext {
  * Creates the shared processor context from options.
  */
 function createProcessorContext(
-	options: SupermemoryMastraOptions,
+	options: Emberspack BrainMastraOptions,
 ): ProcessorContext {
 	const apiKey = validateApiKey(options.apiKey)
 	const baseUrl = normalizeBaseUrl(options.baseUrl)
@@ -102,13 +102,13 @@ function getEffectiveCustomId(
  * Input processor that injects memories into the system prompt before LLM calls.
  *
  * This processor runs once at the start of agent execution (processInput).
- * It fetches relevant memories from Supermemory based on the user's message
+ * It fetches relevant memories from Emberspack Brain based on the user's message
  * and injects them into the system messages.
  *
  * @example
  * ```typescript
  * import { Agent } from "@mastra/core/agent"
- * import { SupermemoryInputProcessor } from "@supermemory/tools/mastra"
+ * import { Emberspack BrainInputProcessor } from "@emberspack-brain/tools/mastra"
  * import { openai } from "@ai-sdk/openai"
  *
  * const agent = new Agent({
@@ -116,7 +116,7 @@ function getEffectiveCustomId(
  *   name: "My Agent",
  *   model: openai("gpt-4o"),
  *   inputProcessors: [
- *     new SupermemoryInputProcessor({
+ *     new Emberspack BrainInputProcessor({
  *       containerTag: "user-123",
  *       customId: "conv-456",
  *       mode: "full",
@@ -126,13 +126,13 @@ function getEffectiveCustomId(
  * })
  * ```
  */
-export class SupermemoryInputProcessor implements Processor {
-	readonly id = "supermemory-input"
-	readonly name = "Supermemory Memory Injection"
+export class Emberspack BrainInputProcessor implements Processor {
+	readonly id = "emberspack-brain-input"
+	readonly name = "Emberspack Brain Memory Injection"
 
 	private ctx: ProcessorContext
 
-	constructor(options: SupermemoryMastraOptions) {
+	constructor(options: Emberspack BrainMastraOptions) {
 		this.ctx = createProcessorContext(options)
 	}
 
@@ -141,8 +141,8 @@ export class SupermemoryInputProcessor implements Processor {
 
 		// Mastra owns tagged system messages by tag. Clear the previous value on
 		// every invocation so empty, skipped, cached, fresh, and error paths cannot
-		// leave stale Supermemory context behind.
-		messageList.clearSystemMessages("supermemory")
+		// leave stale Emberspack Brain context behind.
+		messageList.clearSystemMessages("emberspack-brain")
 
 		try {
 			const queryText = extractQueryText(
@@ -169,7 +169,7 @@ export class SupermemoryInputProcessor implements Processor {
 			const cachedMemories = this.ctx.memoryCache.get(turnKey)
 			if (cachedMemories) {
 				this.ctx.logger.debug("Using cached memories", { turnKey })
-				messageList.addSystem(wrapMemoryContext(cachedMemories), "supermemory")
+				messageList.addSystem(wrapMemoryContext(cachedMemories), "emberspack-brain")
 				return messageList
 			}
 
@@ -191,7 +191,7 @@ export class SupermemoryInputProcessor implements Processor {
 
 			if (memories) {
 				this.ctx.memoryCache.set(turnKey, memories)
-				messageList.addSystem(wrapMemoryContext(memories), "supermemory")
+				messageList.addSystem(wrapMemoryContext(memories), "emberspack-brain")
 				this.ctx.logger.debug("Injected memories into system prompt", {
 					length: memories.length,
 				})
@@ -208,16 +208,16 @@ export class SupermemoryInputProcessor implements Processor {
 }
 
 /**
- * Output processor that saves conversations to Supermemory after generation completes.
+ * Output processor that saves conversations to Emberspack Brain after generation completes.
  *
  * This processor runs once after generation completes (processOutputResult).
- * When addMemory is set to "always", it saves the conversation to Supermemory
+ * When addMemory is set to "always", it saves the conversation to Emberspack Brain
  * using the /v4/conversations API for thread-based storage.
  *
  * @example
  * ```typescript
  * import { Agent } from "@mastra/core/agent"
- * import { SupermemoryOutputProcessor } from "@supermemory/tools/mastra"
+ * import { Emberspack BrainOutputProcessor } from "@emberspack-brain/tools/mastra"
  * import { openai } from "@ai-sdk/openai"
  *
  * const agent = new Agent({
@@ -225,7 +225,7 @@ export class SupermemoryInputProcessor implements Processor {
  *   name: "My Agent",
  *   model: openai("gpt-4o"),
  *   outputProcessors: [
- *     new SupermemoryOutputProcessor({
+ *     new Emberspack BrainOutputProcessor({
  *       containerTag: "user-123",
  *       customId: "conv-456",
  *       addMemory: "always",
@@ -234,13 +234,13 @@ export class SupermemoryInputProcessor implements Processor {
  * })
  * ```
  */
-export class SupermemoryOutputProcessor implements Processor {
-	readonly id = "supermemory-output"
-	readonly name = "Supermemory Conversation Save"
+export class Emberspack BrainOutputProcessor implements Processor {
+	readonly id = "emberspack-brain-output"
+	readonly name = "Emberspack Brain Conversation Save"
 
 	private ctx: ProcessorContext
 
-	constructor(options: SupermemoryMastraOptions) {
+	constructor(options: Emberspack BrainMastraOptions) {
 		this.ctx = createProcessorContext(options)
 	}
 
@@ -328,18 +328,18 @@ export class SupermemoryOutputProcessor implements Processor {
 }
 
 /**
- * Creates a Supermemory input processor for memory injection.
+ * Creates a Emberspack Brain input processor for memory injection.
  *
  * @param options - Configuration options including required containerTag and customId
- * @returns Configured SupermemoryInputProcessor instance
+ * @returns Configured Emberspack BrainInputProcessor instance
  *
  * @example
  * ```typescript
  * import { Agent } from "@mastra/core/agent"
- * import { createSupermemoryProcessor } from "@supermemory/tools/mastra"
+ * import { createEmberspack BrainProcessor } from "@emberspack-brain/tools/mastra"
  * import { openai } from "@ai-sdk/openai"
  *
- * const processor = createSupermemoryProcessor({
+ * const processor = createEmberspack BrainProcessor({
  *   containerTag: "user-123",
  *   customId: "conv-456",
  *   mode: "full",
@@ -354,25 +354,25 @@ export class SupermemoryOutputProcessor implements Processor {
  * })
  * ```
  */
-export function createSupermemoryProcessor(
-	options: SupermemoryMastraOptions,
-): SupermemoryInputProcessor {
-	return new SupermemoryInputProcessor(options)
+export function createEmberspack BrainProcessor(
+	options: Emberspack BrainMastraOptions,
+): Emberspack BrainInputProcessor {
+	return new Emberspack BrainInputProcessor(options)
 }
 
 /**
- * Creates a Supermemory output processor for saving conversations.
+ * Creates a Emberspack Brain output processor for saving conversations.
  *
  * @param options - Configuration options including required containerTag and customId
- * @returns Configured SupermemoryOutputProcessor instance
+ * @returns Configured Emberspack BrainOutputProcessor instance
  *
  * @example
  * ```typescript
  * import { Agent } from "@mastra/core/agent"
- * import { createSupermemoryOutputProcessor } from "@supermemory/tools/mastra"
+ * import { createEmberspack BrainOutputProcessor } from "@emberspack-brain/tools/mastra"
  * import { openai } from "@ai-sdk/openai"
  *
- * const processor = createSupermemoryOutputProcessor({
+ * const processor = createEmberspack BrainOutputProcessor({
  *   containerTag: "user-123",
  *   customId: "conv-456",
  *   addMemory: "always",
@@ -386,10 +386,10 @@ export function createSupermemoryProcessor(
  * })
  * ```
  */
-export function createSupermemoryOutputProcessor(
-	options: SupermemoryMastraOptions,
-): SupermemoryOutputProcessor {
-	return new SupermemoryOutputProcessor(options)
+export function createEmberspack BrainOutputProcessor(
+	options: Emberspack BrainMastraOptions,
+): Emberspack BrainOutputProcessor {
+	return new Emberspack BrainOutputProcessor(options)
 }
 
 /**
@@ -404,10 +404,10 @@ export function createSupermemoryOutputProcessor(
  * @example
  * ```typescript
  * import { Agent } from "@mastra/core/agent"
- * import { createSupermemoryProcessors } from "@supermemory/tools/mastra"
+ * import { createEmberspack BrainProcessors } from "@emberspack-brain/tools/mastra"
  * import { openai } from "@ai-sdk/openai"
  *
- * const { input, output } = createSupermemoryProcessors({
+ * const { input, output } = createEmberspack BrainProcessors({
  *   containerTag: "user-123",
  *   customId: "conv-456",
  *   mode: "full",
@@ -423,14 +423,14 @@ export function createSupermemoryOutputProcessor(
  * })
  * ```
  */
-export function createSupermemoryProcessors(
-	options: SupermemoryMastraOptions,
+export function createEmberspack BrainProcessors(
+	options: Emberspack BrainMastraOptions,
 ): {
-	input: SupermemoryInputProcessor
-	output: SupermemoryOutputProcessor
+	input: Emberspack BrainInputProcessor
+	output: Emberspack BrainOutputProcessor
 } {
 	return {
-		input: new SupermemoryInputProcessor(options),
-		output: new SupermemoryOutputProcessor(options),
+		input: new Emberspack BrainInputProcessor(options),
+		output: new Emberspack BrainOutputProcessor(options),
 	}
 }

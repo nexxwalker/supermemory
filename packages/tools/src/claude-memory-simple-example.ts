@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
  * Simple Claude Memory Tool Example
- * Shows the cleanest way to integrate Claude's memory tool with supermemory
+ * Shows the cleanest way to integrate Claude's memory tool with emberspack-brain
  */
 
 import Anthropic from "@anthropic-ai/sdk"

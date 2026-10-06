@@ -18,7 +18,7 @@ const html = await readFile(htmlUrl, "utf8")
 const sha256 = createHash("sha256")
 	.update(JSON.stringify({ html, meta: WIDGET_RESOURCE_META }))
 	.digest("hex")
-const resourceUri = `ui://supermemory/app-${sha256}.html`
+const resourceUri = `ui://emberspack-brain/app-${sha256}.html`
 const manifest = { resourceUri, sha256 }
 
 await mkdir(artifactsUrl, { recursive: true })

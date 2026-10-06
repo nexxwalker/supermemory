@@ -187,10 +187,10 @@ export async function anthropicSdkExample() {
  * This is what the actual integration would look like with @anthropic-ai/sdk
  */
 export const anthropicIntegrationTemplate = `
-// Install: npm install @anthropic-ai/sdk @supermemory/tools
+// Install: npm install @anthropic-ai/sdk @emberspack-brain/tools
 
 import Anthropic from '@anthropic-ai/sdk';
-import { createClaudeMemoryTool } from '@supermemory/tools/claude-memory';
+import { createClaudeMemoryTool } from '@emberspack-brain/tools/claude-memory';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -242,10 +242,10 @@ async function chatWithMemory(userMessage: string) {
 // =====================================================
 
 export const curlExamples = `
-# Test the memory tool using cURL commands against your supermemory API
+# Test the memory tool using cURL commands against your emberspack-brain API
 
 # 1. Create a memory file
-curl -X POST "https://api.supermemory.ai/v3/documents" \\
+curl -X POST "https://api.emberspack-brain.ai/v3/documents" \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -261,7 +261,7 @@ curl -X POST "https://api.supermemory.ai/v3/documents" \\
   }'
 
 # 2. Search/read the memory file
-curl -X POST "https://api.supermemory.ai/v3/search" \\
+curl -X POST "https://api.emberspack-brain.ai/v3/search" \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -272,7 +272,7 @@ curl -X POST "https://api.supermemory.ai/v3/search" \\
   }'
 
 # 3. List all memory files (directory listing)
-curl -X POST "https://api.supermemory.ai/v3/search" \\
+curl -X POST "https://api.emberspack-brain.ai/v3/search" \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -283,7 +283,7 @@ curl -X POST "https://api.supermemory.ai/v3/search" \\
   }'
 
 # 4. Update a memory file (str_replace operation)
-curl -X PATCH "https://api.supermemory.ai/v3/documents/DOCUMENT_ID" \\
+curl -X PATCH "https://api.emberspack-brain.ai/v3/documents/DOCUMENT_ID" \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -297,7 +297,7 @@ curl -X PATCH "https://api.supermemory.ai/v3/documents/DOCUMENT_ID" \\
   }'
 
 # 5. Delete a memory file
-curl -X DELETE "https://api.supermemory.ai/v3/documents/DOCUMENT_ID" \\
+curl -X DELETE "https://api.emberspack-brain.ai/v3/documents/DOCUMENT_ID" \\
   -H "Authorization: Bearer YOUR_API_KEY"
 `
 

@@ -1,12 +1,12 @@
-# Supermemory Architecture
+# Emberspack Brain Architecture
 
-Deep dive into how Supermemory works under the hood.
+Deep dive into how Emberspack Brain works under the hood.
 
 ## Core Concept: Living Knowledge Graph
 
-Supermemory fundamentally differs from traditional document storage systems. Instead of maintaining static files in folders, it constructs **a living knowledge graph** where content becomes dynamically interconnected.
+Emberspack Brain fundamentally differs from traditional document storage systems. Instead of maintaining static files in folders, it constructs **a living knowledge graph** where content becomes dynamically interconnected.
 
-### Traditional vs. Supermemory Approach
+### Traditional vs. Emberspack Brain Approach
 
 **Traditional Document Storage:**
 ```
@@ -20,7 +20,7 @@ Folder/
 - Keyword-based search only
 - No automatic updates
 
-**Supermemory Knowledge Graph:**
+**Emberspack Brain Knowledge Graph:**
 ```
 Knowledge Graph
 ├── Memory: "User prefers TypeScript"
@@ -185,7 +185,7 @@ Processing complete. Content is now fully searchable and integrated into the kno
 
 ### Memory Versioning
 
-Supermemory maintains version history through the `Updates` relationship:
+Emberspack Brain maintains version history through the `Updates` relationship:
 
 ```
 Memory v1: "User prefers Vue" (isLatest: false)
@@ -260,7 +260,7 @@ Results: Semantically similar + metadata match
 
 ## Container Tag Isolation
 
-Container tags create isolated "spaces" within Supermemory:
+Container tags create isolated "spaces" within Emberspack Brain:
 
 ```
 ┌─────────────────────────────────┐
@@ -383,7 +383,7 @@ The knowledge graph continuously evolves:
 
 ## Performance Characteristics
 
-Supermemory is designed for high performance and scale:
+Emberspack Brain is designed for high performance and scale:
 
 **Real-world metrics:**
 - Search latency: <50ms (p95)
@@ -403,7 +403,7 @@ User query → Embed → Search chunks → Return top-k → LLM
 - No user profiles
 - Pure similarity search
 
-**Supermemory:**
+**Emberspack Brain:**
 ```
 User query → Embed → Graph search → Relationship expansion →
 Filter + rank → User profile enrichment → Return context → LLM
@@ -422,7 +422,7 @@ Filter + rank → User profile enrichment → Return context → LLM
 - No user profile generation
 - Requires manual pipeline construction
 
-**Supermemory:**
+**Emberspack Brain:**
 - End-to-end solution (ingestion → storage → retrieval)
 - Automatic relationship discovery
 - Intelligent chunking
@@ -443,7 +443,7 @@ messages = [
 - No persistence across sessions
 - Linear growth → expensive
 
-**Supermemory:**
+**Emberspack Brain:**
 - Unlimited history
 - Semantic retrieval (only relevant context)
 - Persistent across sessions
@@ -461,7 +461,7 @@ messages = [
        │ REST API
        ↓
 ┌──────────────────────────────────┐
-│     Supermemory API Layer        │
+│     Emberspack Brain API Layer        │
 │  ┌──────────┐  ┌──────────────┐ │
 │  │ /documents│  │   /search    │ │
 │  │ /memories │  │   /profile   │ │
@@ -527,7 +527,7 @@ messages = [
 
 ## Scalability
 
-Supermemory is designed for scale:
+Emberspack Brain is designed for scale:
 
 - **Users**: Millions of concurrent users
 - **Documents**: Billions of documents
@@ -545,7 +545,7 @@ Supermemory is designed for scale:
 
 ## Summary
 
-Supermemory's architecture enables:
+Emberspack Brain's architecture enables:
 
 1. **Intelligent Memory**: Beyond simple storage, understanding and relationships
 2. **Semantic Search**: Meaning-based retrieval, not keyword matching

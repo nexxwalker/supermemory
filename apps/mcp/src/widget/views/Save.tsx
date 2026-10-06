@@ -76,10 +76,10 @@ export function Save({
 			result.data.view === "save-success" ? result.data.id : undefined
 		onAdvance(result.data)
 		await handoffToModel({
-			context: `Supermemory widget action completed. A memory was saved to space "${selectedTag}"${memoryId ? ` with memory ID "${memoryId}"` : ""}. Saved content:\n\n${trimmed}\n\nIt is already saved; do not save it again.`,
-			message: `I used the Supermemory widget to save a memory to space "${selectedTag}"${memoryId ? ` (memory ID: ${memoryId})` : ""}. The memory is already saved; do not save it again.`,
+			context: `Emberspack Brain widget action completed. A memory was saved to space "${selectedTag}"${memoryId ? ` with memory ID "${memoryId}"` : ""}. Saved content:\n\n${trimmed}\n\nIt is already saved; do not save it again.`,
+			message: `I used the Emberspack Brain widget to save a memory to space "${selectedTag}"${memoryId ? ` (memory ID: ${memoryId})` : ""}. The memory is already saved; do not save it again.`,
 			structuredContent: {
-				supermemory: {
+				emberspack-brain: {
 					action: "memory-saved",
 					activeSpace: selectedTag,
 					memoryId,

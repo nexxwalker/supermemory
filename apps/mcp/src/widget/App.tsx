@@ -72,7 +72,7 @@ export function WidgetShell({
 					</svg>
 				</span>
 				<span className="mcp-widget-brand-copy">
-					<span className="mcp-widget-brand-name">supermemory</span>
+					<span className="mcp-widget-brand-name">emberspack-brain</span>
 					<span className="mcp-widget-brand-mode">MCP</span>
 				</span>
 			</header>

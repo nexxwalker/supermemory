@@ -1,5 +1,5 @@
 import type { McpServer } from "@modelcontextprotocol/server"
-import { DEFAULT_PROJECT_ID, type SupermemoryClient } from "../client"
+import { DEFAULT_PROJECT_ID, type Emberspack BrainClient } from "../client"
 import {
 	compactDescription,
 	formatFactSection,
@@ -14,7 +14,7 @@ const RECENT_SPACE_LIMIT = 3
 
 export function registerContextPrompt(
 	server: McpServer,
-	getClient: (tag?: string) => SupermemoryClient,
+	getClient: (tag?: string) => Emberspack BrainClient,
 	resolveContainerTag: () => Promise<string | undefined>,
 ) {
 	server.registerPrompt(
@@ -36,7 +36,7 @@ export function registerContextPrompt(
 				const activeLabel = spaceDisplayName(activeSpace, activeKey)
 				const fallback = selectedTag ? "" : " (default)"
 				const parts: string[] = [
-					"# Supermemory Context",
+					"# Emberspack Brain Context",
 					`Active space: ${activeLabel} [${activeKey}]${fallback}`,
 				]
 

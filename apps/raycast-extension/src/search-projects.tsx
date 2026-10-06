@@ -14,9 +14,9 @@ import {
 	useCachedPromise,
 	useForm,
 } from "@raycast/utils"
-import { withSupermemory } from "./withSupermemory"
+import { withEmberspack Brain } from "./withEmberspack Brain"
 
-export default withSupermemory(Command)
+export default withEmberspack Brain(Command)
 
 function Command() {
 	const { isLoading, data: projects, mutate } = useCachedPromise(fetchProjects)

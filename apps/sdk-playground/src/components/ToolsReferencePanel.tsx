@@ -14,7 +14,7 @@ export function ToolsReferencePanel() {
 				</h2>
 				<p className="mt-1 text-[10px] leading-snug text-zinc-600">
 					Canonical descriptions from{" "}
-					<code className="text-zinc-500">@supermemory/tools</code> — what the
+					<code className="text-zinc-500">@emberspack-brain/tools</code> — what the
 					model sees in tools mode.
 				</p>
 			</div>

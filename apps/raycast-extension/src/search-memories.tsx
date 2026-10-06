@@ -11,7 +11,7 @@ import {
 import { useState, useEffect } from "react"
 import { searchMemories, type SearchResult } from "./api"
 import { usePromise } from "@raycast/utils"
-import { withSupermemory } from "./withSupermemory"
+import { withEmberspack Brain } from "./withEmberspack Brain"
 
 const extractContent = (memory: SearchResult) => {
 	if (memory.chunks && memory.chunks.length > 0) {
@@ -61,7 +61,7 @@ const truncateContent = (content: string, maxLength = 100) => {
 	return `${content.substring(0, maxLength)}...`
 }
 
-export default withSupermemory(Command)
+export default withEmberspack Brain(Command)
 function Command() {
 	const [searchText, setSearchText] = useState("")
 
@@ -128,7 +128,7 @@ function Command() {
 				<List.EmptyView
 					icon={Icon.MagnifyingGlass}
 					title="Search Your Memories"
-					description="Type to search through your Supermemory collection"
+					description="Type to search through your Emberspack Brain collection"
 				/>
 			) : hasSearched ? (
 				<List.EmptyView

@@ -1,15 +1,15 @@
-export { withSupermemory } from "./wrapper"
+export { withEmberspack Brain } from "./wrapper"
 
 export {
-	SupermemoryInputProcessor,
-	SupermemoryOutputProcessor,
-	createSupermemoryProcessor,
-	createSupermemoryOutputProcessor,
-	createSupermemoryProcessors,
+	Emberspack BrainInputProcessor,
+	Emberspack BrainOutputProcessor,
+	createEmberspack BrainProcessor,
+	createEmberspack BrainOutputProcessor,
+	createEmberspack BrainProcessors,
 } from "./processor"
 
 export type {
-	SupermemoryMastraOptions,
+	Emberspack BrainMastraOptions,
 	Processor,
 	ProcessInputArgs,
 	ProcessInputResult,

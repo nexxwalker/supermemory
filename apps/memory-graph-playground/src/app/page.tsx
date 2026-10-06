@@ -7,8 +7,8 @@ import {
 	type GraphApiMemory,
 	type GraphThemeColors,
 	type MemoryRelation,
-} from "@supermemory/memory-graph"
-import { generateMockGraphData } from "@supermemory/memory-graph/mock-data"
+} from "@emberspack-brain/memory-graph"
+import { generateMockGraphData } from "@emberspack-brain/memory-graph/mock-data"
 
 interface PlaygroundApiMemory {
 	id: string
@@ -350,14 +350,14 @@ export default function Home() {
 							Memory Graph Playground
 						</h1>
 						<p className="text-sm text-zinc-400">
-							Test the @supermemory/memory-graph package
+							Test the @emberspack-brain/memory-graph package
 						</p>
 					</div>
 
 					<form onSubmit={handleSubmit} className="flex items-center gap-3">
 						<input
 							type="password"
-							placeholder="Enter your Supermemory API key"
+							placeholder="Enter your Emberspack Brain API key"
 							value={apiKey}
 							onChange={(e) => {
 								setApiKey(e.target.value)

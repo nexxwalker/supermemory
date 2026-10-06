@@ -1,7 +1,7 @@
 import { createOpenAI } from "@ai-sdk/openai"
 import { generateText } from "ai"
 import { describe, expect, it } from "vitest"
-import { type SupermemoryToolsConfig, supermemoryTools } from "./tools"
+import { type Emberspack BrainToolsConfig, emberspack-brainTools } from "./tools"
 
 import "dotenv/config"
 
@@ -13,11 +13,11 @@ const testOpenAIKey = process.env.OPENAI_API_KEY ?? "test-openai-key"
 const testBaseUrl = process.env.SUPERMEMORY_BASE_URL ?? undefined
 const testModelName = process.env.MODEL_NAME || "gpt-5-nano"
 
-describe("supermemoryTools", () => {
+describe("emberspack-brainTools", () => {
 	describe("client initialization", () => {
 		it("should create tools with default configuration", () => {
-			const config: SupermemoryToolsConfig = {}
-			const tools = supermemoryTools(testApiKey, config)
+			const config: Emberspack BrainToolsConfig = {}
+			const tools = emberspack-brainTools(testApiKey, config)
 
 			expect(tools).toBeDefined()
 			expect(tools.searchMemories).toBeDefined()
@@ -30,10 +30,10 @@ describe("supermemoryTools", () => {
 		})
 
 		it("should create tools with custom baseUrl", () => {
-			const config: SupermemoryToolsConfig = {
+			const config: Emberspack BrainToolsConfig = {
 				baseUrl: testBaseUrl,
 			}
-			const tools = supermemoryTools(testApiKey, config)
+			const tools = emberspack-brainTools(testApiKey, config)
 
 			expect(tools).toBeDefined()
 			expect(tools.searchMemories).toBeDefined()
@@ -41,10 +41,10 @@ describe("supermemoryTools", () => {
 		})
 
 		it("should create tools with projectId configuration", () => {
-			const config: SupermemoryToolsConfig = {
+			const config: Emberspack BrainToolsConfig = {
 				projectId: "test-project-123",
 			}
-			const tools = supermemoryTools(testApiKey, config)
+			const tools = emberspack-brainTools(testApiKey, config)
 
 			expect(tools).toBeDefined()
 			expect(tools.searchMemories).toBeDefined()
@@ -52,10 +52,10 @@ describe("supermemoryTools", () => {
 		})
 
 		it("should create tools with custom container tags", () => {
-			const config: SupermemoryToolsConfig = {
+			const config: Emberspack BrainToolsConfig = {
 				containerTags: ["custom-tag-1", "custom-tag-2"],
 			}
-			const tools = supermemoryTools(testApiKey, config)
+			const tools = emberspack-brainTools(testApiKey, config)
 
 			expect(tools).toBeDefined()
 			expect(tools.searchMemories).toBeDefined()
@@ -83,7 +83,7 @@ describe("supermemoryTools", () => {
 					},
 				],
 				tools: {
-					...supermemoryTools(testApiKey, {
+					...emberspack-brainTools(testApiKey, {
 						projectId: "test-ai-integration",
 						baseUrl: testBaseUrl,
 					}),
@@ -100,7 +100,7 @@ describe("supermemoryTools", () => {
 				apiKey: testOpenAIKey,
 			})
 
-			const tools = supermemoryTools(testApiKey, {
+			const tools = emberspack-brainTools(testApiKey, {
 				projectId: "test-tool-usage",
 				baseUrl: testBaseUrl,
 			})
@@ -155,7 +155,7 @@ describe("supermemoryTools", () => {
 					},
 				],
 				tools: {
-					...supermemoryTools(testApiKey, {
+					...emberspack-brainTools(testApiKey, {
 						containerTags: ["test-multi-tools"],
 					}),
 				},

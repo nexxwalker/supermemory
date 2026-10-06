@@ -1,7 +1,7 @@
 import "dotenv/config"
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 
-const client = new Supermemory()
+const client = new Emberspack Brain()
 
 async function testSearchModes() {
 	console.log("=== Search Modes ===")

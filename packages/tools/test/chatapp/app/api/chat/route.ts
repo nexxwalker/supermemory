@@ -1,7 +1,7 @@
 import { gateway, streamText, type ModelMessage } from "ai"
-import { withSupermemory } from "@supermemory/tools/ai-sdk"
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk"
 
-const model = withSupermemory(gateway("google/gemini-2.5-flash"), {
+const model = withEmberspack Brain(gateway("google/gemini-2.5-flash"), {
 	containerTag: "user-1",
 	customId: "chat-session",
 	apiKey: process.env.SUPERMEMORY_API_KEY ?? "",

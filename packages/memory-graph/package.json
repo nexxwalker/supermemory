@@ -1,7 +1,7 @@
 {
-  "name": "@supermemory/memory-graph",
+  "name": "@emberspack-brain/memory-graph",
   "version": "0.2.4",
-  "description": "Interactive graph visualization component for Supermemory - visualize and explore your memory connections",
+  "description": "Interactive graph visualization component for Emberspack Brain - visualize and explore your memory connections",
   "type": "module",
   "main": "./src/index.tsx",
   "module": "./src/index.tsx",
@@ -24,7 +24,7 @@
     "test": "vitest run"
   },
   "keywords": [
-    "supermemory",
+    "emberspack-brain",
     "graph",
     "visualization",
     "memory",
@@ -33,17 +33,17 @@
     "react",
     "component"
   ],
-  "author": "Supermemory",
+  "author": "Emberspack Brain",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/supermemoryai/supermemory",
+    "url": "https://github.com/emberspack-brainai/emberspack-brain",
     "directory": "packages/memory-graph"
   },
   "bugs": {
-    "url": "https://github.com/supermemoryai/supermemory/issues"
+    "url": "https://github.com/emberspack-brainai/emberspack-brain/issues"
   },
-  "homepage": "https://github.com/supermemoryai/supermemory/tree/main/packages/memory-graph#readme",
+  "homepage": "https://github.com/emberspack-brainai/emberspack-brain/tree/main/packages/memory-graph#readme",
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"

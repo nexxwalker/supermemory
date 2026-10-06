@@ -1,9 +1,9 @@
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 import { deleteDocumentById, getContainerTags } from "./tools-shared"
-import type { SupermemoryToolsConfig } from "./types"
+import type { Emberspack BrainToolsConfig } from "./types"
 
 // Claude Memory Tool Types
-export interface ClaudeMemoryConfig extends SupermemoryToolsConfig {
+export interface ClaudeMemoryConfig extends Emberspack BrainToolsConfig {
 	memoryContainerTag?: string
 }
 
@@ -47,10 +47,10 @@ interface ClaudeFileDocument {
 
 /**
  * Claude Memory Tool - Client-side implementation
- * Maps Claude's memory tool commands to supermemory document operations
+ * Maps Claude's memory tool commands to emberspack-brain document operations
  */
 export class ClaudeMemoryTool {
-	private client: Supermemory
+	private client: Emberspack Brain
 	private containerTags: string[]
 	private scopeContainerTags: [string, ...string[]]
 	private memoryContainerPrefix: string
@@ -67,7 +67,7 @@ export class ClaudeMemoryTool {
 	}
 
 	constructor(apiKey: string, config?: ClaudeMemoryConfig) {
-		this.client = new Supermemory({
+		this.client = new Emberspack Brain({
 			apiKey,
 			...(config?.baseUrl && { baseURL: config.baseUrl }),
 		})
@@ -206,7 +206,7 @@ export class ClaudeMemoryTool {
 			// Document search returns ranked chunks, not a complete inventory. Walk
 			// every page of the document-list endpoint so files cannot disappear
 			// from a directory merely because they did not rank in a search page.
-			const documents: Supermemory.DocumentListResponse.Memory[] = []
+			const documents: Emberspack Brain.DocumentListResponse.Memory[] = []
 			let page = 1
 
 			while (true) {
@@ -237,7 +237,7 @@ export class ClaudeMemoryTool {
 			const files: string[] = []
 			const dirs = new Set<string>()
 			const candidates: Array<{
-				document: Supermemory.DocumentListResponse.Memory
+				document: Emberspack Brain.DocumentListResponse.Memory
 				filePath: string
 			}> = []
 
@@ -628,7 +628,7 @@ export class ClaudeMemoryTool {
 			let page = 1
 			const candidates = new Map<
 				string,
-				Supermemory.DocumentListResponse.Memory
+				Emberspack Brain.DocumentListResponse.Memory
 			>()
 
 			// customId values are only unique within an exact container-tag set in
@@ -664,16 +664,16 @@ export class ClaudeMemoryTool {
 			}
 
 			const exactMatches: Array<{
-				candidate: Supermemory.DocumentListResponse.Memory
-				document: Supermemory.DocumentGetResponse
+				candidate: Emberspack Brain.DocumentListResponse.Memory
+				document: Emberspack Brain.DocumentGetResponse
 			}> = []
 			let hasUnverifiedCandidate = false
 			for (const candidate of candidates.values()) {
-				let document: Supermemory.DocumentGetResponse
+				let document: Emberspack Brain.DocumentGetResponse
 				try {
 					document = await this.client.documents.get(candidate.id)
 				} catch (error) {
-					if (error instanceof Supermemory.NotFoundError) continue
+					if (error instanceof Emberspack Brain.NotFoundError) continue
 					throw error
 				}
 
@@ -762,7 +762,7 @@ export class ClaudeMemoryTool {
 	}
 
 	private isDocumentInConfiguredScope(
-		document: Supermemory.DocumentListResponse.Memory,
+		document: Emberspack Brain.DocumentListResponse.Memory,
 	): boolean {
 		const documentTags = document.containerTags ?? []
 		const expectedTags = this.containerTags.filter(
@@ -776,7 +776,7 @@ export class ClaudeMemoryTool {
 	}
 
 	private async isDirectoryDocumentInExactScope(
-		document: Supermemory.DocumentListResponse.Memory,
+		document: Emberspack Brain.DocumentListResponse.Memory,
 	): Promise<boolean> {
 		try {
 			// Mono strips internal project tags from every list response, so only a
@@ -787,7 +787,7 @@ export class ClaudeMemoryTool {
 				this.hasExactContainerTags(fullDocument.containerTags)
 			)
 		} catch (error) {
-			if (!(error instanceof Supermemory.NotFoundError)) throw error
+			if (!(error instanceof Emberspack Brain.NotFoundError)) throw error
 			// A document can disappear between list and get. Skip stale entries
 			// instead of failing the entire directory view.
 			return false

@@ -1,10 +1,10 @@
 /**
- * Middleware utilities for VoltAgent integration with Supermemory.
+ * Middleware utilities for VoltAgent integration with Emberspack Brain.
  *
  * Provides memory retrieval, injection, and storage functionality.
  */
 
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 import {
 	addConversation,
 	type ContentPart as ConversationContentPart,
@@ -21,7 +21,7 @@ import {
 	extractQueryText,
 	replaceMemoryContext,
 	stripMemoryContext,
-	supermemoryProfileSearch,
+	emberspack-brainProfileSearch,
 	wrapMemoryContext,
 	type Logger,
 	type MemoryMode,
@@ -34,15 +34,15 @@ import {
 } from "../tools-shared"
 import type {
 	SearchFilters,
-	SupermemoryVoltAgent,
+	Emberspack BrainVoltAgent,
 	VoltAgentMessage,
 } from "./types"
 
 /**
- * Context for Supermemory middleware operations.
+ * Context for Emberspack Brain middleware operations.
  */
-export interface SupermemoryMiddlewareContext {
-	client: Supermemory
+export interface Emberspack BrainMiddlewareContext {
+	client: Emberspack Brain
 	logger: Logger
 	containerTag: string
 	customId: string
@@ -75,12 +75,12 @@ export interface SupermemoryMiddlewareContext {
 }
 
 /**
- * Creates a Supermemory middleware context.
+ * Creates a Emberspack Brain middleware context.
  */
-export const createSupermemoryContext = (
+export const createEmberspack BrainContext = (
 	containerTag: string,
-	options: SupermemoryVoltAgent,
-): SupermemoryMiddlewareContext => {
+	options: Emberspack BrainVoltAgent,
+): Emberspack BrainMiddlewareContext => {
 	const apiKey = options.apiKey ?? process.env.SUPERMEMORY_API_KEY
 	if (!apiKey) {
 		throw new Error(
@@ -132,9 +132,9 @@ export const createSupermemoryContext = (
 	}
 	const normalizedBaseUrl = normalizeBaseUrl(baseUrl)
 
-	const client = new Supermemory({
+	const client = new Emberspack Brain({
 		apiKey,
-		...(normalizedBaseUrl !== "https://api.supermemory.ai"
+		...(normalizedBaseUrl !== "https://api.emberspack-brain.ai"
 			? { baseURL: normalizedBaseUrl }
 			: {}),
 	})
@@ -165,7 +165,7 @@ export const createSupermemoryContext = (
  * Generates a cache key for the current turn based on context and user message.
  */
 const makeTurnKey = (
-	ctx: SupermemoryMiddlewareContext,
+	ctx: Emberspack BrainMiddlewareContext,
 	userMessage: string,
 ): string => {
 	return MemoryCache.makeTurnKey(
@@ -227,12 +227,12 @@ const getLastUserMessage = (messages: VoltAgentMessage[]): string => {
  * Returns enhanced messages with memories injected into system prompt.
  *
  * @param searchMessages - Messages to search for user input (VoltAgent's input messages)
- * @param ctx - Supermemory middleware context
+ * @param ctx - Emberspack Brain middleware context
  * @param systemMessages - System messages to inject memories into (VoltAgent's prepared messages)
  */
 export const enhanceMessagesWithMemories = async (
 	searchMessages: VoltAgentMessage[],
-	ctx: SupermemoryMiddlewareContext,
+	ctx: Emberspack BrainMiddlewareContext,
 	systemMessages?: VoltAgentMessage[],
 ): Promise<VoltAgentMessage[]> => {
 	const messagesToEnhance = systemMessages || searchMessages
@@ -294,7 +294,7 @@ export const enhanceMessagesWithMemories = async (
 		if (useAdvancedSearch && ctx.mode !== "profile") {
 			ctx.logger.info("Using advanced search with custom parameters")
 
-			const searchParams: Supermemory.SearchParams = {
+			const searchParams: Emberspack Brain.SearchParams = {
 				q: queryText,
 				containerTag: ctx.containerTag,
 			}
@@ -311,7 +311,7 @@ export const enhanceMessagesWithMemories = async (
 			const [response, profileResponse] = await Promise.all([
 				ctx.client.search(searchParams),
 				ctx.mode === "full"
-					? supermemoryProfileSearch(
+					? emberspack-brainProfileSearch(
 							ctx.containerTag,
 							"",
 							ctx.normalizedBaseUrl,
@@ -496,7 +496,7 @@ const injectMemoriesIntoMessages = (
 	logger: Logger,
 ): VoltAgentMessage[] => {
 	if (messages.some((msg) => msg.role === "system")) {
-		logger.debug("Replaced Supermemory context in existing system message")
+		logger.debug("Replaced Emberspack Brain context in existing system message")
 		let injected = false
 		return messages.map((message) => {
 			if (message.role !== "system") return message
@@ -603,11 +603,11 @@ const convertToConversationMessages = (
 }
 
 /**
- * Saves conversation to Supermemory.
+ * Saves conversation to Emberspack Brain.
  */
 export const saveConversation = async (
 	messages: VoltAgentMessage[],
-	ctx: SupermemoryMiddlewareContext,
+	ctx: Emberspack BrainMiddlewareContext,
 ): Promise<void> => {
 	if (ctx.addMemory !== "always") {
 		return

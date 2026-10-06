@@ -442,7 +442,7 @@ async function runManualTests() {
 
 	console.log("\n✨ Manual tests completed!")
 	console.log(
-		"Check your supermemory instance to verify the memory files were created correctly.",
+		"Check your emberspack-brain instance to verify the memory files were created correctly.",
 	)
 }
 

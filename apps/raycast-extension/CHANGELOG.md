@@ -1,4 +1,4 @@
-# Supermemory Changelog
+# Emberspack Brain Changelog
 
 ## [Quick Add from Selection] - 2025-11-05
 
@@ -15,5 +15,5 @@
 
 ## [Initial Version] - 2025-10-02
 
-- Added Supermemory integration with Add Memory and Search Memories commands
+- Added Emberspack Brain integration with Add Memory and Search Memories commands
 - Added project organization support for memories

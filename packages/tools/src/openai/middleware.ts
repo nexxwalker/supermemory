@@ -1,6 +1,6 @@
 import type OpenAI from "openai"
 import { APIPromise } from "openai/core"
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 import {
 	addConversation,
 	type ContentPart as ConversationContentPart,
@@ -17,7 +17,7 @@ import { createLogger, type Logger } from "../vercel/logger"
 import { convertProfileToMarkdown } from "../vercel/util"
 
 const normalizeBaseUrl = (url?: string): string => {
-	const defaultUrl = "https://api.supermemory.ai"
+	const defaultUrl = "https://api.emberspack-brain.ai"
 	return url?.trim().replace(/\/+$/, "") || defaultUrl
 }
 
@@ -48,12 +48,12 @@ export interface OpenAIMiddlewareOptions {
 	verbose?: boolean
 	mode?: "profile" | "query" | "full"
 	addMemory?: "always" | "never"
-	/** Supermemory API key (falls back to SUPERMEMORY_API_KEY). */
+	/** Emberspack Brain API key (falls back to SUPERMEMORY_API_KEY). */
 	apiKey?: string
 	baseUrl?: string
 }
 
-interface SupermemoryProfileSearchResult {
+interface Emberspack BrainProfileSearchResult {
 	id: string
 	memory?: string
 	chunk?: string
@@ -62,14 +62,14 @@ interface SupermemoryProfileSearchResult {
 	similarity: number
 }
 
-interface SupermemoryProfileSearch {
+interface Emberspack BrainProfileSearch {
 	profile: {
 		static?: string[]
 		dynamic?: string[]
 		buckets?: Record<string, string[]>
 	}
 	searchResults?: {
-		results: SupermemoryProfileSearchResult[]
+		results: Emberspack BrainProfileSearchResult[]
 		total: number
 		timing: number
 	}
@@ -313,7 +313,7 @@ const stripResponsesInputMemoryContexts = <T>(input: T): T => {
 }
 
 const getSearchResultMemories = (
-	results: SupermemoryProfileSearchResult[] | undefined,
+	results: Emberspack BrainProfileSearchResult[] | undefined,
 ): string[] => {
 	return (results ?? []).flatMap((result) => {
 		for (const value of [result.memory, result.chunk]) {
@@ -425,26 +425,26 @@ const getLastUserMessage = (
  *
  * @param containerTag - The container tag/identifier for memory search (e.g., user ID, project ID)
  * @param queryText - Optional query text to search for specific memories. If empty, returns all profile memories
- * @param apiKey - The Supermemory API key used to authenticate the request
- * @param baseUrl - The Supermemory API base URL
+ * @param apiKey - The Emberspack Brain API key used to authenticate the request
+ * @param baseUrl - The Emberspack Brain API base URL
  * @returns Promise that resolves to the SuperMemory profile search response
  * @throws {Error} When the API request fails or returns an error status
  *
  * @example
  * ```typescript
  * // Search with query
- * const results = await supermemoryProfileSearch("user-123", "favorite programming language", apiKey, baseUrl)
+ * const results = await emberspack-brainProfileSearch("user-123", "favorite programming language", apiKey, baseUrl)
  *
  * // Get all profile memories
- * const profile = await supermemoryProfileSearch("user-123", "", apiKey, baseUrl)
+ * const profile = await emberspack-brainProfileSearch("user-123", "", apiKey, baseUrl)
  * ```
  */
-const supermemoryProfileSearch = async (
+const emberspack-brainProfileSearch = async (
 	containerTag: string,
 	queryText: string,
 	apiKey: string,
 	baseUrl: string,
-): Promise<SupermemoryProfileSearch> => {
+): Promise<Emberspack BrainProfileSearch> => {
 	const payload = queryText
 		? JSON.stringify({
 				q: queryText,
@@ -471,7 +471,7 @@ const supermemoryProfileSearch = async (
 		if (!response.ok) {
 			const errorText = await response.text().catch(() => "Unknown error")
 			throw new Error(
-				`Supermemory profile search failed: ${response.status} ${response.statusText}. ${errorText}`,
+				`Emberspack Brain profile search failed: ${response.status} ${response.statusText}. ${errorText}`,
 			)
 		}
 
@@ -480,7 +480,7 @@ const supermemoryProfileSearch = async (
 		if (error instanceof Error) {
 			throw error
 		}
-		throw new Error(`Supermemory API request failed: ${error}`)
+		throw new Error(`Emberspack Brain API request failed: ${error}`)
 	}
 }
 
@@ -495,8 +495,8 @@ const supermemoryProfileSearch = async (
  * @param containerTag - The container tag/identifier for memory search
  * @param logger - Logger instance for debugging and info output
  * @param mode - Memory search mode: "profile" (all memories), "query" (search-based), or "full" (both)
- * @param apiKey - The Supermemory API key used to authenticate the request
- * @param baseUrl - The Supermemory API base URL
+ * @param apiKey - The Emberspack Brain API key used to authenticate the request
+ * @param baseUrl - The Emberspack Brain API base URL
  * @returns Promise that resolves to enhanced messages with memory-injected system prompt
  *
  * @example
@@ -528,7 +528,7 @@ const addSystemPrompt = async (
 
 	const queryText = mode !== "profile" ? getLastUserMessage(messages) : ""
 
-	const memoriesResponse = await supermemoryProfileSearch(
+	const memoriesResponse = await emberspack-brainProfileSearch(
 		containerTag,
 		queryText,
 		apiKey,
@@ -597,7 +597,7 @@ const addSystemPrompt = async (
 	}
 
 	if (instructionPromptExists) {
-		logger.debug("Replaced Supermemory context in existing instruction prompt")
+		logger.debug("Replaced Emberspack Brain context in existing instruction prompt")
 		return updateChatMemoryContexts(messages, memories)
 	}
 
@@ -666,7 +666,7 @@ const getConversationContent = (
  * @example
  * ```typescript
  * await addMemoryTool(
- *   supermemoryClient,
+ *   emberspack-brainClient,
  *   "user-123",
  *   "User: Hello\n\nAssistant: Hi!",
  *   "conversation:456",
@@ -678,7 +678,7 @@ const getConversationContent = (
  * ```
  */
 const addMemoryTool = async (
-	client: Supermemory,
+	client: Emberspack Brain,
 	containerTag: string,
 	content: string,
 	customId: string | undefined,
@@ -741,13 +741,13 @@ const addMemoryTool = async (
  * @param options.verbose - Enable detailed logging of memory operations (default: false)
  * @param options.mode - Memory search mode: "profile" (all memories), "query" (search-based), or "full" (both) (default: "profile")
  * @param options.addMemory - Automatic memory storage mode: "always" or "never" (default: "always")
- * @param options.apiKey - Supermemory API key (falls back to SUPERMEMORY_API_KEY)
+ * @param options.apiKey - Emberspack Brain API key (falls back to SUPERMEMORY_API_KEY)
  * @returns Object with `wrapClient` and `createClient` methods
  * @throws {Error} When neither options.apiKey nor SUPERMEMORY_API_KEY is set
  *
  * @example
  * ```typescript
- * const openaiWithSupermemory = createOpenAIMiddleware(openai, "user-123", {
+ * const openaiWithEmberspack Brain = createOpenAIMiddleware(openai, "user-123", {
  *   customId: "conversation-456",
  *   mode: "full",
  *   addMemory: "always",
@@ -770,9 +770,9 @@ export function createOpenAIMiddleware(
 		)
 	}
 	const baseUrl = normalizeBaseUrl(options?.baseUrl)
-	const client = new Supermemory({
+	const client = new Emberspack Brain({
 		apiKey,
-		...(baseUrl !== "https://api.supermemory.ai" ? { baseURL: baseUrl } : {}),
+		...(baseUrl !== "https://api.emberspack-brain.ai" ? { baseURL: baseUrl } : {}),
 	})
 
 	const customId = options?.customId
@@ -802,7 +802,7 @@ export function createOpenAIMiddleware(
 		mode: "profile" | "query" | "full",
 		context: "chat" | "responses",
 	) => {
-		const memoriesResponse = await supermemoryProfileSearch(
+		const memoriesResponse = await emberspack-brainProfileSearch(
 			containerTag,
 			queryText,
 			apiKey,
@@ -959,7 +959,7 @@ export function createOpenAIMiddleware(
 			)
 		} catch (error) {
 			logger.warn(
-				"Memory search failed for Responses API; continuing without stale Supermemory context",
+				"Memory search failed for Responses API; continuing without stale Emberspack Brain context",
 				{
 					error: error instanceof Error ? error.message : "Unknown error",
 				},
@@ -1068,7 +1068,7 @@ export function createOpenAIMiddleware(
 			] as OpenAI.Chat.Completions.ChatCompletionMessageParam[] // Enhanced messages result is always last
 		} catch (error) {
 			logger.warn(
-				"Memory search failed for Chat Completions API; continuing without stale Supermemory context",
+				"Memory search failed for Chat Completions API; continuing without stale Emberspack Brain context",
 				{
 					error: error instanceof Error ? error.message : "Unknown error",
 				},

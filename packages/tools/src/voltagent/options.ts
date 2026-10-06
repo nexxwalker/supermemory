@@ -2,17 +2,17 @@
  * Peer-free configuration types for the VoltAgent integration.
  *
  * This module intentionally avoids importing @voltagent/core so the root
- * @supermemory/tools declarations remain usable when the optional peer is absent.
+ * @emberspack-brain/tools declarations remain usable when the optional peer is absent.
  */
 
-import type Supermemory from "supermemory"
-import type { SupermemoryBaseOptions } from "../shared"
+import type Emberspack Brain from "emberspack-brain"
+import type { Emberspack BrainBaseOptions } from "../shared"
 
 /**
- * Configuration options for the Supermemory VoltAgent integration.
+ * Configuration options for the Emberspack Brain VoltAgent integration.
  * Extends base options with VoltAgent-specific settings.
  */
-export interface SupermemoryVoltAgent extends SupermemoryBaseOptions {
+export interface Emberspack BrainVoltAgent extends Emberspack BrainBaseOptions {
 	/**
 	 * Custom ID to group messages into a single document.
 	 * Ensures related messages are added to the same document for that conversation.
@@ -92,7 +92,7 @@ export interface SupermemoryVoltAgent extends SupermemoryBaseOptions {
 }
 
 /** Advanced search filters using AND/OR logic. */
-export type SearchFilters = NonNullable<Supermemory.SearchParams["filters"]>
+export type SearchFilters = NonNullable<Emberspack Brain.SearchParams["filters"]>
 
 /** Options for including additional data in search results. */
 export interface IncludeOptions {

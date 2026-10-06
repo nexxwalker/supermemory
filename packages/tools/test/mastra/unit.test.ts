@@ -9,12 +9,12 @@ import {
 	MASTRA_THREAD_ID_KEY,
 } from "@mastra/core/request-context"
 import {
-	SupermemoryInputProcessor,
-	SupermemoryOutputProcessor,
-	createSupermemoryProcessor,
-	createSupermemoryOutputProcessor,
-	createSupermemoryProcessors,
-	withSupermemory,
+	Emberspack BrainInputProcessor,
+	Emberspack BrainOutputProcessor,
+	createEmberspack BrainProcessor,
+	createEmberspack BrainOutputProcessor,
+	createEmberspack BrainProcessors,
+	withEmberspack Brain,
 } from "../../src/mastra"
 import type {
 	ProcessInputArgs,
@@ -27,7 +27,7 @@ import type {
 
 const TEST_CONFIG = {
 	apiKey: "test-api-key",
-	baseUrl: "https://api.supermemory.ai",
+	baseUrl: "https://api.emberspack-brain.ai",
 	containerTag: "test-mastra-user",
 	customId: "test-conversation",
 }
@@ -106,7 +106,7 @@ const createMockConversationResponse = () => ({
 	status: "created",
 })
 
-describe("SupermemoryInputProcessor", () => {
+describe("Emberspack BrainInputProcessor", () => {
 	let originalEnv: string | undefined
 	let originalFetch: typeof globalThis.fetch
 	let fetchMock: ReturnType<typeof vi.fn>
@@ -131,19 +131,19 @@ describe("SupermemoryInputProcessor", () => {
 
 	describe("constructor", () => {
 		it("should create processor with required options", () => {
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
-			expect(processor.id).toBe("supermemory-input")
-			expect(processor.name).toBe("Supermemory Memory Injection")
+			expect(processor.id).toBe("emberspack-brain-input")
+			expect(processor.name).toBe("Emberspack Brain Memory Injection")
 		})
 
 		it("should throw error if API key is not set", () => {
 			delete process.env.SUPERMEMORY_API_KEY
 
 			expect(() => {
-				new SupermemoryInputProcessor({
+				new Emberspack BrainInputProcessor({
 					containerTag: TEST_CONFIG.containerTag,
 					customId: TEST_CONFIG.customId,
 				})
@@ -153,12 +153,12 @@ describe("SupermemoryInputProcessor", () => {
 		it("should accept API key via options", () => {
 			delete process.env.SUPERMEMORY_API_KEY
 
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: "custom-key",
 			})
-			expect(processor.id).toBe("supermemory-input")
+			expect(processor.id).toBe("emberspack-brain-input")
 		})
 	})
 
@@ -175,7 +175,7 @@ describe("SupermemoryInputProcessor", () => {
 					),
 			})
 
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: TEST_CONFIG.apiKey,
@@ -200,9 +200,9 @@ describe("SupermemoryInputProcessor", () => {
 			expect(systemCall).toBeDefined()
 			expect(systemCall?.args[0]).toContain("TypeScript")
 			expect(systemCall?.args[0]).toContain(
-				'<supermemory context="user-memories" readonly>',
+				'<emberspack-brain context="user-memories" readonly>',
 			)
-			expect(systemCall?.args[1]).toBe("supermemory")
+			expect(systemCall?.args[1]).toBe("emberspack-brain")
 		})
 
 		it("should use cached memories on second call with same message", async () => {
@@ -212,7 +212,7 @@ describe("SupermemoryInputProcessor", () => {
 					Promise.resolve(createMockProfileResponse(["Cached memory"])),
 			})
 
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: TEST_CONFIG.apiKey,
@@ -257,7 +257,7 @@ describe("SupermemoryInputProcessor", () => {
 				})
 			})
 
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: TEST_CONFIG.apiKey,
@@ -288,7 +288,7 @@ describe("SupermemoryInputProcessor", () => {
 		})
 
 		it("should return messageList in query mode when no user message", async () => {
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: TEST_CONFIG.apiKey,
@@ -319,7 +319,7 @@ describe("SupermemoryInputProcessor", () => {
 				text: () => Promise.resolve("Server error"),
 			})
 
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: TEST_CONFIG.apiKey,
@@ -347,7 +347,7 @@ describe("SupermemoryInputProcessor", () => {
 				json: () => Promise.resolve(createMockProfileResponse(["Memory"])),
 			})
 
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "thread-123",
 				apiKey: TEST_CONFIG.apiKey,
@@ -373,7 +373,7 @@ describe("SupermemoryInputProcessor", () => {
 				json: () => Promise.resolve(createMockProfileResponse(["Memory"])),
 			})
 
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: TEST_CONFIG.apiKey,
@@ -403,7 +403,7 @@ describe("SupermemoryInputProcessor", () => {
 				json: () => Promise.resolve(createMockProfileResponse(["Memory"])),
 			})
 
-			const processor = new SupermemoryInputProcessor({
+			const processor = new Emberspack BrainInputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: TEST_CONFIG.apiKey,
@@ -441,7 +441,7 @@ describe("SupermemoryInputProcessor", () => {
 	})
 })
 
-describe("SupermemoryOutputProcessor", () => {
+describe("Emberspack BrainOutputProcessor", () => {
 	let originalEnv: string | undefined
 	let originalFetch: typeof globalThis.fetch
 	let fetchMock: ReturnType<typeof vi.fn>
@@ -466,12 +466,12 @@ describe("SupermemoryOutputProcessor", () => {
 
 	describe("constructor", () => {
 		it("should create processor with required options", () => {
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
-			expect(processor.id).toBe("supermemory-output")
-			expect(processor.name).toBe("Supermemory Conversation Save")
+			expect(processor.id).toBe("emberspack-brain-output")
+			expect(processor.name).toBe("Emberspack Brain Conversation Save")
 		})
 	})
 
@@ -482,7 +482,7 @@ describe("SupermemoryOutputProcessor", () => {
 				json: () => Promise.resolve(createMockConversationResponse()),
 			})
 
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conv-456",
 				apiKey: TEST_CONFIG.apiKey,
@@ -524,7 +524,7 @@ describe("SupermemoryOutputProcessor", () => {
 		})
 
 		it("should not save conversation when addMemory is never", async () => {
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conv-456",
 				apiKey: TEST_CONFIG.apiKey,
@@ -552,7 +552,7 @@ describe("SupermemoryOutputProcessor", () => {
 				json: () => Promise.resolve(createMockConversationResponse()),
 			})
 
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "my-custom-id",
 				apiKey: TEST_CONFIG.apiKey,
@@ -584,7 +584,7 @@ describe("SupermemoryOutputProcessor", () => {
 				json: () => Promise.resolve(createMockConversationResponse()),
 			})
 
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "fallback-custom-id",
 				apiKey: TEST_CONFIG.apiKey,
@@ -621,7 +621,7 @@ describe("SupermemoryOutputProcessor", () => {
 				json: () => Promise.resolve(createMockConversationResponse()),
 			})
 
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "fallback-custom-id",
 				apiKey: TEST_CONFIG.apiKey,
@@ -654,7 +654,7 @@ describe("SupermemoryOutputProcessor", () => {
 				json: () => Promise.resolve(createMockConversationResponse()),
 			})
 
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conv-456",
 				apiKey: TEST_CONFIG.apiKey,
@@ -691,7 +691,7 @@ describe("SupermemoryOutputProcessor", () => {
 				json: () => Promise.resolve(createMockConversationResponse()),
 			})
 
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conv-456",
 				apiKey: TEST_CONFIG.apiKey,
@@ -745,7 +745,7 @@ describe("SupermemoryOutputProcessor", () => {
 				text: () => Promise.resolve("Server error"),
 			})
 
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conv-456",
 				apiKey: TEST_CONFIG.apiKey,
@@ -767,7 +767,7 @@ describe("SupermemoryOutputProcessor", () => {
 		})
 
 		it("should not save when no messages to save", async () => {
-			const processor = new SupermemoryOutputProcessor({
+			const processor = new Emberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conv-456",
 				apiKey: TEST_CONFIG.apiKey,
@@ -804,73 +804,73 @@ describe("Factory functions", () => {
 		}
 	})
 
-	describe("createSupermemoryProcessor", () => {
+	describe("createEmberspack BrainProcessor", () => {
 		it("should create input processor", () => {
-			const processor = createSupermemoryProcessor({
+			const processor = createEmberspack BrainProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
-			expect(processor).toBeInstanceOf(SupermemoryInputProcessor)
-			expect(processor.id).toBe("supermemory-input")
+			expect(processor).toBeInstanceOf(Emberspack BrainInputProcessor)
+			expect(processor.id).toBe("emberspack-brain-input")
 		})
 
 		it("should pass options to processor", () => {
-			const processor = createSupermemoryProcessor({
+			const processor = createEmberspack BrainProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: "custom-key",
 				mode: "full",
 			})
-			expect(processor).toBeInstanceOf(SupermemoryInputProcessor)
+			expect(processor).toBeInstanceOf(Emberspack BrainInputProcessor)
 		})
 	})
 
-	describe("createSupermemoryOutputProcessor", () => {
+	describe("createEmberspack BrainOutputProcessor", () => {
 		it("should create output processor", () => {
-			const processor = createSupermemoryOutputProcessor({
+			const processor = createEmberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
-			expect(processor).toBeInstanceOf(SupermemoryOutputProcessor)
-			expect(processor.id).toBe("supermemory-output")
+			expect(processor).toBeInstanceOf(Emberspack BrainOutputProcessor)
+			expect(processor.id).toBe("emberspack-brain-output")
 		})
 
 		it("should pass options to processor", () => {
-			const processor = createSupermemoryOutputProcessor({
+			const processor = createEmberspack BrainOutputProcessor({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conv-123",
 				apiKey: "custom-key",
 				addMemory: "always",
 			})
-			expect(processor).toBeInstanceOf(SupermemoryOutputProcessor)
+			expect(processor).toBeInstanceOf(Emberspack BrainOutputProcessor)
 		})
 	})
 
-	describe("createSupermemoryProcessors", () => {
+	describe("createEmberspack BrainProcessors", () => {
 		it("should create both input and output processors", () => {
-			const { input, output } = createSupermemoryProcessors({
+			const { input, output } = createEmberspack BrainProcessors({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
-			expect(input).toBeInstanceOf(SupermemoryInputProcessor)
-			expect(output).toBeInstanceOf(SupermemoryOutputProcessor)
+			expect(input).toBeInstanceOf(Emberspack BrainInputProcessor)
+			expect(output).toBeInstanceOf(Emberspack BrainOutputProcessor)
 		})
 
 		it("should share options between processors", () => {
-			const { input, output } = createSupermemoryProcessors({
+			const { input, output } = createEmberspack BrainProcessors({
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conv-123",
 				apiKey: "custom-key",
 				mode: "full",
 				addMemory: "always",
 			})
-			expect(input.id).toBe("supermemory-input")
-			expect(output.id).toBe("supermemory-output")
+			expect(input.id).toBe("emberspack-brain-input")
+			expect(output.id).toBe("emberspack-brain-output")
 		})
 	})
 })
 
-describe("withSupermemory", () => {
+describe("withEmberspack Brain", () => {
 	let originalEnv: string | undefined
 
 	beforeEach(() => {
@@ -893,7 +893,7 @@ describe("withSupermemory", () => {
 			const config: MockAgentConfig = { id: "test-agent", name: "Test Agent" }
 
 			expect(() => {
-				withSupermemory(config, {
+				withEmberspack Brain(config, {
 					containerTag: TEST_CONFIG.containerTag,
 					customId: TEST_CONFIG.customId,
 				})
@@ -904,7 +904,7 @@ describe("withSupermemory", () => {
 			delete process.env.SUPERMEMORY_API_KEY
 
 			const config: MockAgentConfig = { id: "test-agent", name: "Test Agent" }
-			const enhanced = withSupermemory(config, {
+			const enhanced = withEmberspack Brain(config, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 				apiKey: "custom-key",
@@ -918,15 +918,15 @@ describe("withSupermemory", () => {
 	describe("processor injection", () => {
 		it("should inject input and output processors", () => {
 			const config: MockAgentConfig = { id: "test-agent", name: "Test Agent" }
-			const enhanced = withSupermemory(config, {
+			const enhanced = withEmberspack Brain(config, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
 
 			expect(enhanced.inputProcessors).toHaveLength(1)
 			expect(enhanced.outputProcessors).toHaveLength(1)
-			expect(enhanced.inputProcessors?.[0]?.id).toBe("supermemory-input")
-			expect(enhanced.outputProcessors?.[0]?.id).toBe("supermemory-output")
+			expect(enhanced.inputProcessors?.[0]?.id).toBe("emberspack-brain-input")
+			expect(enhanced.outputProcessors?.[0]?.id).toBe("emberspack-brain-output")
 		})
 
 		it("should preserve original config properties", () => {
@@ -936,7 +936,7 @@ describe("withSupermemory", () => {
 				model: "gpt-4",
 				customProp: "value",
 			}
-			const enhanced = withSupermemory(config, {
+			const enhanced = withEmberspack Brain(config, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
@@ -958,13 +958,13 @@ describe("withSupermemory", () => {
 				inputProcessors: [existingInputProcessor],
 			}
 
-			const enhanced = withSupermemory(config, {
+			const enhanced = withEmberspack Brain(config, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
 
 			expect(enhanced.inputProcessors).toHaveLength(2)
-			expect(enhanced.inputProcessors?.[0]?.id).toBe("supermemory-input")
+			expect(enhanced.inputProcessors?.[0]?.id).toBe("emberspack-brain-input")
 			expect(enhanced.inputProcessors?.[1]?.id).toBe("existing-input")
 		})
 
@@ -979,14 +979,14 @@ describe("withSupermemory", () => {
 				outputProcessors: [existingOutputProcessor],
 			}
 
-			const enhanced = withSupermemory(config, {
+			const enhanced = withEmberspack Brain(config, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
 
 			expect(enhanced.outputProcessors).toHaveLength(2)
 			expect(enhanced.outputProcessors?.[0]?.id).toBe("existing-output")
-			expect(enhanced.outputProcessors?.[1]?.id).toBe("supermemory-output")
+			expect(enhanced.outputProcessors?.[1]?.id).toBe("emberspack-brain-output")
 		})
 
 		it("should handle configs with both existing input and output processors", () => {
@@ -999,24 +999,24 @@ describe("withSupermemory", () => {
 				outputProcessors: [existingOutput],
 			}
 
-			const enhanced = withSupermemory(config, {
+			const enhanced = withEmberspack Brain(config, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: TEST_CONFIG.customId,
 			})
 
 			expect(enhanced.inputProcessors).toHaveLength(2)
 			expect(enhanced.outputProcessors).toHaveLength(2)
-			expect(enhanced.inputProcessors?.[0]?.id).toBe("supermemory-input")
+			expect(enhanced.inputProcessors?.[0]?.id).toBe("emberspack-brain-input")
 			expect(enhanced.inputProcessors?.[1]?.id).toBe("existing-input")
 			expect(enhanced.outputProcessors?.[0]?.id).toBe("existing-output")
-			expect(enhanced.outputProcessors?.[1]?.id).toBe("supermemory-output")
+			expect(enhanced.outputProcessors?.[1]?.id).toBe("emberspack-brain-output")
 		})
 	})
 
 	describe("options passthrough", () => {
 		it("should pass options to processors", () => {
 			const config: MockAgentConfig = { id: "test-agent", name: "Test Agent" }
-			const enhanced = withSupermemory(config, {
+			const enhanced = withEmberspack Brain(config, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conv-123",
 				mode: "full",

@@ -24,7 +24,7 @@ describe("MCP — transport & auth (raw HTTP)", () => {
 		const res = await fetch(`${ORIGIN}/`)
 		expect(res.status).toBe(200)
 		const body = (await res.json()) as { name?: string; version?: string }
-		expect(body.name).toBe("supermemory-mcp")
+		expect(body.name).toBe("emberspack-brain-mcp")
 		expect(body.version).toBeTruthy()
 	})
 

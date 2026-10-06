@@ -8,5 +8,5 @@ export function consoleOrigin(hostname: string, protocol = "https:"): string {
 		labels[i] = "console"
 		return `${protocol}//${labels.join(".")}`
 	}
-	return "https://console.supermemory.ai"
+	return "https://console.emberspack-brain.ai"
 }

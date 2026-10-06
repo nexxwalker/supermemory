@@ -1,14 +1,14 @@
 {
-  "name": "@supermemory/tools",
+  "name": "@emberspack-brain/tools",
   "type": "module",
   "version": "2.3.0",
-  "description": "Memory tools for AI SDK, OpenAI, Voltagent and Mastra with supermemory",
+  "description": "Memory tools for AI SDK, OpenAI, Voltagent and Mastra with emberspack-brain",
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch --ignore-watch .turbo",
     "check-types": "tsc --noEmit",
     "test": "vitest --testTimeout 100000",
-    "test:unit": "vitest run --testTimeout 100000 src/tools-shared.test.ts src/tool-operations.test.ts src/claude-memory.test.ts test/with-supermemory/unit.test.ts test/with-supermemory/conversation-conversion.test.ts test/openai-middleware.unit.test.ts test/mastra/unit.test.ts test/voltagent.unit.test.ts",
+    "test:unit": "vitest run --testTimeout 100000 src/tools-shared.test.ts src/tool-operations.test.ts src/claude-memory.test.ts test/with-emberspack-brain/unit.test.ts test/with-emberspack-brain/conversation-conversion.test.ts test/openai-middleware.unit.test.ts test/mastra/unit.test.ts test/voltagent.unit.test.ts",
     "test:watch": "vitest --watch --testTimeout 100000"
   },
   "dependencies": {
@@ -17,7 +17,7 @@
     "ai": "^5.0.29",
     "lru-cache": "^11.2.6",
     "openai": "^4.104.0",
-    "supermemory": "^4.25.4",
+    "emberspack-brain": "^4.25.4",
     "zod": "^4.1.5"
   },
   "devDependencies": {
@@ -57,7 +57,7 @@
     "./package.json": "./package.json"
   },
   "repository": {
-    "url": "https://github.com/supermemoryai/supermemory",
+    "url": "https://github.com/emberspack-brainai/emberspack-brain",
     "directory": "packages/tools"
   },
   "keywords": [
@@ -65,7 +65,7 @@
     "sdk",
     "openai",
     "typescript",
-    "supermemory",
+    "emberspack-brain",
     "memory",
     "context",
     "tools"

@@ -1,5 +1,5 @@
 import type { McpServer } from "@modelcontextprotocol/server"
-import { DEFAULT_PROJECT_ID, type SupermemoryClient } from "../client"
+import { DEFAULT_PROJECT_ID, type Emberspack BrainClient } from "../client"
 import {
 	formatSpaceRow,
 	sortSpaces,
@@ -8,10 +8,10 @@ import {
 
 export function registerContainerTagsResource(
 	server: McpServer,
-	getClient: () => SupermemoryClient,
+	getClient: () => Emberspack BrainClient,
 	resolveContainerTag: () => Promise<string | undefined>,
 ) {
-	server.registerResource("My Spaces", "supermemory://spaces", {}, async () => {
+	server.registerResource("My Spaces", "emberspack-brain://spaces", {}, async () => {
 		const client = getClient()
 		const [containerTags, selectedTag] = await Promise.all([
 			client.listContainerTags(),
@@ -36,7 +36,7 @@ export function registerContainerTagsResource(
 		return {
 			contents: [
 				{
-					uri: "supermemory://spaces",
+					uri: "emberspack-brain://spaces",
 					mimeType: "text/plain",
 					text,
 				},

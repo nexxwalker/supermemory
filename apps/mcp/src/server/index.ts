@@ -9,8 +9,8 @@ import {
 	validateOAuthToken,
 	type AuthUser,
 } from "./auth"
-import { SupermemoryMCP } from "./legacy-protocol-state"
-import { createSupermemoryServer } from "./server"
+import { Emberspack BrainMCP } from "./legacy-protocol-state"
+import { createEmberspack BrainServer } from "./server"
 import type { ActorContext, ServerEnv } from "./types"
 import { SpaceState, uploadStateName } from "./space-state"
 
@@ -18,17 +18,17 @@ type Bindings = ServerEnv
 
 const app = new Hono<{ Bindings: Bindings }>()
 
-const DEFAULT_API_URL = "https://api.supermemory.ai"
-const DEFAULT_MCP_RESOURCE = "https://mcp.supermemory.ai/mcp"
+const DEFAULT_API_URL = "https://api.emberspack-brain.ai"
+const DEFAULT_MCP_RESOURCE = "https://mcp.emberspack-brain.ai/mcp"
 const PROTECTED_RESOURCE_METADATA_PATH =
 	"/.well-known/oauth-protected-resource/mcp"
 const UPLOAD_ID_PATTERN =
 	/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 const DEFAULT_ALLOWED_ORIGIN_HOSTNAMES = [
-	"app.supermemory.ai",
-	"mcp.supermemory.ai",
-	"mcp.dev.supermemory.ai",
-	"mcp.dev.supermemory",
+	"app.emberspack-brain.ai",
+	"mcp.emberspack-brain.ai",
+	"mcp.dev.emberspack-brain.ai",
+	"mcp.dev.emberspack-brain",
 	"claude.ai",
 	"chatgpt.com",
 	"chat.openai.com",
@@ -54,10 +54,10 @@ app.use(
 
 app.get("/", (c) => {
 	return c.json({
-		name: "supermemory-mcp",
+		name: "emberspack-brain-mcp",
 		version: "1.0.0",
-		description: "Supermemory MCP - AI memory for teams",
-		docs: "https://supermemory.ai/docs/supermemory-mcp/mcp",
+		description: "Emberspack Brain MCP - AI memory for teams",
+		docs: "https://emberspack-brain.ai/docs/emberspack-brain-mcp/mcp",
 	})
 })
 
@@ -70,7 +70,7 @@ function resourceMetadata(c: Context<{ Bindings: Bindings }>) {
 		authorization_servers: [`${apiUrl.replace(/\/+$/, "")}/api/auth`],
 		scopes_supported: ["openid", "profile", "email", "offline_access"],
 		bearer_methods_supported: ["header"],
-		resource_documentation: "https://supermemory.ai/docs/supermemory-mcp/mcp",
+		resource_documentation: "https://emberspack-brain.ai/docs/emberspack-brain-mcp/mcp",
 	})
 }
 
@@ -235,7 +235,7 @@ async function handleMcpRequest(
 		: c.req.raw
 	const handler = createMcpHandler(
 		() =>
-			createSupermemoryServer(
+			createEmberspack BrainServer(
 				c.env,
 				actor,
 				(promise) => c.executionCtx.waitUntil(promise),
@@ -284,7 +284,7 @@ app.post("/upload/:uploadId", async (c) => {
 			headers: {
 				Authorization: `Bearer ${session.bearerToken}`,
 				"Content-Type": contentType,
-				"x-sm-source": "supermemory-mcp",
+				"x-sm-source": "emberspack-brain-mcp",
 			},
 			body: c.req.raw.body,
 			signal: c.req.raw.signal,
@@ -309,7 +309,7 @@ app.all("/", (c) => handleMcpRequest(c, "/mcp"))
 app.all("/mcp", (c) => handleMcpRequest(c))
 app.all("/mcp/", (c) => handleMcpRequest(c, "/mcp"))
 
-export { SpaceState, SupermemoryMCP }
+export { SpaceState, Emberspack BrainMCP }
 export type { ActorContext, ServerEnv }
 
 export default app

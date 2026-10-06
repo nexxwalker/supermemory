@@ -6,7 +6,7 @@ import {
 import { getChatGptHostApi } from "./openaiHost"
 
 const CHECKPOINT_VERSION = 1
-const STORAGE_PREFIX = "supermemory:mcp:view:"
+const STORAGE_PREFIX = "emberspack-brain:mcp:view:"
 const CHECKPOINTABLE_VIEWS = new Set<ViewName>([
 	"confirmation",
 	"save-success",
@@ -41,20 +41,20 @@ function getStorage(): Storage | undefined {
 function modelContentForView(view: ViewMessage): string {
 	switch (view.view) {
 		case "confirmation":
-			return `Supermemory active space is now "${view.containerTag}".`
+			return `Emberspack Brain active space is now "${view.containerTag}".`
 		case "save-success":
-			return `A memory was saved to Supermemory space "${view.containerTag}" with memory ID "${view.id}".`
+			return `A memory was saved to Emberspack Brain space "${view.containerTag}" with memory ID "${view.id}".`
 		case "upload-success":
-			return `"${view.fileName}" was uploaded to Supermemory space "${view.containerTag}" with document ID "${view.id}".`
+			return `"${view.fileName}" was uploaded to Emberspack Brain space "${view.containerTag}" with document ID "${view.id}".`
 		default:
-			return "Supermemory widget state updated."
+			return "Emberspack Brain widget state updated."
 	}
 }
 
 function readHostCheckpoint(): ViewMessage | null {
 	const state = getChatGptHostApi()?.widgetState
 	if (!isRecord(state) || !isRecord(state.privateContent)) return null
-	const checkpoint = state.privateContent.supermemoryView
+	const checkpoint = state.privateContent.emberspack-brainView
 	return isViewMessage(checkpoint) ? checkpoint : null
 }
 
@@ -124,7 +124,7 @@ export function saveViewCheckpoint(view: ViewMessage): void {
 			modelContent: modelContentForView(view),
 			privateContent: {
 				...currentPrivate,
-				supermemoryView: view,
+				emberspack-brainView: view,
 			},
 		})
 		void Promise.resolve(stateResult).catch(() => {

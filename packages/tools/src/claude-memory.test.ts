@@ -1,15 +1,15 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-// Mock the Supermemory SDK so the Claude memory tool's document-backed file
+// Mock the Emberspack Brain SDK so the Claude memory tool's document-backed file
 // operations can be exercised deterministically without any network access.
 const documentsListMock = vi.fn()
 const documentsGetMock = vi.fn()
 const documentsDeleteBulkMock = vi.fn()
 const addMock = vi.fn()
 
-vi.mock("supermemory", () => {
+vi.mock("emberspack-brain", () => {
 	return {
-		default: class MockSupermemory {
+		default: class MockEmberspack Brain {
 			add = addMock
 			memories = { forget: vi.fn() }
 			documents = {

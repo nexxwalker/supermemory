@@ -4,7 +4,7 @@ import { PostHog } from "posthog-node"
 import type { ActorContext, ServerEnv } from "./types"
 
 const DEFAULT_POSTHOG_HOST = "https://us.i.posthog.com"
-const PERSONLESS_DISTINCT_ID_NAMESPACE = "supermemory-posthog-personless-v1"
+const PERSONLESS_DISTINCT_ID_NAMESPACE = "emberspack-brain-posthog-personless-v1"
 const MCP_EVENT_PROPERTIES = [
 	"$mcp_source",
 	"$mcp_server_name",

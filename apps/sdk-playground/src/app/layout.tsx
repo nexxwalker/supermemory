@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
-	title: "Supermemory SDK Playground",
-	description: "Switch and test Supermemory SDKs across languages",
+	title: "Emberspack Brain SDK Playground",
+	description: "Switch and test Emberspack Brain SDKs across languages",
 }
 
 export default function RootLayout({

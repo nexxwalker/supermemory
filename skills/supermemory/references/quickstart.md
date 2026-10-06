@@ -1,37 +1,37 @@
-# Supermemory Quickstart Guide
+# Emberspack Brain Quickstart Guide
 
-Get up and running with Supermemory in under 5 minutes.
+Get up and running with Emberspack Brain in under 5 minutes.
 
 ## Step 1: Get Your API Key
 
-1. Visit the [Supermemory Developer Console](https://console.supermemory.ai)
+1. Visit the [Emberspack Brain Developer Console](https://console.emberspack-brain.ai)
 2. Sign up or log in
 3. Navigate to **API Keys → Create API Key**
 4. Copy your API key and save it securely
 
 ## Step 2: Install the SDK
 
-Supermemory works with the following SDKs natively:
+Emberspack Brain works with the following SDKs natively:
 
 ### TypeScript/JavaScript
 ```bash
-npm install supermemory
+npm install emberspack-brain
 ```
 
-📦 View on npm: [https://www.npmjs.com/package/supermemory](https://www.npmjs.com/package/supermemory)
+📦 View on npm: [https://www.npmjs.com/package/emberspack-brain](https://www.npmjs.com/package/emberspack-brain)
 
 ### Python
 ```bash
-pip install supermemory
+pip install emberspack-brain
 # Or for async support with aiohttp
-pip install 'supermemory[aiohttp]'
+pip install 'emberspack-brain[aiohttp]'
 ```
 
-📦 View on PyPI: [https://pypi.org/project/supermemory/](https://pypi.org/project/supermemory/)
+📦 View on PyPI: [https://pypi.org/project/emberspack-brain/](https://pypi.org/project/emberspack-brain/)
 
 ### Other SDKs
 
-Discover all available SDKs and community integrations at [supermemory.ai/docs](https://supermemory.ai/docs)
+Discover all available SDKs and community integrations at [emberspack-brain.ai/docs](https://emberspack-brain.ai/docs)
 
 ## Step 3: Set Environment Variable
 
@@ -51,9 +51,9 @@ SUPERMEMORY_API_KEY=your_api_key_here
 ### TypeScript Example
 
 ```typescript
-import { Supermemory } from 'supermemory';
+import { Emberspack Brain } from 'emberspack-brain';
 
-const client = new Supermemory({
+const client = new Emberspack Brain({
   apiKey: process.env.SUPERMEMORY_API_KEY
 });
 
@@ -101,9 +101,9 @@ main();
 
 ```python
 import os
-from supermemory import Supermemory
+from emberspack-brain import Emberspack Brain
 
-client = Supermemory(api_key=os.environ["SUPERMEMORY_API_KEY"])
+client = Emberspack Brain(api_key=os.environ["SUPERMEMORY_API_KEY"])
 
 def main():
     # 1. Retrieve context
@@ -152,10 +152,10 @@ if __name__ == "__main__":
 ```python
 import os
 import asyncio
-from supermemory import AsyncSupermemory
+from emberspack-brain import AsyncEmberspack Brain
 
 async def main():
-    client = AsyncSupermemory(api_key=os.environ["SUPERMEMORY_API_KEY"])
+    client = AsyncEmberspack Brain(api_key=os.environ["SUPERMEMORY_API_KEY"])
 
     # 1. Retrieve context
     response = await client.profile(
@@ -180,7 +180,7 @@ if __name__ == "__main__":
 
 ## Core Workflow Pattern
 
-The standard Supermemory workflow follows three steps:
+The standard Emberspack Brain workflow follows three steps:
 
 1. **Retrieve Context**: Use `profile()` to get relevant user information
 2. **Enrich Prompt**: Combine context with your system message
@@ -288,6 +288,6 @@ const recommendations = generateRecommendations(profile);
 
 ## Support
 
-- **Documentation**: [supermemory.ai/docs](https://supermemory.ai/docs)
-- **Console**: [console.supermemory.ai](https://console.supermemory.ai)
-- **GitHub**: [github.com/supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)
+- **Documentation**: [emberspack-brain.ai/docs](https://emberspack-brain.ai/docs)
+- **Console**: [console.emberspack-brain.ai](https://console.emberspack-brain.ai)
+- **GitHub**: [github.com/emberspack-brainai/emberspack-brain](https://github.com/emberspack-brainai/emberspack-brain)

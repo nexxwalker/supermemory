@@ -9,9 +9,9 @@ const font = DM_Sans({
 })
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://app.supermemory.ai"),
-	title: "Your memory, in one place. | Supermemory",
-	description: "Supermemory now lives at console.supermemory.ai. Your memories, API keys, and connections are ready.",
+	metadataBase: new URL("https://app.emberspack-brain.ai"),
+	title: "Your memory, in one place. | Emberspack Brain",
+	description: "Emberspack Brain now lives at console.emberspack-brain.ai. Your memories, API keys, and connections are ready.",
 	icons: {
 		icon: [
 			{ url: "/favicon.ico", sizes: "any" },
@@ -24,10 +24,10 @@ export const metadata: Metadata = {
 	},
 	manifest: "/site.webmanifest",
 	openGraph: {
-		title: "Supermemory has moved",
-		description: "Supermemory now lives at console.supermemory.ai",
-		images: [{ url: "/OG.png", width: 1800, height: 945, alt: "Supermemory" }],
-		siteName: "Supermemory",
+		title: "Emberspack Brain has moved",
+		description: "Emberspack Brain now lives at console.emberspack-brain.ai",
+		images: [{ url: "/OG.png", width: 1800, height: 945, alt: "Emberspack Brain" }],
+		siteName: "Emberspack Brain",
 		type: "website",
 	},
 	robots: { index: false, follow: true },
