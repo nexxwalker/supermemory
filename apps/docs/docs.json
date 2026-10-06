@@ -6,7 +6,7 @@
 			"languages": ["typescript", "python", "bash"],
 			"prefill": true
 		},
-		"openapi": "https://api.supermemory.ai/v4/openapi"
+		"openapi": "https://api.emberspack-brain.ai/v4/openapi"
 	},
 	"background": {
 		"color": {
@@ -55,9 +55,9 @@
 	},
 	"footer": {
 		"socials": {
-			"github": "https://github.com/supermemoryai",
-			"linkedin": "https://linkedin.com/company/supermemory",
-			"x": "https://x.com/supermemory"
+			"github": "https://github.com/emberspack-brainai",
+			"linkedin": "https://linkedin.com/company/emberspack-brain",
+			"x": "https://x.com/emberspack-brain"
 		}
 	},
 	"icons": {
@@ -67,20 +67,20 @@
 		"dark": "/logo/dark.svg",
 		"light": "/logo/light.svg"
 	},
-	"name": "supermemory | Memory API for the AI era",
+	"name": "emberspack-brain | Memory API for the AI era",
 	"navbar": {
 		"links": [
 			{
-				"href": "https://supermemory.ai/changelog",
+				"href": "https://emberspack-brain.ai/changelog",
 				"label": "Changelog"
 			},
 			{
-				"href": "mailto:support@supermemory.com",
+				"href": "mailto:support@emberspack-brain.com",
 				"label": "Support"
 			}
 		],
 		"primary": {
-			"href": "https://console.supermemory.ai",
+			"href": "https://console.emberspack-brain.ai",
 			"label": "Dashboard",
 			"type": "button"
 		}
@@ -101,7 +101,7 @@
 							{
 								"group": "Getting started",
 								"pages": [
-									"overview/what-is-supermemory",
+									"overview/what-is-emberspack-brain",
 									"overview/comparison",
 									"quickstart",
 									"agents-and-mcp"
@@ -136,9 +136,9 @@
 								]
 							},
 							{
-								"group": "Using supermemory",
+								"group": "Using emberspack-brain",
 								"pages": [
-									"using-supermemory",
+									"using-emberspack-brain",
 									"authentication",
 									"concepts/customization",
 									{
@@ -205,7 +205,7 @@
 								"group": "Deployment",
 								"pages": [
 									{
-										"group": "Supermemory local",
+										"group": "Emberspack Brain local",
 										"icon": "/icons/hugeicons/server-stack-01.svg",
 										"pages": [
 											"self-hosting/overview",
@@ -258,7 +258,7 @@
 						"anchor": "API integrations",
 						"icon": "/icons/hugeicons/plug-01.svg",
 						"pages": [
-							"integrations/supermemory-sdk",
+							"integrations/emberspack-brain-sdk",
 							"integrations/ai-sdk",
 							"integrations/eve",
 							"integrations/openai",
@@ -288,7 +288,7 @@
 					{
 						"anchor": "API reference",
 						"icon": "/icons/hugeicons/plug-socket.svg",
-						"openapi": "https://api.supermemory.ai/v4/openapi",
+						"openapi": "https://api.emberspack-brain.ai/v4/openapi",
 						"pages": [
 							"api-reference/overview",
 							"authentication",
@@ -395,17 +395,17 @@
 						"icon": "/icons/hugeicons/puzzle.svg",
 						"pages": [
 							{
-								"group": "Supermemory MCP",
+								"group": "Emberspack Brain MCP",
 								"icon": "/icons/hugeicons/command-line.svg",
 								"pages": [
-									"supermemory-mcp/mcp",
-									"supermemory-mcp/setup",
+									"emberspack-brain-mcp/mcp",
+									"emberspack-brain-mcp/setup",
 									{
 										"group": "Setups",
 										"icon": "/icons/hugeicons/layers-01.svg",
 										"pages": [
-											"supermemory-mcp/chatgpt-web",
-											"supermemory-mcp/claude-desktop"
+											"emberspack-brain-mcp/chatgpt-web",
+											"emberspack-brain-mcp/claude-desktop"
 										]
 									}
 								]
@@ -438,7 +438,7 @@
 			"source": "/vibe-coding"
 		},
 		{
-			"destination": "/overview/what-is-supermemory",
+			"destination": "/overview/what-is-emberspack-brain",
 			"permanent": true,
 			"source": "/intro"
 		},
@@ -478,12 +478,12 @@
 			"source": "/memory-vs-rag"
 		},
 		{
-			"destination": "/integrations/supermemory-sdk",
+			"destination": "/integrations/emberspack-brain-sdk",
 			"permanent": true,
 			"source": "/memory-api/sdks/overview"
 		},
 		{
-			"destination": "/integrations/supermemory-sdk",
+			"destination": "/integrations/emberspack-brain-sdk",
 			"permanent": true,
 			"source": "/memory-api/sdks/native"
 		},
@@ -753,7 +753,7 @@
 			"source": "/memory-api/features/reranking"
 		},
 		{
-			"destination": "/overview/what-is-supermemory",
+			"destination": "/overview/what-is-emberspack-brain",
 			"permanent": true,
 			"source": "/memory-api/introduction"
 		},
@@ -763,24 +763,24 @@
 			"source": "/memory-api/sdks/anthropic-claude-memory"
 		},
 		{
-			"destination": "/integrations/supermemory-sdk",
+			"destination": "/integrations/emberspack-brain-sdk",
 			"permanent": true,
 			"source": "/memory-api/sdks/python"
 		},
 		{
-			"destination": "/integrations/supermemory-sdk",
+			"destination": "/integrations/emberspack-brain-sdk",
 			"permanent": true,
 			"source": "/memory-api/sdks/typescript"
 		},
 		{
-			"destination": "/integrations/supermemory-sdk",
+			"destination": "/integrations/emberspack-brain-sdk",
 			"permanent": true,
-			"source": "/memory-api/sdks/supermemory-npm"
+			"source": "/memory-api/sdks/emberspack-brain-npm"
 		},
 		{
-			"destination": "/integrations/supermemory-sdk",
+			"destination": "/integrations/emberspack-brain-sdk",
 			"permanent": true,
-			"source": "/memory-api/sdks/supermemory-pypi"
+			"source": "/memory-api/sdks/emberspack-brain-pypi"
 		},
 		{
 			"destination": "/recall/search",
@@ -830,17 +830,17 @@
 		{
 			"destination": "/overview/comparison",
 			"permanent": true,
-			"source": "/overview/why-supermemory"
+			"source": "/overview/why-emberspack-brain"
 		},
 		{
-			"destination": "/supermemory-mcp/mcp",
+			"destination": "/emberspack-brain-mcp/mcp",
 			"permanent": true,
-			"source": "/supermemory-mcp/introduction"
+			"source": "/emberspack-brain-mcp/introduction"
 		},
 		{
-			"destination": "/supermemory-mcp/mcp",
+			"destination": "/emberspack-brain-mcp/mcp",
 			"permanent": true,
-			"source": "/supermemory-mcp/technology"
+			"source": "/emberspack-brain-mcp/technology"
 		},
 		{
 			"destination": "/",
@@ -868,19 +868,19 @@
 			"source": "/cookbook/personal-assistant"
 		},
 		{
-			"destination": "https://supermemory.ai/blog/building-an-ai-compliance-chatbot-with-supermemory-and-google-drive/",
+			"destination": "https://emberspack-brain.ai/blog/building-an-ai-compliance-chatbot-with-emberspack-brain-and-google-drive/",
 			"permanent": true,
 			"source": "/cookbook/chat-with-gdrive"
 		},
 		{
-			"destination": "https://supermemory.ai/blog/extending-context-windows-in-llms/",
+			"destination": "https://emberspack-brain.ai/blog/extending-context-windows-in-llms/",
 			"permanent": true,
 			"source": "/cookbook/inf-chat-blog"
 		},
 		{
-			"destination": "https://supermemory.ai/blog/build-your-own-perplexity-in-15-minutes-with-supermemory/",
+			"destination": "https://emberspack-brain.ai/blog/build-your-own-perplexity-in-15-minutes-with-emberspack-brain/",
 			"permanent": true,
-			"source": "/cookbook/perplexity-supermemory"
+			"source": "/cookbook/perplexity-emberspack-brain"
 		},
 		{
 			"destination": "/",
@@ -958,7 +958,7 @@
 			"source": "/analytics"
 		},
 		{
-			"destination": "/overview/what-is-supermemory",
+			"destination": "/overview/what-is-emberspack-brain",
 			"permanent": true,
 			"source": "/company-brain/:slug*"
 		},

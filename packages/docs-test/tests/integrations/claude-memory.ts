@@ -1,5 +1,5 @@
 import "dotenv/config"
-import { createClaudeMemoryTool } from "@supermemory/tools/claude-memory"
+import { createClaudeMemoryTool } from "@emberspack-brain/tools/claude-memory"
 
 async function testConfiguration() {
 	console.log("=== Configuration ===")

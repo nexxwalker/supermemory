@@ -1,6 +1,6 @@
 import type OpenAI from "openai"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
-import { withSupermemory } from "../src/openai"
+import { withEmberspack Brain } from "../src/openai"
 
 describe("OpenAI middleware memory context", () => {
 	const originalApiKey = process.env.SUPERMEMORY_API_KEY
@@ -34,7 +34,7 @@ describe("OpenAI middleware memory context", () => {
 		const client = {
 			chat: { completions: { create: originalCreate } },
 		} as unknown as OpenAI
-		const wrapped = withSupermemory(client, {
+		const wrapped = withEmberspack Brain(client, {
 			containerTag: "user-a",
 			customId: "conversation-a",
 			mode: "profile",
@@ -47,7 +47,7 @@ describe("OpenAI middleware memory context", () => {
 				{
 					role: "system",
 					content:
-						'Be helpful.\n\n<supermemory context="user-memories" readonly>\nStale profile fact\n</supermemory>',
+						'Be helpful.\n\n<emberspack-brain context="user-memories" readonly>\nStale profile fact\n</emberspack-brain>',
 				},
 				{ role: "user", content: "What do you remember?" },
 			],
@@ -59,7 +59,7 @@ describe("OpenAI middleware memory context", () => {
 		expect(content).toContain("Fresh profile fact")
 		expect(content).not.toContain("Stale profile fact")
 		expect(
-			content.match(/<supermemory context="user-memories" readonly>/g),
+			content.match(/<emberspack-brain context="user-memories" readonly>/g),
 		).toHaveLength(1)
 	})
 })

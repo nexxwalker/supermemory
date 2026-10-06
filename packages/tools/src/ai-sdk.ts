@@ -1,4 +1,4 @@
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 import { tool } from "ai"
 import { z } from "zod"
 import {
@@ -12,10 +12,10 @@ import {
 	getContainerTags,
 } from "./tools-shared"
 import { forgetMemoryRequest } from "./shared/forget-memory"
-import type { SupermemoryToolsConfig } from "./types"
+import type { Emberspack BrainToolsConfig } from "./types"
 
-function createClient(apiKey: string, config?: SupermemoryToolsConfig) {
-	return new Supermemory({
+function createClient(apiKey: string, config?: Emberspack BrainToolsConfig) {
+	return new Emberspack Brain({
 		apiKey,
 		...CLIENT_OPTIONS,
 		...(config?.baseUrl ? { baseURL: config.baseUrl } : {}),
@@ -25,7 +25,7 @@ function createClient(apiKey: string, config?: SupermemoryToolsConfig) {
 // Export individual tool creators
 export const searchMemoriesTool = (
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) => {
 	const client = createClient(apiKey, config)
 
@@ -92,7 +92,7 @@ export const searchMemoriesTool = (
 
 export const addMemoryTool = (
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) => {
 	const client = createClient(apiKey, config)
 
@@ -129,7 +129,7 @@ export const addMemoryTool = (
 
 export const getProfileTool = (
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) => {
 	const client = createClient(apiKey, config)
 
@@ -170,7 +170,7 @@ export const getProfileTool = (
 
 export const documentListTool = (
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) => {
 	const client = createClient(apiKey, config)
 
@@ -225,7 +225,7 @@ export const documentListTool = (
 
 export const documentDeleteTool = (
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) => {
 	const client = createClient(apiKey, config)
 	const containerTags = getContainerTags(config)
@@ -268,7 +268,7 @@ export const documentDeleteTool = (
 
 export const documentAddTool = (
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) => {
 	const client = createClient(apiKey, config)
 
@@ -312,7 +312,7 @@ export const documentAddTool = (
 
 export const memoryForgetTool = (
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) => {
 	const containerTags = getContainerTags(config)
 
@@ -367,11 +367,11 @@ export const memoryForgetTool = (
 }
 
 /**
- * Create Supermemory tools for AI SDK
+ * Create Emberspack Brain tools for AI SDK
  */
-export function supermemoryTools(
+export function emberspack-brainTools(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	return {
 		searchMemories: searchMemoriesTool(apiKey, config),
@@ -386,8 +386,8 @@ export function supermemoryTools(
 
 // `./vercel` is not a published subpath, so this is the only way consumers reach the middleware types.
 export {
-	withSupermemory,
-	type WithSupermemoryOptions,
+	withEmberspack Brain,
+	type WithEmberspack BrainOptions,
 	type PromptTemplate,
 	type MemoryPromptData,
 } from "./vercel"

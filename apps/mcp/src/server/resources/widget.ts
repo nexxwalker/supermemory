@@ -1,5 +1,5 @@
 import { ResourceTemplate, type McpServer } from "@modelcontextprotocol/server"
-import supermemoryAppHtml from "../../../dist/src/widget/index.html"
+import emberspack-brainAppHtml from "../../../dist/src/widget/index.html"
 import {
 	APP_RESOURCE_MIME_TYPE,
 	SUPERMEMORY_RESOURCE_URI,
@@ -24,21 +24,21 @@ export function registerWidgetResource(
 			{
 				uri,
 				mimeType: APP_RESOURCE_MIME_TYPE,
-				text: supermemoryAppHtml,
+				text: emberspack-brainAppHtml,
 				_meta: resourceMeta,
 			},
 		],
 	})
 
 	server.registerResource(
-		"Supermemory MCP UI",
+		"Emberspack Brain MCP UI",
 		SUPERMEMORY_RESOURCE_URI,
 		resourceConfig,
 		async () => readWidgetResource(SUPERMEMORY_RESOURCE_URI),
 	)
 	server.registerResource(
-		"Supermemory MCP UI compatibility",
-		new ResourceTemplate("ui://supermemory/app-{version}.html", {
+		"Emberspack Brain MCP UI compatibility",
+		new ResourceTemplate("ui://emberspack-brain/app-{version}.html", {
 			list: undefined,
 		}),
 		resourceConfig,

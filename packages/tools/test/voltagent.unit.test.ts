@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest"
-import { createSupermemoryHooks } from "../src/voltagent"
+import { createEmberspack BrainHooks } from "../src/voltagent"
 
 describe("VoltAgent memory context", () => {
 	afterEach(() => vi.unstubAllGlobals())
@@ -15,7 +15,7 @@ describe("VoltAgent memory context", () => {
 				}),
 			}),
 		)
-		const hooks = createSupermemoryHooks("user-a", {
+		const hooks = createEmberspack BrainHooks("user-a", {
 			customId: "conversation-a",
 			apiKey: "sm_test_key",
 			mode: "profile",
@@ -32,7 +32,7 @@ describe("VoltAgent memory context", () => {
 					id: "system",
 					role: "system",
 					content:
-						'Be helpful.\n\n<supermemory context="user-memories" readonly>\nStale profile fact\n</supermemory>',
+						'Be helpful.\n\n<emberspack-brain context="user-memories" readonly>\nStale profile fact\n</emberspack-brain>',
 					parts: [],
 				},
 			],
@@ -44,7 +44,7 @@ describe("VoltAgent memory context", () => {
 		expect(content).toContain("Fresh profile fact")
 		expect(content).not.toContain("Stale profile fact")
 		expect(
-			content.match(/<supermemory context="user-memories" readonly>/g),
+			content.match(/<emberspack-brain context="user-memories" readonly>/g),
 		).toHaveLength(1)
 	})
 })

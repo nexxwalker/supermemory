@@ -2,7 +2,7 @@
   <picture>
     <source srcset="apps/web/public/logo-fullmark.svg" media="(prefers-color-scheme: dark)">
     <source srcset="apps/web/public/logo-light-fullmark.svg" media="(prefers-color-scheme: light)">
-    <img src="apps/web/public/logo-fullmark.svg" alt="Supermemory" width="400" />
+    <img src="apps/web/public/logo-fullmark.svg" alt="Emberspack Brain" width="400" />
   </picture>
 </p>
 
@@ -11,16 +11,16 @@
 </p>
 
 <p align="center">
-  <a href="https://supermemory.ai/docs">文档</a> ·
-  <a href="https://supermemory.ai/docs/quickstart">快速开始</a> ·
-  <a href="https://console.supermemory.ai">控制台</a> ·
-  <a href="https://supermemory.link/discord">Discord</a>
+  <a href="https://emberspack-brain.ai/docs">文档</a> ·
+  <a href="https://emberspack-brain.ai/docs/quickstart">快速开始</a> ·
+  <a href="https://console.emberspack-brain.ai">控制台</a> ·
+  <a href="https://emberspack-brain.link/discord">Discord</a>
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/supermemory"><img src="https://img.shields.io/npm/v/supermemory?style=flat-square&color=blue" alt="npm" /></a>
-  <a href="https://pypi.org/project/supermemory/"><img src="https://img.shields.io/pypi/v/supermemory?style=flat-square&color=blue" alt="pypi" /></a>
-  <a href="https://supermemory.ai/docs"><img src="https://img.shields.io/badge/docs-supermemory.ai-blue?style=flat-square" alt="docs" /></a>
+  <a href="https://www.npmjs.com/package/emberspack-brain"><img src="https://img.shields.io/npm/v/emberspack-brain?style=flat-square&color=blue" alt="npm" /></a>
+  <a href="https://pypi.org/project/emberspack-brain/"><img src="https://img.shields.io/pypi/v/emberspack-brain?style=flat-square&color=blue" alt="pypi" /></a>
+  <a href="https://emberspack-brain.ai/docs"><img src="https://img.shields.io/badge/docs-emberspack-brain.ai-blue?style=flat-square" alt="docs" /></a>
 </p>
 
 <p align="center">
@@ -29,11 +29,11 @@
 
 ---
 
-Supermemory 是为 AI 设计的记忆与上下文层。在 **[LongMemEval](https://github.com/xiaowu0162/LongMemEval)、[LoCoMo](https://github.com/snap-research/locomo) 和 [ConvoMem](https://github.com/Salesforce/ConvoMem)** 这三大 AI 记忆基准上均位列第一。
+Emberspack Brain 是为 AI 设计的记忆与上下文层。在 **[LongMemEval](https://github.com/xiaowu0162/LongMemEval)、[LoCoMo](https://github.com/snap-research/locomo) 和 [ConvoMem](https://github.com/Salesforce/ConvoMem)** 这三大 AI 记忆基准上均位列第一。
 
 我们是一个研究团队，围绕这个引擎打造插件和工具生态。
 
-你的 AI 在对话之间会把一切忘干净，Supermemory 就是来解决这个问题的。
+你的 AI 在对话之间会把一切忘干净，Emberspack Brain 就是来解决这个问题的。
 
 它会自动从对话中学习，提取事实、构建用户画像、处理知识更新与冲突、淘汰过期信息，并在合适的时机交付合适的上下文。完整 RAG、连接器、文件处理——整个上下文栈，一套系统全部搞定。
 
@@ -52,7 +52,7 @@ Supermemory 是为 AI 设计的记忆与上下文层。在 **[LongMemEval](https
 
 ---
 
-## 怎么用 Supermemory
+## 怎么用 Emberspack Brain
 
 <table>
 <tr>
@@ -75,7 +75,7 @@ Supermemory 是为 AI 设计的记忆与上下文层。在 **[LongMemEval](https
 
 无需配置向量数据库，无需搭 embedding 流水线，无需操心切分策略。
 
-**[→ 跳到开发者快速开始](#用-supermemory-api-构建)**
+**[→ 跳到开发者快速开始](#用-emberspack-brain-api-构建)**
 
 </td>
 </tr>
@@ -87,40 +87,40 @@ Supermemory 是为 AI 设计的记忆与上下文层。在 **[LongMemEval](https
 
 插件和 MCP 服务器可以为任何兼容的 AI 助手提供持久记忆。装一次，AI 从此记住你。
 
-### Supermemory 插件
+### Emberspack Brain 插件
 
-Supermemory 已经为 Claude Code、Cursor、Codex、OpenCode、OpenClaw、Hermes 提供了开箱即用的插件。
+Emberspack Brain 已经为 Claude Code、Cursor、Codex、OpenCode、OpenClaw、Hermes 提供了开箱即用的插件。
 
 <img width="844" height="484" alt="image" src="https://github.com/user-attachments/assets/ecb879a2-8652-495d-9228-f305a97ba603" />
 
-这些插件本质上是 supermemory API 的实现，全部开源：
+这些插件本质上是 emberspack-brain API 的实现，全部开源：
 
-- Claude Code 插件：https://github.com/supermemoryai/claude-supermemory
-- Cursor 插件：https://github.com/supermemoryai/cursor-supermemory
-- Codex 插件：https://github.com/supermemoryai/codex-supermemory
-- OpenClaw 插件：https://github.com/supermemoryai/openclaw-supermemory
-- OpenCode 插件：https://github.com/supermemoryai/opencode-supermemory
-- Hermes agent（Supermemory 作为记忆 provider）：https://github.com/NousResearch/hermes-agent
+- Claude Code 插件：https://github.com/emberspack-brainai/claude-emberspack-brain
+- Cursor 插件：https://github.com/emberspack-brainai/cursor-emberspack-brain
+- Codex 插件：https://github.com/emberspack-brainai/codex-emberspack-brain
+- OpenClaw 插件：https://github.com/emberspack-brainai/openclaw-emberspack-brain
+- OpenCode 插件：https://github.com/emberspack-brainai/opencode-emberspack-brain
+- Hermes agent（Emberspack Brain 作为记忆 provider）：https://github.com/NousResearch/hermes-agent
 
 ### MCP
 
 服务地址：
 
 ```text
-https://mcp.supermemory.ai/mcp
+https://mcp.emberspack-brain.ai/mcp
 ```
 
 ```json
 {
   "mcpServers": {
-    "supermemory": {
-      "url": "https://mcp.supermemory.ai/mcp"
+    "emberspack-brain": {
+      "url": "https://mcp.emberspack-brain.ai/mcp"
     }
   }
 }
 ```
 
-更多 MCP 细节见：https://supermemory.ai/docs/supermemory-mcp/mcp
+更多 MCP 细节见：https://emberspack-brain.ai/docs/emberspack-brain-mcp/mcp
 
 ### AI 接入后能用到什么
 
@@ -132,10 +132,10 @@ https://mcp.supermemory.ai/mcp
 
 ### 工作机制
 
-装好之后，Supermemory 在后台运行：
+装好之后，Emberspack Brain 在后台运行：
 
 1. **正常和你的 AI 对话。** 聊聊偏好、提提项目、讨论一下问题。
-2. **Supermemory 自动提取并存下关键信息。** 事实、偏好、项目上下文——杂音不留。
+2. **Emberspack Brain 自动提取并存下关键信息。** 事实、偏好、项目上下文——杂音不留。
 3. **下一次对话，AI 已经认识你了。** 它知道你在做什么、你喜欢怎么处理、你之前聊过什么。
 
 记忆按 **project（容器标签）** 隔离，便于把工作和生活分开，也可以按客户、仓库或任何其它维度组织。
@@ -144,7 +144,7 @@ https://mcp.supermemory.ai/mcp
 
 **Claude Desktop** · **Cursor** · **Windsurf** · **VS Code** · **Claude Code** · **OpenCode** · **OpenClaw** · **Hermes**
 
-MCP 服务器开源——[查看源码](https://supermemory.ai/docs/supermemory-mcp/mcp)。
+MCP 服务器开源——[查看源码](https://emberspack-brain.ai/docs/emberspack-brain-mcp/mcp)。
 
 ### 手动配置
 
@@ -153,8 +153,8 @@ MCP 服务器开源——[查看源码](https://supermemory.ai/docs/supermemory-
 ```json
 {
   "mcpServers": {
-    "supermemory": {
-      "url": "https://mcp.supermemory.ai/mcp"
+    "emberspack-brain": {
+      "url": "https://mcp.emberspack-brain.ai/mcp"
     }
   }
 }
@@ -162,22 +162,22 @@ MCP 服务器开源——[查看源码](https://supermemory.ai/docs/supermemory-
 
 ---
 
-## 用 Supermemory API 构建
+## 用 Emberspack Brain API 构建
 
-如果你在做 AI agent 或应用，Supermemory 用一套 API 给你完整的上下文栈——记忆、RAG、用户画像、连接器、文件处理，全包。
+如果你在做 AI agent 或应用，Emberspack Brain 用一套 API 给你完整的上下文栈——记忆、RAG、用户画像、连接器、文件处理，全包。
 
 ### 安装
 
 ```bash
-npm install supermemory    # 或者：pip install supermemory
+npm install emberspack-brain    # 或者：pip install emberspack-brain
 ```
 
 ### 快速开始
 
 ```typescript
-import Supermemory from "supermemory";
+import Emberspack Brain from "emberspack-brain";
 
-const client = new Supermemory();
+const client = new Emberspack Brain();
 
 // 存一段对话
 await client.add({
@@ -197,9 +197,9 @@ const { profile, searchResults } = await client.profile({
 ```
 
 ```python
-from supermemory import Supermemory
+from emberspack-brain import Emberspack Brain
 
-client = Supermemory()
+client = Emberspack Brain()
 
 client.add(
     content="User loves TypeScript and prefers functional patterns",
@@ -212,7 +212,7 @@ print(result.profile.static)   # 长期事实
 print(result.profile.dynamic)  # 近期上下文
 ```
 
-Supermemory 会自动抽取记忆、构建用户画像、返回相关上下文。不用搭 embedding 流水线，不用配向量库，不用操心切分。
+Emberspack Brain 会自动抽取记忆、构建用户画像、返回相关上下文。不用搭 embedding 流水线，不用配向量库，不用操心切分。
 
 ### 框架集成
 
@@ -220,12 +220,12 @@ Supermemory 会自动抽取记忆、构建用户画像、返回相关上下文�
 
 ```typescript
 // Vercel AI SDK
-import { withSupermemory } from "@supermemory/tools/ai-sdk";
-const model = withSupermemory(openai("gpt-4o"), { containerTag: "user_123", customId: "conv-1" });
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk";
+const model = withEmberspack Brain(openai("gpt-4o"), { containerTag: "user_123", customId: "conv-1" });
 
 // Mastra
-import { withSupermemory } from "@supermemory/tools/mastra";
-const agent = new Agent(withSupermemory(config, "user-123", { mode: "full" }));
+import { withEmberspack Brain } from "@emberspack-brain/tools/mastra";
+const agent = new Agent(withEmberspack Brain(config, "user-123", { mode: "full" }));
 ```
 
 **Vercel AI SDK** · **LangChain** · **LangGraph** · **OpenAI Agents SDK** · **Mastra** · **Agno** · **Claude Memory Tool** · **n8n**
@@ -251,7 +251,7 @@ const results = await client.search({
 
 ### 用户画像
 
-传统记忆方案依赖检索——你得先知道要问什么。Supermemory 会自动为每个用户维护一份画像：
+传统记忆方案依赖检索——你得先知道要问什么。Emberspack Brain 会自动为每个用户维护一份画像：
 
 ```typescript
 const { profile } = await client.profile({ containerTag: "user_123" });
@@ -282,13 +282,13 @@ const { profile } = await client.profile({ containerTag: "user_123" });
 | `client.documents.list()` | 列出和筛选文档 |
 | `client.settings.update()` | 配置记忆抽取与切分策略 |
 
-完整 API 文档 → [supermemory.ai/docs](https://supermemory.ai/docs)
+完整 API 文档 → [emberspack-brain.ai/docs](https://emberspack-brain.ai/docs)
 
 ---
 
 ## 基准测试
 
-在各大 AI 记忆基准上，Supermemory 都处于业界顶尖水平：
+在各大 AI 记忆基准上，Emberspack Brain 都处于业界顶尖水平：
 
 | 基准 | 衡量内容 | 结果 |
 |---|---|---|
@@ -296,21 +296,21 @@ const { profile } = await client.profile({ containerTag: "user_123" });
 | **[LoCoMo](https://github.com/snap-research/locomo)** | 超长对话中的事实回忆（单跳、多跳、时序、对抗） | **第 1** |
 | **[ConvoMem](https://github.com/Salesforce/ConvoMem)** | 个性化与偏好学习 | **第 1** |
 
-我们还做了 **[MemoryBench](https://supermemory.ai/docs/memorybench/overview)**——一个开源框架，用于对记忆服务做标准化、可复现的基准评测。Supermemory、Mem0、Zep 等可以直接放在一起对比：
+我们还做了 **[MemoryBench](https://emberspack-brain.ai/docs/memorybench/overview)**——一个开源框架，用于对记忆服务做标准化、可复现的基准评测。Emberspack Brain、Mem0、Zep 等可以直接放在一起对比：
 
 ```bash
-bun run src/index.ts run -p supermemory -b longmemeval -j gpt-4o -r my-run
+bun run src/index.ts run -p emberspack-brain -b longmemeval -j gpt-4o -r my-run
 ```
 
 ### 给自己的记忆方案跑基准
 
-我们提供了一个 Agent skill，方便公司把自己的上下文/记忆方案拿来和 supermemory 对比。
+我们提供了一个 Agent skill，方便公司把自己的上下文/记忆方案拿来和 emberspack-brain 对比。
 
 ```
-npx skills add supermemoryai/memorybench
+npx skills add emberspack-brainai/memorybench
 ```
 
-跑完上面这条命令，再执行 `/benchmark-context`，Supermemory 会自动帮你跑完整个流程。
+跑完上面这条命令，再执行 `/benchmark-context`，Emberspack Brain 会自动帮你跑完整个流程。
 
 ---
 
@@ -319,7 +319,7 @@ npx skills add supermemoryai/memorybench
 ```
 你的应用 / AI 工具
         ↓
-   Supermemory
+   Emberspack Brain
         │
         ├── 记忆引擎     提取事实、跟踪更新、解决冲突、
         │                自动遗忘过期信息
@@ -329,20 +329,20 @@ npx skills add supermemoryai/memorybench
         └── 文件处理     PDF、图片、视频、代码 → 可检索的分块
 ```
 
-**记忆不等于 RAG。** RAG 是检索文档片段——无状态，对所有人返回相同结果。记忆是**长期跟踪和提取关于用户的事实**。它知道「我刚搬到 SF」会覆盖「我住在 NYC」。Supermemory 默认把两者一起跑，所以每次查询都能同时拿到知识库检索结果和个性化上下文。更多细节见：https://supermemory.ai/docs/concepts/memory-vs-rag
+**记忆不等于 RAG。** RAG 是检索文档片段——无状态，对所有人返回相同结果。记忆是**长期跟踪和提取关于用户的事实**。它知道「我刚搬到 SF」会覆盖「我住在 NYC」。Emberspack Brain 默认把两者一起跑，所以每次查询都能同时拿到知识库检索结果和个性化上下文。更多细节见：https://emberspack-brain.ai/docs/concepts/memory-vs-rag
 
-**自动遗忘。** Supermemory 知道哪些记忆已经无关紧要。临时事实（「我明天有考试」）会在日期过后失效，冲突会自动消解，杂音不会沉淀成永久记忆。
+**自动遗忘。** Emberspack Brain 知道哪些记忆已经无关紧要。临时事实（「我明天有考试」）会在日期过后失效，冲突会自动消解，杂音不会沉淀成永久记忆。
 
 ---
 
 ## 链接
 
-- 📖 [文档](https://supermemory.ai/docs)
-- 🚀 [快速开始](https://supermemory.ai/docs/quickstart)
-- 🧪 [MemoryBench](https://supermemory.ai/docs/memorybench/overview)
-- 🔌 [集成](https://supermemory.ai/docs/integrations)
-- 💬 [Discord](https://supermemory.link/discord)
-- 𝕏 [Twitter](https://twitter.com/supermemory)
+- 📖 [文档](https://emberspack-brain.ai/docs)
+- 🚀 [快速开始](https://emberspack-brain.ai/docs/quickstart)
+- 🧪 [MemoryBench](https://emberspack-brain.ai/docs/memorybench/overview)
+- 🔌 [集成](https://emberspack-brain.ai/docs/integrations)
+- 💬 [Discord](https://emberspack-brain.link/discord)
+- 𝕏 [Twitter](https://twitter.com/emberspack-brain)
 
 ---
 

@@ -8,18 +8,18 @@ import {
 } from "@/lib/api-keys"
 
 export function ApiKeysPanel({
-	supermemoryApiKey,
+	emberspack-brainApiKey,
 	openaiApiKey,
-	hasSupermemoryEnvKey,
+	hasEmberspack BrainEnvKey,
 	hasOpenAiEnvKey,
-	onSupermemoryChange,
+	onEmberspack BrainChange,
 	onOpenAiChange,
 }: {
-	supermemoryApiKey: string
+	emberspack-brainApiKey: string
 	openaiApiKey: string
-	hasSupermemoryEnvKey: boolean
+	hasEmberspack BrainEnvKey: boolean
 	hasOpenAiEnvKey: boolean
-	onSupermemoryChange: (value: string) => void
+	onEmberspack BrainChange: (value: string) => void
 	onOpenAiChange: (value: string) => void
 }) {
 	const [open, setOpen] = useState(false)
@@ -29,27 +29,27 @@ export function ApiKeysPanel({
 	useEffect(() => {
 		const stored = readStoredApiKeys()
 		const hasStoredKeys = Boolean(
-			stored.supermemoryApiKey || stored.openaiApiKey,
+			stored.emberspack-brainApiKey || stored.openaiApiKey,
 		)
-		if (stored.supermemoryApiKey) onSupermemoryChange(stored.supermemoryApiKey)
+		if (stored.emberspack-brainApiKey) onEmberspack BrainChange(stored.emberspack-brainApiKey)
 		if (stored.openaiApiKey) onOpenAiChange(stored.openaiApiKey)
 		setRememberKeys(hasStoredKeys)
 		setStorageInitialized(true)
-	}, [onSupermemoryChange, onOpenAiChange])
+	}, [onEmberspack BrainChange, onOpenAiChange])
 
 	useEffect(() => {
 		if (!storageInitialized) return
 		if (rememberKeys) {
-			storeApiKeys({ supermemoryApiKey, openaiApiKey })
+			storeApiKeys({ emberspack-brainApiKey, openaiApiKey })
 		} else {
 			clearStoredApiKeys()
 		}
-	}, [storageInitialized, rememberKeys, supermemoryApiKey, openaiApiKey])
+	}, [storageInitialized, rememberKeys, emberspack-brainApiKey, openaiApiKey])
 
-	const supermemoryReady =
-		supermemoryApiKey.trim().length > 0 || hasSupermemoryEnvKey
+	const emberspack-brainReady =
+		emberspack-brainApiKey.trim().length > 0 || hasEmberspack BrainEnvKey
 	const openAiReady = openaiApiKey.trim().length > 0 || hasOpenAiEnvKey
-	const ready = supermemoryReady && openAiReady
+	const ready = emberspack-brainReady && openAiReady
 
 	return (
 		<div className="rounded-lg border border-zinc-800 bg-zinc-900/40">
@@ -76,17 +76,17 @@ export function ApiKeysPanel({
 					</p>
 					<label className="block space-y-1">
 						<span className="flex items-center justify-between gap-2 text-xs text-zinc-500">
-							<span>Supermemory API key</span>
-							{hasSupermemoryEnvKey && !supermemoryApiKey.trim() && (
+							<span>Emberspack Brain API key</span>
+							{hasEmberspack BrainEnvKey && !emberspack-brainApiKey.trim() && (
 								<span className="text-emerald-500">using server env</span>
 							)}
 						</span>
 						<input
 							type="password"
-							value={supermemoryApiKey}
-							onChange={(e) => onSupermemoryChange(e.target.value)}
+							value={emberspack-brainApiKey}
+							onChange={(e) => onEmberspack BrainChange(e.target.value)}
 							placeholder={
-								hasSupermemoryEnvKey ? "Optional browser override" : "sm_…"
+								hasEmberspack BrainEnvKey ? "Optional browser override" : "sm_…"
 							}
 							className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm font-mono"
 						/>
@@ -124,7 +124,7 @@ export function ApiKeysPanel({
 					<button
 						type="button"
 						onClick={() => {
-							onSupermemoryChange("")
+							onEmberspack BrainChange("")
 							onOpenAiChange("")
 							setRememberKeys(false)
 							clearStoredApiKeys()

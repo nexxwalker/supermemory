@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { resolveSupermemoryApiKey } from "@/lib/api-keys"
+import { resolveEmberspack BrainApiKey } from "@/lib/api-keys"
 import { fetchContainerContext } from "@/lib/context-api"
 import {
 	PlaygroundRequestError,
@@ -17,16 +17,16 @@ export async function GET(req: Request) {
 		const { searchParams } = new URL(req.url)
 		const containerTag = parseContainerTag(searchParams.get("containerTag"))
 		const query = parseOptionalText(searchParams.get("query"), "query")
-		const supermemoryApiKey = resolveSupermemoryApiKey(null, {
+		const emberspack-brainApiKey = resolveEmberspack BrainApiKey(null, {
 			allowEnvironment: mayUseEnvironmentKeys(req),
 		})
 
-		if (!supermemoryApiKey) {
+		if (!emberspack-brainApiKey) {
 			return NextResponse.json(
 				{
 					ok: false,
 					error:
-						"Supermemory API key is required — enter it in the dashboard or set a local env var.",
+						"Emberspack Brain API key is required — enter it in the dashboard or set a local env var.",
 				},
 				{ status: 400 },
 			)
@@ -35,7 +35,7 @@ export async function GET(req: Request) {
 		const context = await fetchContainerContext(
 			containerTag,
 			query,
-			supermemoryApiKey,
+			emberspack-brainApiKey,
 		)
 		return NextResponse.json({ ok: true, context })
 	} catch (error) {
@@ -56,16 +56,16 @@ export async function POST(req: Request) {
 		const body = await readJsonObject(req)
 		const containerTag = parseContainerTag(body.containerTag)
 		const query = parseOptionalText(body.query, "query")
-		const supermemoryApiKey = resolveSupermemoryApiKey(
+		const emberspack-brainApiKey = resolveEmberspack BrainApiKey(
 			parseApiKeys(body.apiKeys),
 			{ allowEnvironment: mayUseEnvironmentKeys(req) },
 		)
 
-		if (!supermemoryApiKey) {
+		if (!emberspack-brainApiKey) {
 			return NextResponse.json(
 				{
 					ok: false,
-					error: "Supermemory API key is required — enter it in the dashboard.",
+					error: "Emberspack Brain API key is required — enter it in the dashboard.",
 				},
 				{ status: 400 },
 			)
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
 		const context = await fetchContainerContext(
 			containerTag,
 			query,
-			supermemoryApiKey,
+			emberspack-brainApiKey,
 		)
 		return NextResponse.json({ ok: true, context })
 	} catch (error) {

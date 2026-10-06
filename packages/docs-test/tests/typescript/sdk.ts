@@ -1,8 +1,8 @@
 import "dotenv/config"
 import fs from "fs"
-import Supermemory, { toFile } from "supermemory"
+import Emberspack Brain, { toFile } from "emberspack-brain"
 
-const client = new Supermemory()
+const client = new Emberspack Brain()
 
 async function testDocumentsCRUD() {
 	console.log("\n=== Document CRUD Operations ===")
@@ -76,11 +76,11 @@ async function testClientConfig() {
 	console.log("\n=== Client Configuration ===")
 
 	// Retries
-	const clientWithRetries = new Supermemory({ maxRetries: 0 })
+	const clientWithRetries = new Emberspack Brain({ maxRetries: 0 })
 	console.log("✓ maxRetries config")
 
 	// Timeout
-	const clientWithTimeout = new Supermemory({ timeout: 20 * 1000 })
+	const clientWithTimeout = new Emberspack Brain({ timeout: 20 * 1000 })
 	console.log("✓ timeout config")
 
 	// Per-request options
@@ -108,10 +108,10 @@ async function testRawResponse() {
 async function testTypes() {
 	console.log("\n=== Types ===")
 
-	const params: Supermemory.AddParams = {
+	const params: Emberspack Brain.AddParams = {
 		content: "Typed content",
 	}
-	const response: Supermemory.AddResponse = await client.add(params)
+	const response: Emberspack Brain.AddResponse = await client.add(params)
 	console.log("✓ TypeScript types work:", response.id)
 }
 
@@ -121,7 +121,7 @@ async function testErrorHandling() {
 	const response = await client.documents
 		.add({ content: "Test - " + Date.now() })
 		.catch(async (err) => {
-			if (err instanceof Supermemory.APIError) {
+			if (err instanceof Emberspack Brain.APIError) {
 				console.log("Caught APIError:", err.status, err.name)
 			} else {
 				throw err

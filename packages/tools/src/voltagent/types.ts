@@ -2,7 +2,7 @@
  * Type definitions for VoltAgent integration.
  *
  * VoltAgent uses hooks to intercept and modify agent behavior. We integrate
- * Supermemory by providing hooks that inject memories before LLM calls.
+ * Emberspack Brain by providing hooks that inject memories before LLM calls.
  */
 
 import type {
@@ -46,7 +46,7 @@ export type HookEndArgs = OnEndHookArgs
 export type {
 	IncludeOptions,
 	SearchFilters,
-	SupermemoryVoltAgent,
+	Emberspack BrainVoltAgent,
 } from "./options"
 
 // Re-export shared types for convenience

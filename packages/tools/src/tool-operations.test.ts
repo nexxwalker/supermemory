@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-// Mock the Supermemory SDK (same pattern as claude-memory.test.ts) so tool
+// Mock the Emberspack Brain SDK (same pattern as claude-memory.test.ts) so tool
 // executions can be verified deterministically without network access.
 const documentsDeleteBulk = vi.fn()
 const documentsGet = vi.fn()
@@ -9,9 +9,9 @@ const clientAdd = vi.fn()
 const clientSearch = vi.fn()
 const clientOptions: unknown[] = []
 
-vi.mock("supermemory", () => {
+vi.mock("emberspack-brain", () => {
 	return {
-		default: class MockSupermemory {
+		default: class MockEmberspack Brain {
 			constructor(options: unknown) {
 				clientOptions.push(options)
 			}
@@ -167,7 +167,7 @@ describe("memoryForget", () => {
 
 		expect(fetchMock).toHaveBeenCalledTimes(1)
 		const [url, init] = fetchMock.mock.calls[0] as [string, RequestInit]
-		expect(url).toBe("https://api.supermemory.ai/v4/memories")
+		expect(url).toBe("https://api.emberspack-brain.ai/v4/memories")
 		expect(init.method).toBe("DELETE")
 		expect(init.headers).toMatchObject({
 			Authorization: `Bearer ${API_KEY}`,

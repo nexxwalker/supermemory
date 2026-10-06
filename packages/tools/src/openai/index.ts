@@ -21,20 +21,20 @@ import {
  * @param options.verbose - Optional flag to enable detailed logging of memory search and injection process (default: false)
  * @param options.mode - Optional mode for memory search: "profile" (default), "query", or "full"
  * @param options.addMemory - Optional mode for memory addition: "always" (default), "never"
- * @param options.apiKey - Optional Supermemory API key; falls back to SUPERMEMORY_API_KEY
+ * @param options.apiKey - Optional Emberspack Brain API key; falls back to SUPERMEMORY_API_KEY
  *
  * @returns An OpenAI client with SuperMemory middleware injected for both Chat Completions and Responses APIs
  *
  * @example
  * ```typescript
- * import { withSupermemory } from "@supermemory/tools/openai"
+ * import { withEmberspack Brain } from "@emberspack-brain/tools/openai"
  * import OpenAI from "openai"
  *
- * // Create OpenAI client with supermemory middleware
+ * // Create OpenAI client with emberspack-brain middleware
  * const openai = new OpenAI({
  *   apiKey: process.env.OPENAI_API_KEY,
  * })
- * const openaiWithSupermemory = withSupermemory(openai, {
+ * const openaiWithEmberspack Brain = withEmberspack Brain(openai, {
  *   containerTag: "user-123",
  *   customId: "conversation-456",
  *   mode: "full",
@@ -42,7 +42,7 @@ import {
  * })
  *
  * // Use with Chat Completions API - memories injected into system prompt
- * const chatResponse = await openaiWithSupermemory.chat.completions.create({
+ * const chatResponse = await openaiWithEmberspack Brain.chat.completions.create({
  *   model: "gpt-4",
  *   messages: [
  *     { role: "user", content: "What's my favorite programming language?" }
@@ -50,7 +50,7 @@ import {
  * })
  *
  * // Use with Responses API - memories injected into instructions
- * const response = await openaiWithSupermemory.responses.create({
+ * const response = await openaiWithEmberspack Brain.responses.create({
  *   model: "gpt-4o",
  *   instructions: "You are a helpful coding assistant",
  *   input: "What's my favorite programming language?"
@@ -58,9 +58,9 @@ import {
  * ```
  *
  * @throws {Error} When neither options.apiKey nor SUPERMEMORY_API_KEY is set
- * @throws {Error} When supermemory API request fails
+ * @throws {Error} When emberspack-brain API request fails
  */
-export function withSupermemory(
+export function withEmberspack Brain(
 	openaiClient: OpenAI,
 	options: OpenAIMiddlewareOptions,
 ) {
@@ -87,7 +87,7 @@ export function withSupermemory(
 	const mode = options.mode ?? "profile"
 	const addMemory = options.addMemory ?? "always"
 
-	const openaiWithSupermemory = createOpenAIMiddleware(
+	const openaiWithEmberspack Brain = createOpenAIMiddleware(
 		openaiClient,
 		containerTag,
 		{
@@ -98,7 +98,7 @@ export function withSupermemory(
 		},
 	)
 
-	return openaiWithSupermemory
+	return openaiWithEmberspack Brain
 }
 
 export type { OpenAIMiddlewareOptions }
@@ -119,7 +119,7 @@ export {
 	createDocumentDeleteFunction,
 	createDocumentAddFunction,
 	createMemoryForgetFunction,
-	supermemoryTools,
+	emberspack-brainTools,
 	getToolDefinitions,
 	createToolCallExecutor,
 	createToolCallsExecutor,

@@ -1,6 +1,6 @@
 import "dotenv/config"
 import OpenAI from "openai"
-import { withSupermemory } from "@supermemory/tools/openai"
+import { withEmberspack Brain } from "@emberspack-brain/tools/openai"
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY
 
@@ -15,16 +15,16 @@ async function testOpenAIWrapper() {
 	const openai = new OpenAI()
 
 	// Basic wrapper
-	const client = withSupermemory(openai, "docs-test-openai")
-	console.log("✓ withSupermemory basic")
+	const client = withEmberspack Brain(openai, "docs-test-openai")
+	console.log("✓ withEmberspack Brain basic")
 
 	// With options
-	const clientWithOptions = withSupermemory(openai, "docs-test-openai", {
+	const clientWithOptions = withEmberspack Brain(openai, "docs-test-openai", {
 		mode: "full",
 		addMemory: "always",
 		verbose: true,
 	})
-	console.log("✓ withSupermemory with options")
+	console.log("✓ withEmberspack Brain with options")
 }
 
 async function testChatCompletion() {
@@ -36,7 +36,7 @@ async function testChatCompletion() {
 	}
 
 	const openai = new OpenAI()
-	const client = withSupermemory(openai, "docs-test-openai", {
+	const client = withEmberspack Brain(openai, "docs-test-openai", {
 		mode: "full",
 		addMemory: "always",
 	})

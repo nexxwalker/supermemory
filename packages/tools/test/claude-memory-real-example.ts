@@ -20,7 +20,7 @@ export async function handleClaudeMemoryToolCall(
 		name: "memory"
 		input: MemoryCommand
 	},
-	supermemoryApiKey: string,
+	emberspack-brainApiKey: string,
 	config?: {
 		projectId?: string
 		memoryContainerTag?: string
@@ -33,7 +33,7 @@ export async function handleClaudeMemoryToolCall(
 	console.log(`📁 Path: ${toolUseBlock.input.path}`)
 
 	// Initialize memory tool
-	const memoryTool = createClaudeMemoryTool(supermemoryApiKey, {
+	const memoryTool = createClaudeMemoryTool(emberspack-brainApiKey, {
 		projectId: config?.projectId || "claude-chat",
 		memoryContainerTag: config?.memoryContainerTag || "claude_memory",
 		baseUrl: config?.baseUrl,
@@ -74,7 +74,7 @@ export async function realClaudeMemoryExample() {
 	if (!ANTHROPIC_API_KEY || !SUPERMEMORY_API_KEY) {
 		console.error("❌ Missing API keys:")
 		console.error("- Set ANTHROPIC_API_KEY for Claude")
-		console.error("- Set SUPERMEMORY_API_KEY for Supermemory")
+		console.error("- Set SUPERMEMORY_API_KEY for Emberspack Brain")
 		return
 	}
 
@@ -192,7 +192,7 @@ export async function realClaudeMemoryExample() {
  */
 export async function processClaudeResponse(
 	claudeResponseData: any,
-	supermemoryApiKey: string,
+	emberspack-brainApiKey: string,
 	config?: {
 		projectId?: string
 		memoryContainerTag?: string
@@ -215,7 +215,7 @@ export async function processClaudeResponse(
 
 		const results = await Promise.all(
 			memoryToolCalls.map((block: any) =>
-				handleClaudeMemoryToolCall(block, supermemoryApiKey, config),
+				handleClaudeMemoryToolCall(block, emberspack-brainApiKey, config),
 			),
 		)
 

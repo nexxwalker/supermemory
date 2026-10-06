@@ -16,7 +16,7 @@ import {
 } from "./prompt-builder"
 
 /**
- * Fetches profile and search results from the Supermemory API.
+ * Fetches profile and search results from the Emberspack Brain API.
  *
  * @param containerTag - The container tag/user ID for scoping memories
  * @param queryText - Optional query text for semantic search
@@ -25,7 +25,7 @@ import {
  * @param signal - Optional AbortSignal to cancel the request (e.g. retrieval timeout)
  * @returns The profile structure with static, dynamic, and search results
  */
-export const supermemoryProfileSearch = async (
+export const emberspack-brainProfileSearch = async (
 	containerTag: string,
 	queryText: string,
 	baseUrl: string,
@@ -57,7 +57,7 @@ export const supermemoryProfileSearch = async (
 		if (!response.ok) {
 			const errorText = await response.text().catch(() => "Unknown error")
 			throw new Error(
-				`Supermemory profile search failed: ${response.status} ${response.statusText}. ${errorText}`,
+				`Emberspack Brain profile search failed: ${response.status} ${response.statusText}. ${errorText}`,
 			)
 		}
 
@@ -66,7 +66,7 @@ export const supermemoryProfileSearch = async (
 		if (error instanceof Error) {
 			throw error
 		}
-		throw new Error(`Supermemory API request failed: ${error}`)
+		throw new Error(`Emberspack Brain API request failed: ${error}`)
 	}
 }
 
@@ -105,7 +105,7 @@ export const buildMemoriesText = async (
 		signal,
 	} = options
 
-	const memoriesResponse = await supermemoryProfileSearch(
+	const memoriesResponse = await emberspack-brainProfileSearch(
 		containerTag,
 		queryText,
 		baseUrl,

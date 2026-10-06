@@ -7,8 +7,8 @@ import { consoleOrigin } from "../console-origin"
 const SECONDS = 5
 
 export default function MovedPage() {
-	const [target, setTarget] = useState("https://console.supermemory.ai")
-	const [oldHost, setOldHost] = useState("app.supermemory.ai")
+	const [target, setTarget] = useState("https://console.emberspack-brain.ai")
+	const [oldHost, setOldHost] = useState("app.emberspack-brain.ai")
 
 	useEffect(() => {
 		setTarget(consoleOrigin(window.location.hostname, window.location.protocol))
@@ -25,8 +25,8 @@ export default function MovedPage() {
 	return (
 		<div className="page">
 			<header className="brand">
-				<a href="https://supermemory.ai" aria-label="Supermemory home">
-					<img alt="Supermemory" src="/logo-fullmark.svg" />
+				<a href="https://emberspack-brain.ai" aria-label="Emberspack Brain home">
+					<img alt="Emberspack Brain" src="/logo-fullmark.svg" />
 				</a>
 				<div className="brand-meta"><span className="live-dot" />Platform update</div>
 			</header>
@@ -35,7 +35,7 @@ export default function MovedPage() {
 				<div className="notice-inner">
 					<div className="eyebrow"><Sparkles aria-hidden="true" /> A better home for your memory</div>
 					<h1 className="headline">Your memory,<br /><span>in one place.</span></h1>
-					<p className="body">Supermemory has moved to a new home built for faster access to your memories, API keys, and connected tools.</p>
+					<p className="body">Emberspack Brain has moved to a new home built for faster access to your memories, API keys, and connected tools.</p>
 
 					<div className="route-card">
 						<div className="route-label">You&apos;re going from</div>
@@ -57,7 +57,7 @@ export default function MovedPage() {
 					<div><strong>Nothing gets left behind.</strong><p>Your data and connections are ready when you arrive.</p></div>
 				</aside>
 			</main>
-			<footer className="footer"><span>© Supermemory</span><span>Memory infrastructure for the next generation of AI</span></footer>
+			<footer className="footer"><span>© Emberspack Brain</span><span>Memory infrastructure for the next generation of AI</span></footer>
 		</div>
 	)
 }

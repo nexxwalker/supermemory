@@ -1,5 +1,5 @@
 export interface PlaygroundApiKeys {
-	supermemoryApiKey: string
+	emberspack-brainApiKey: string
 	openaiApiKey: string
 }
 
@@ -9,11 +9,11 @@ interface ResolveApiKeyOptions {
 	allowEnvironment?: boolean
 }
 
-export function resolveSupermemoryApiKey(
+export function resolveEmberspack BrainApiKey(
 	input?: Partial<PlaygroundApiKeys> | null,
 	options: ResolveApiKeyOptions = {},
 ): string | null {
-	const provided = input?.supermemoryApiKey?.trim()
+	const provided = input?.emberspack-brainApiKey?.trim()
 	if (provided) return provided
 	if (options.allowEnvironment === false) return null
 	return process.env.SUPERMEMORY_API_KEY?.trim() || null
@@ -33,12 +33,12 @@ export function resolveApiKeys(
 	input?: Partial<PlaygroundApiKeys> | null,
 	options: ResolveApiKeyOptions = {},
 ): PlaygroundApiKeys | null {
-	const supermemoryApiKey = resolveSupermemoryApiKey(input, options)
+	const emberspack-brainApiKey = resolveEmberspack BrainApiKey(input, options)
 	const openaiApiKey = resolveOpenAiApiKey(input, options)
 
-	if (!supermemoryApiKey || !openaiApiKey) return null
+	if (!emberspack-brainApiKey || !openaiApiKey) return null
 
-	return { supermemoryApiKey, openaiApiKey }
+	return { emberspack-brainApiKey, openaiApiKey }
 }
 
 export function readStoredApiKeys(): Partial<PlaygroundApiKeys> {
@@ -48,7 +48,7 @@ export function readStoredApiKeys(): Partial<PlaygroundApiKeys> {
 		if (!raw) return {}
 		const parsed = JSON.parse(raw) as Partial<PlaygroundApiKeys>
 		return {
-			supermemoryApiKey: parsed.supermemoryApiKey ?? "",
+			emberspack-brainApiKey: parsed.emberspack-brainApiKey ?? "",
 			openaiApiKey: parsed.openaiApiKey ?? "",
 		}
 	} catch {

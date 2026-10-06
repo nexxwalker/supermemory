@@ -8,7 +8,7 @@ export function register(deps: ToolDeps) {
 		"who_am_i",
 		{
 			description:
-				"Get the current Supermemory account context, including user identity, role, access type, permissions, scope, and active space. Use this when the user asks who they are, what access they have, or which space is currently active. Use list_spaces instead when the user asks which spaces are available.",
+				"Get the current Emberspack Brain account context, including user identity, role, access type, permissions, scope, and active space. Use this when the user asks who they are, what access they have, or which space is currently active. Use list_spaces instead when the user asks which spaces are available.",
 			inputSchema: z.object({}),
 			outputSchema: whoAmIOutputSchema,
 			annotations: READ_ONLY_TOOL_ANNOTATIONS,

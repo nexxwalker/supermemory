@@ -1,18 +1,18 @@
 {
 	"apps": {
-		"apps/web": { "name": "app.dev.supermemory", "script": "dev:app" },
-		"apps/mcp": { "name": "mcp.dev.supermemory", "script": "dev:app" },
+		"apps/web": { "name": "app.dev.emberspack-brain", "script": "dev:app" },
+		"apps/mcp": { "name": "mcp.dev.emberspack-brain", "script": "dev:app" },
 		"apps/docs": {
-			"name": "docs.dev.supermemory",
+			"name": "docs.dev.emberspack-brain",
 			"script": "dev:app",
 			"appPort": 3003
 		},
 		"apps/memory-graph-playground": {
-			"name": "graph.dev.supermemory",
+			"name": "graph.dev.emberspack-brain",
 			"script": "dev:app"
 		},
 		"apps/sdk-playground": {
-			"name": "sdk.dev.supermemory",
+			"name": "sdk.dev.emberspack-brain",
 			"script": "dev:app",
 			"appPort": 3005
 		}

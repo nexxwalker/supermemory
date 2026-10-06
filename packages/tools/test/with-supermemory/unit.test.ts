@@ -1,11 +1,11 @@
 /**
- * Unit tests for the withSupermemory wrapper
+ * Unit tests for the withEmberspack Brain wrapper
  */
 
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest"
-import { withSupermemory } from "../../src/vercel"
+import { withEmberspack Brain } from "../../src/vercel"
 import {
-	createSupermemoryContext,
+	createEmberspack BrainContext,
 	transformParamsWithMemory,
 } from "../../src/vercel/middleware"
 import type {
@@ -18,7 +18,7 @@ import "dotenv/config"
 // Test configuration
 const TEST_CONFIG = {
 	apiKey: process.env.SUPERMEMORY_API_KEY || "test-api-key",
-	baseURL: process.env.SUPERMEMORY_BASE_URL || "https://api.supermemory.ai",
+	baseURL: process.env.SUPERMEMORY_BASE_URL || "https://api.emberspack-brain.ai",
 	containerTag: "test-vercel-wrapper",
 }
 
@@ -47,7 +47,7 @@ const createMockProfileResponse = (
 	},
 })
 
-describe("Unit: withSupermemory", () => {
+describe("Unit: withEmberspack Brain", () => {
 	let originalEnv: string | undefined
 	let originalFetch: typeof globalThis.fetch
 
@@ -73,7 +73,7 @@ describe("Unit: withSupermemory", () => {
 			const mockModel = createMockLanguageModel()
 
 			expect(() => {
-				withSupermemory(mockModel, {
+				withEmberspack Brain(mockModel, {
 					containerTag: TEST_CONFIG.containerTag,
 					customId: "test-id",
 				})
@@ -87,14 +87,14 @@ describe("Unit: withSupermemory", () => {
 
 			// omitted customId (plain JS caller)
 			expect(() => {
-				withSupermemory(mockModel, {
+				withEmberspack Brain(mockModel, {
 					containerTag: TEST_CONFIG.containerTag,
 				} as any)
 			}).toThrow("customId is required")
 
 			// empty string
 			expect(() => {
-				withSupermemory(mockModel, {
+				withEmberspack Brain(mockModel, {
 					containerTag: TEST_CONFIG.containerTag,
 					customId: "",
 				})
@@ -105,7 +105,7 @@ describe("Unit: withSupermemory", () => {
 			process.env.SUPERMEMORY_API_KEY = "test-key"
 
 			const mockModel = createMockLanguageModel()
-			const wrappedModel = withSupermemory(mockModel, {
+			const wrappedModel = withEmberspack Brain(mockModel, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "test-id",
 			})
@@ -126,7 +126,7 @@ describe("Unit: withSupermemory", () => {
 				doStream: vi.fn(),
 			}
 			const inner = Object.create(proto) as LanguageModelV2
-			const wrappedModel = withSupermemory(inner, {
+			const wrappedModel = withEmberspack Brain(inner, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "test-id",
 			})
@@ -152,7 +152,7 @@ describe("Unit: withSupermemory", () => {
 					Promise.resolve(createMockProfileResponse(["Cached memory"])),
 			})
 
-			const ctx = createSupermemoryContext({
+			const ctx = createEmberspack BrainContext({
 				containerTag: TEST_CONFIG.containerTag,
 				apiKey: TEST_CONFIG.apiKey,
 				customId: "test-id",
@@ -185,7 +185,7 @@ describe("Unit: withSupermemory", () => {
 					Promise.resolve(createMockProfileResponse(["Cached memory"])),
 			})
 
-			const ctx = createSupermemoryContext({
+			const ctx = createEmberspack BrainContext({
 				containerTag: TEST_CONFIG.containerTag,
 				apiKey: TEST_CONFIG.apiKey,
 				customId: "test-id",
@@ -258,7 +258,7 @@ describe("Unit: withSupermemory", () => {
 				})
 			})
 
-			const ctx = createSupermemoryContext({
+			const ctx = createEmberspack BrainContext({
 				containerTag: TEST_CONFIG.containerTag,
 				apiKey: TEST_CONFIG.apiKey,
 				customId: "test-id",
@@ -316,7 +316,7 @@ describe("Unit: withSupermemory", () => {
 				usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 },
 				warnings: [],
 			})
-			const wrapped = withSupermemory(inner, {
+			const wrapped = withEmberspack Brain(inner, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "conversation-a",
 				mode: "profile",
@@ -329,7 +329,7 @@ describe("Unit: withSupermemory", () => {
 					{
 						role: "system",
 						content:
-							'Be helpful.\n\n<supermemory context="user-memories" readonly>\nStale profile fact\n</supermemory>',
+							'Be helpful.\n\n<emberspack-brain context="user-memories" readonly>\nStale profile fact\n</emberspack-brain>',
 					},
 					{
 						role: "user",
@@ -348,7 +348,7 @@ describe("Unit: withSupermemory", () => {
 			expect(content).toContain("Fresh profile fact")
 			expect(content).not.toContain("Stale profile fact")
 			expect(
-				content.match(/<supermemory context="user-memories" readonly>/g),
+				content.match(/<emberspack-brain context="user-memories" readonly>/g),
 			).toHaveLength(1)
 		})
 
@@ -379,13 +379,13 @@ describe("Unit: withSupermemory", () => {
 				usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 },
 				warnings: [],
 			})
-			const wrappedA = withSupermemory(innerA, {
+			const wrappedA = withEmberspack Brain(innerA, {
 				containerTag: "user-a",
 				customId: "conversation-a",
 				apiKey: TEST_CONFIG.apiKey,
 				addMemory: "never",
 			})
-			const wrappedB = withSupermemory(innerB, {
+			const wrappedB = withEmberspack Brain(innerB, {
 				containerTag: "user-b",
 				customId: "conversation-b",
 				apiKey: TEST_CONFIG.apiKey,
@@ -434,7 +434,7 @@ describe("Unit: withSupermemory", () => {
 				text: () => Promise.resolve("Server error"),
 			})
 
-			const ctx = createSupermemoryContext({
+			const ctx = createEmberspack BrainContext({
 				containerTag: TEST_CONFIG.containerTag,
 				apiKey: TEST_CONFIG.apiKey,
 				customId: "test-id",
@@ -451,12 +451,12 @@ describe("Unit: withSupermemory", () => {
 			}
 
 			await expect(transformParamsWithMemory(params, ctx)).rejects.toThrow(
-				"Supermemory profile search failed",
+				"Emberspack Brain profile search failed",
 			)
 		})
 
 		it("should handle empty prompt array", async () => {
-			const ctx = createSupermemoryContext({
+			const ctx = createEmberspack BrainContext({
 				containerTag: TEST_CONFIG.containerTag,
 				apiKey: TEST_CONFIG.apiKey,
 				customId: "test-id",
@@ -474,7 +474,7 @@ describe("Unit: withSupermemory", () => {
 		})
 
 		it("should handle user message with empty content array in query mode", async () => {
-			const ctx = createSupermemoryContext({
+			const ctx = createEmberspack BrainContext({
 				containerTag: TEST_CONFIG.containerTag,
 				apiKey: TEST_CONFIG.apiKey,
 				customId: "test-id",
@@ -502,7 +502,7 @@ describe("Unit: withSupermemory", () => {
 				json: () => Promise.resolve(createMockProfileResponse(["Memory"])),
 			})
 
-			const ctx = createSupermemoryContext({
+			const ctx = createEmberspack BrainContext({
 				containerTag: TEST_CONFIG.containerTag,
 				apiKey: TEST_CONFIG.apiKey,
 				customId: "test-id",
@@ -566,7 +566,7 @@ describe("Unit: withSupermemory", () => {
 				warnings: [],
 			})
 
-			const wrapped = withSupermemory(inner, {
+			const wrapped = withEmberspack Brain(inner, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "test-id",
 				apiKey: "k",
@@ -590,7 +590,7 @@ describe("Unit: withSupermemory", () => {
 			})
 
 			const inner = createMockLanguageModel()
-			const wrapped = withSupermemory(inner, {
+			const wrapped = withEmberspack Brain(inner, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "test-id",
 				apiKey: "k",
@@ -601,7 +601,7 @@ describe("Unit: withSupermemory", () => {
 				wrapped.doGenerate({
 					prompt: [{ role: "user", content: [{ type: "text", text: "Hi" }] }],
 				}),
-			).rejects.toThrow("Supermemory profile search failed")
+			).rejects.toThrow("Emberspack Brain profile search failed")
 		})
 
 		it("aborts slow profile fetch after internal timeout and continues by default", async () => {
@@ -631,7 +631,7 @@ describe("Unit: withSupermemory", () => {
 				warnings: [],
 			})
 
-			const wrapped = withSupermemory(inner, {
+			const wrapped = withEmberspack Brain(inner, {
 				containerTag: TEST_CONFIG.containerTag,
 				customId: "test-id",
 				apiKey: "k",

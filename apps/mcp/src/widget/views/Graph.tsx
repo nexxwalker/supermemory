@@ -4,7 +4,7 @@ import {
 	type GraphApiMemory,
 	type GraphThemeColors,
 	MemoryGraph,
-} from "@supermemory/memory-graph"
+} from "@emberspack-brain/memory-graph"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import type {
 	DocumentMemoryEntry,

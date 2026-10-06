@@ -1,4 +1,4 @@
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 import {
 	type MiddlewareRuntimeConfig,
 	normalizeMiddlewareConfig,
@@ -49,9 +49,9 @@ export interface ContainerContext {
 	pagination?: unknown
 }
 
-function getSupermemoryClient(apiKey: string) {
-	if (!apiKey) throw new Error("Supermemory API key is required")
-	return new Supermemory({
+function getEmberspack BrainClient(apiKey: string) {
+	if (!apiKey) throw new Error("Emberspack Brain API key is required")
+	return new Emberspack Brain({
 		apiKey,
 		timeout: 10_000,
 		maxRetries: 1,
@@ -115,7 +115,7 @@ export function resolveProfileQuery(
 }
 
 async function fetchProfileContext(
-	client: ReturnType<typeof getSupermemoryClient>,
+	client: ReturnType<typeof getEmberspack BrainClient>,
 	containerTag: string,
 	query?: string,
 	signal?: AbortSignal,
@@ -143,13 +143,13 @@ async function fetchProfileContext(
 export async function fetchContainerContext(
 	containerTag: string,
 	query?: string,
-	supermemoryApiKey?: string,
+	emberspack-brainApiKey?: string,
 ): Promise<ContainerContext> {
 	const apiKey =
-		supermemoryApiKey?.trim() || process.env.SUPERMEMORY_API_KEY?.trim()
-	if (!apiKey) throw new Error("Supermemory API key is required")
+		emberspack-brainApiKey?.trim() || process.env.SUPERMEMORY_API_KEY?.trim()
+	if (!apiKey) throw new Error("Emberspack Brain API key is required")
 
-	const client = getSupermemoryClient(apiKey)
+	const client = getEmberspack BrainClient(apiKey)
 	const profile = await fetchProfileContext(client, containerTag, query)
 
 	const docsResponse = await client.post<{
@@ -199,7 +199,7 @@ export async function buildMiddlewareMemoryDebug(
 		includeToolCalls?: boolean
 		skipMemoryOnError?: boolean
 	},
-	supermemoryApiKey?: string,
+	emberspack-brainApiKey?: string,
 	signal?: AbortSignal,
 ): Promise<MemoryDebugEntry[]> {
 	const config = normalizeMiddlewareConfig(middlewareConfig)
@@ -207,10 +207,10 @@ export async function buildMiddlewareMemoryDebug(
 
 	try {
 		const apiKey =
-			supermemoryApiKey?.trim() || process.env.SUPERMEMORY_API_KEY?.trim()
-		if (!apiKey) throw new Error("Supermemory API key is required")
+			emberspack-brainApiKey?.trim() || process.env.SUPERMEMORY_API_KEY?.trim()
+		if (!apiKey) throw new Error("Emberspack Brain API key is required")
 		const profile = await fetchProfileContext(
-			getSupermemoryClient(apiKey),
+			getEmberspack BrainClient(apiKey),
 			containerTag,
 			query,
 			signal,

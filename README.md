@@ -2,7 +2,7 @@
   <picture>
     <source srcset="apps/web/public/logo-fullmark.svg" media="(prefers-color-scheme: dark)">
     <source srcset="apps/web/public/logo-light-fullmark.svg" media="(prefers-color-scheme: light)">
-    <img src="apps/web/public/logo-fullmark.svg" alt="Supermemory" width="400" />
+    <img src="apps/web/public/logo-fullmark.svg" alt="Emberspack Brain" width="400" />
   </picture>
 </p>
 
@@ -11,17 +11,17 @@
 </p>
 
 <p align="center">
-  <a href="https://supermemory.ai/docs">Docs</a> ·
-  <a href="https://supermemory.ai/docs/quickstart">Quickstart</a> ·
-  <a href="https://supermemory.ai/docs/self-hosting/overview">Self-host</a> ·
-  <a href="https://console.supermemory.ai">Dashboard</a> ·
-  <a href="https://supermemory.link/discord">Discord</a>
+  <a href="https://emberspack-brain.ai/docs">Docs</a> ·
+  <a href="https://emberspack-brain.ai/docs/quickstart">Quickstart</a> ·
+  <a href="https://emberspack-brain.ai/docs/self-hosting/overview">Self-host</a> ·
+  <a href="https://console.emberspack-brain.ai">Dashboard</a> ·
+  <a href="https://emberspack-brain.link/discord">Discord</a>
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/supermemory"><img src="https://img.shields.io/npm/v/supermemory?style=flat-square&color=blue" alt="npm" /></a>
-  <a href="https://pypi.org/project/supermemory/"><img src="https://img.shields.io/pypi/v/supermemory?style=flat-square&color=blue" alt="pypi" /></a>
-  <a href="https://supermemory.ai/docs"><img src="https://img.shields.io/badge/docs-supermemory.ai-blue?style=flat-square" alt="docs" /></a>
+  <a href="https://www.npmjs.com/package/emberspack-brain"><img src="https://img.shields.io/npm/v/emberspack-brain?style=flat-square&color=blue" alt="npm" /></a>
+  <a href="https://pypi.org/project/emberspack-brain/"><img src="https://img.shields.io/pypi/v/emberspack-brain?style=flat-square&color=blue" alt="pypi" /></a>
+  <a href="https://emberspack-brain.ai/docs"><img src="https://img.shields.io/badge/docs-emberspack-brain.ai-blue?style=flat-square" alt="docs" /></a>
 </p>
 
 <p align="center">
@@ -31,16 +31,16 @@
 <p align="center">
   <strong>#1 on every major AI memory benchmark — <a href="https://github.com/xiaowu0162/LongMemEval">LongMemEval</a>, <a href="https://github.com/snap-research/locomo">LoCoMo</a>, and <a href="https://github.com/Salesforce/ConvoMem">ConvoMem</a>.</strong><br/>
   <strong>95% Recall@15 with a 99.4% context reduction · ~50ms user profiles.</strong><br/>
-  <a href="https://supermemory.ai/research">Read the research →</a>
+  <a href="https://emberspack-brain.ai/research">Read the research →</a>
 </p>
 
 ---
 
-Supermemory is the memory and context layer for AI. **#1 on [LongMemEval](https://github.com/xiaowu0162/LongMemEval), [LoCoMo](https://github.com/snap-research/locomo), and [ConvoMem](https://github.com/Salesforce/ConvoMem)** — the three major benchmarks for AI memory. 
+Emberspack Brain is the memory and context layer for AI. **#1 on [LongMemEval](https://github.com/xiaowu0162/LongMemEval), [LoCoMo](https://github.com/snap-research/locomo), and [ConvoMem](https://github.com/Salesforce/ConvoMem)** — the three major benchmarks for AI memory. 
 
 We are a research lab building the engine, plugins and tools around it.
 
-Your AI forgets everything between conversations. Supermemory fixes that.
+Your AI forgets everything between conversations. Emberspack Brain fixes that.
 
 It automatically learns from conversations, extracts facts, builds user profiles, handles knowledge updates and contradictions, forgets expired information, and delivers the right context at the right time. Full RAG, connectors, file processing — the entire context stack, one system.
 
@@ -59,7 +59,7 @@ All of this is in our single memory structure and ontology.
 
 ---
 
-## Use Supermemory
+## Use Emberspack Brain
 
 <table>
 <tr>
@@ -82,7 +82,7 @@ Add memory, RAG, user profiles, and connectors to your agents and apps with **a 
 
 No vector DB config. No embedding pipelines. No chunking strategies.
 
-**[→ Jump to developer quickstart](#build-with-supermemory-api)**
+**[→ Jump to developer quickstart](#build-with-emberspack-brain-api)**
 
 </td>
 </tr>
@@ -94,10 +94,10 @@ No vector DB config. No embedding pipelines. No chunking strategies.
 State-of-the-art memory, on your machine. **One binary. Zero config.** Bring any model — or run fully offline with Ollama.
 
 ```bash
-curl -fsSL https://supermemory.ai/install | bash
+curl -fsSL https://emberspack-brain.ai/install | bash
 ```
 
-**[→ Jump to Supermemory local](#supermemory-local--run-it-yourself)**
+**[→ Jump to Emberspack Brain local](#emberspack-brain-local--run-it-yourself)**
 
 </td>
 </tr>
@@ -109,43 +109,43 @@ curl -fsSL https://supermemory.ai/install | bash
 
 Plugins and the MCP server give any compatible AI assistant persistent memory. One install, and your AI remembers you.
 
-### Supermemory Plugins
+### Emberspack Brain Plugins
 
-Supermemory comes built with plugins for Claude Code, Muse Code, Cursor, Codex, OpenCode, OpenClaw, and Hermes.
+Emberspack Brain comes built with plugins for Claude Code, Muse Code, Cursor, Codex, OpenCode, OpenClaw, and Hermes.
 
 <img width="844" height="484" alt="image" src="https://github.com/user-attachments/assets/ecb879a2-8652-495d-9228-f305a97ba603" />
 
-These plugins are implementations of the supermemory API, and they are open source! 
+These plugins are implementations of the emberspack-brain API, and they are open source! 
 
 You can find them here: 
 
-- Claude Code plugin: https://github.com/supermemoryai/claude-supermemory
-- Muse Code plugin: https://github.com/supermemoryai/muse-supermemory
-- Cursor plugin: https://github.com/supermemoryai/cursor-supermemory
-- Codex plugin: https://github.com/supermemoryai/codex-supermemory
-- OpenClaw plugin: https://github.com/supermemoryai/openclaw-supermemory
-- OpenCode plugin: https://github.com/supermemoryai/opencode-supermemory
-- Hermes agent (Supermemory memory provider): https://github.com/NousResearch/hermes-agent
+- Claude Code plugin: https://github.com/emberspack-brainai/claude-emberspack-brain
+- Muse Code plugin: https://github.com/emberspack-brainai/muse-emberspack-brain
+- Cursor plugin: https://github.com/emberspack-brainai/cursor-emberspack-brain
+- Codex plugin: https://github.com/emberspack-brainai/codex-emberspack-brain
+- OpenClaw plugin: https://github.com/emberspack-brainai/openclaw-emberspack-brain
+- OpenCode plugin: https://github.com/emberspack-brainai/opencode-emberspack-brain
+- Hermes agent (Emberspack Brain memory provider): https://github.com/NousResearch/hermes-agent
 
 ### MCP
 
 Server URL:
 
 ```text
-https://mcp.supermemory.ai/mcp
+https://mcp.emberspack-brain.ai/mcp
 ```
 
 ```json
 {
   "mcpServers": {
-    "supermemory": {
-      "url": "https://mcp.supermemory.ai/mcp"
+    "emberspack-brain": {
+      "url": "https://mcp.emberspack-brain.ai/mcp"
     }
   }
 }
 ```
 
-Read more about our MCP here - https://supermemory.ai/docs/supermemory-mcp/mcp
+Read more about our MCP here - https://emberspack-brain.ai/docs/emberspack-brain-mcp/mcp
 
 ### What your AI gets
 
@@ -157,10 +157,10 @@ Read more about our MCP here - https://supermemory.ai/docs/supermemory-mcp/mcp
 
 ### How it works
 
-Once installed, Supermemory runs in the background:
+Once installed, Emberspack Brain runs in the background:
 
 1. **You talk to your AI normally.** Share preferences, mention projects, discuss problems.
-2. **Supermemory extracts and stores the important stuff.** Facts, preferences, project context — not noise.
+2. **Emberspack Brain extracts and stores the important stuff.** Facts, preferences, project context — not noise.
 3. **Next conversation, your AI already knows you.** It recalls what you're working on, how you like things, what you discussed before.
 
 Memory is scoped with **projects** (container tags) so you can separate work and personal context, or organize by client, repo, or anything else.
@@ -169,7 +169,7 @@ Memory is scoped with **projects** (container tags) so you can separate work and
 
 **Claude Desktop** · **Cursor** · **Windsurf** · **VS Code** · **Claude Code** · **OpenCode** · **OpenClaw** · **Hermes**
 
-The MCP server is open source — [view the source](https://supermemory.ai/docs/supermemory-mcp/mcp).
+The MCP server is open source — [view the source](https://emberspack-brain.ai/docs/emberspack-brain-mcp/mcp).
 
 ### Manual configuration
 
@@ -178,8 +178,8 @@ Add this to your MCP client config:
 ```json
 {
   "mcpServers": {
-    "supermemory": {
-      "url": "https://mcp.supermemory.ai/mcp"
+    "emberspack-brain": {
+      "url": "https://mcp.emberspack-brain.ai/mcp"
     }
   }
 }
@@ -187,22 +187,22 @@ Add this to your MCP client config:
 
 ---
 
-## Build with Supermemory (API)
+## Build with Emberspack Brain (API)
 
-If you're building AI agents or apps, Supermemory gives you the entire context stack through one API — memory, RAG, user profiles, connectors, and file processing.
+If you're building AI agents or apps, Emberspack Brain gives you the entire context stack through one API — memory, RAG, user profiles, connectors, and file processing.
 
 ### Install
 
 ```bash
-npm install supermemory    # or: pip install supermemory
+npm install emberspack-brain    # or: pip install emberspack-brain
 ```
 
 ### Quickstart
 
 ```typescript
-import Supermemory from "supermemory";
+import Emberspack Brain from "emberspack-brain";
 
-const client = new Supermemory();
+const client = new Emberspack Brain();
 
 // Store a conversation
 await client.add({
@@ -222,9 +222,9 @@ const { profile, searchResults } = await client.profile({
 ```
 
 ```python
-from supermemory import Supermemory
+from emberspack-brain import Emberspack Brain
 
-client = Supermemory()
+client = Emberspack Brain()
 
 client.add(
     content="User loves TypeScript and prefers functional patterns",
@@ -237,7 +237,7 @@ print(result.profile.static)   # Long-term facts
 print(result.profile.dynamic)  # Recent context
 ```
 
-Supermemory automatically extracts memories, builds user profiles, and returns relevant context. No embedding pipelines, no vector DB config, no chunking strategies.
+Emberspack Brain automatically extracts memories, builds user profiles, and returns relevant context. No embedding pipelines, no vector DB config, no chunking strategies.
 
 ### Framework integrations
 
@@ -245,12 +245,12 @@ Drop-in wrappers for every major AI framework:
 
 ```typescript
 // Vercel AI SDK
-import { withSupermemory } from "@supermemory/tools/ai-sdk";
-const model = withSupermemory(openai("gpt-4o"), { containerTag: "user_123", customId: "conv-1" });
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk";
+const model = withEmberspack Brain(openai("gpt-4o"), { containerTag: "user_123", customId: "conv-1" });
 
 // Mastra
-import { withSupermemory } from "@supermemory/tools/mastra";
-const agent = new Agent(withSupermemory(config, "user-123", { mode: "full" }));
+import { withEmberspack Brain } from "@emberspack-brain/tools/mastra";
+const agent = new Agent(withEmberspack Brain(config, "user-123", { mode: "full" }));
 ```
 
 **Vercel AI SDK** · **LangChain** · **LangGraph** · **OpenAI Agents SDK** · **Mastra** · **Agno** · **Claude Memory Tool** · **n8n**
@@ -276,7 +276,7 @@ const results = await client.search({
 
 ### User profiles
 
-Traditional memory relies on search — you need to know what to ask for. Supermemory automatically maintains a profile for every user:
+Traditional memory relies on search — you need to know what to ask for. Emberspack Brain automatically maintains a profile for every user:
 
 ```typescript
 const { profile } = await client.profile({ containerTag: "user_123" });
@@ -307,28 +307,28 @@ Real-time webhooks. Documents automatically processed, chunked, and searchable.
 | `client.documents.list()` | List and filter documents |
 | `client.settings.update()` | Configure memory extraction and chunking |
 
-Full API reference → [supermemory.ai/docs](https://supermemory.ai/docs)
+Full API reference → [emberspack-brain.ai/docs](https://emberspack-brain.ai/docs)
 
 ---
 
-## Supermemory local — run it yourself
+## Emberspack Brain local — run it yourself
 
 State-of-the-art memory, on your machine. One binary. Zero config.
 
 ```bash
-curl -fsSL https://supermemory.ai/install | bash
+curl -fsSL https://emberspack-brain.ai/install | bash
 # or
-npx supermemory local
+npx emberspack-brain local
 ```
 
 ```bash
-supermemory-server
+emberspack-brain-server
 ```
 
-First boot sets up the embedded Supermemory graph engine, local embeddings, and your credentials, then prints an API key. The full Memory API — documents, memories, user profiles, hybrid search — runs against `http://localhost:6767`.
+First boot sets up the embedded Emberspack Brain graph engine, local embeddings, and your credentials, then prints an API key. The full Memory API — documents, memories, user profiles, hybrid search — runs against `http://localhost:6767`.
 
 ```typescript
-const client = new Supermemory({
+const client = new Emberspack Brain({
   apiKey: "sm_...",
   baseURL: "http://localhost:6767", // that's the only change
 });
@@ -337,16 +337,16 @@ const client = new Supermemory({
 - **Bring any model** — OpenAI, Anthropic, Gemini, Groq, or any OpenAI-compatible endpoint. An interactive wizard walks you through it on first boot.
 - **Embeddings** — local `Xenova/bge-base-en-v1.5` by default (no API key); optionally OpenAI, Gemini, or Ollama. Same provider stack as cloud.
 - **Fully offline if you want** — point it at Ollama (`gpt-oss:20b` works great) and nothing leaves your machine.
-- **Your data, one directory** — everything lives in `./.supermemory`, easy to back up or move.
+- **Your data, one directory** — everything lives in `./.emberspack-brain`, easy to back up or move.
 - **Same API as the platform** — prototype locally, ship on the hosted platform by changing `baseURL`.
 
-Read the [self-hosting docs](https://supermemory.ai/docs/self-hosting/overview) — quickstart, [configuration](https://supermemory.ai/docs/self-hosting/configuration), [embeddings](https://supermemory.ai/docs/self-hosting/embeddings), and [local vs. Enterprise](https://supermemory.ai/docs/self-hosting/local-vs-enterprise).
+Read the [self-hosting docs](https://emberspack-brain.ai/docs/self-hosting/overview) — quickstart, [configuration](https://emberspack-brain.ai/docs/self-hosting/configuration), [embeddings](https://emberspack-brain.ai/docs/self-hosting/embeddings), and [local vs. Enterprise](https://emberspack-brain.ai/docs/self-hosting/local-vs-enterprise).
 
 ---
 
 ## Benchmarks
 
-Supermemory is state of the art across all major AI memory benchmarks:
+Emberspack Brain is state of the art across all major AI memory benchmarks:
 
 | Benchmark | What it measures | Result |
 |---|---|---|
@@ -354,25 +354,25 @@ Supermemory is state of the art across all major AI memory benchmarks:
 | **[LoCoMo](https://github.com/snap-research/locomo)** | Fact recall across extended conversations (single-hop, multi-hop, temporal, adversarial) | **#1** |
 | **[ConvoMem](https://github.com/Salesforce/ConvoMem)** | Personalization and preference learning | **#1** |
 
-On LongMemEval, supermemory reaches **95% Recall@15 while adding only ~720 tokens of context — a 99.4% context reduction** (99.6% at @10, 99.8% at @5). Recall by category: Knowledge Updates 99%, Assistant recall 100%, User recall 97%, Multi-session 93%, Temporal Reasoning 91%, Preference 90%.
+On LongMemEval, emberspack-brain reaches **95% Recall@15 while adding only ~720 tokens of context — a 99.4% context reduction** (99.6% at @10, 99.8% at @5). Recall by category: Knowledge Updates 99%, Assistant recall 100%, User recall 97%, Multi-session 93%, Temporal Reasoning 91%, Preference 90%.
 
-We also built the **Supermemory Filesystem (SMFS)**, which uses **3.0× fewer tokens on Claude** (24M vs 72M) and **1.75× fewer on Codex** across the 110-question xAFS benchmark. See the full write-ups on our [research page](https://supermemory.ai/research).
+We also built the **Emberspack Brain Filesystem (SMFS)**, which uses **3.0× fewer tokens on Claude** (24M vs 72M) and **1.75× fewer on Codex** across the 110-question xAFS benchmark. See the full write-ups on our [research page](https://emberspack-brain.ai/research).
 
-We also built **[MemoryBench](https://supermemory.ai/docs/memorybench/overview)** — an open-source framework for standardized, reproducible benchmarks of memory providers. Compare Supermemory, Mem0, Zep, and others head-to-head:
+We also built **[MemoryBench](https://emberspack-brain.ai/docs/memorybench/overview)** — an open-source framework for standardized, reproducible benchmarks of memory providers. Compare Emberspack Brain, Mem0, Zep, and others head-to-head:
 
 ```bash
-bun run src/index.ts run -p supermemory -b longmemeval -j gpt-4o -r my-run
+bun run src/index.ts run -p emberspack-brain -b longmemeval -j gpt-4o -r my-run
 ```
 
 ### Benchmarking your own memory solution
 
-We provide an Agent skill for companies to benchmark their own context and memory solutions against supermemory.
+We provide an Agent skill for companies to benchmark their own context and memory solutions against emberspack-brain.
 
 ```
-npx skills add supermemoryai/memorybench
+npx skills add emberspack-brainai/memorybench
 ```
 
-Simply run this and do `/benchmark-context` - Supermemory will automatically do the work for you!
+Simply run this and do `/benchmark-context` - Emberspack Brain will automatically do the work for you!
 
 ---
 
@@ -381,7 +381,7 @@ Simply run this and do `/benchmark-context` - Supermemory will automatically do 
 ```
 Your app / AI tool
         ↓
-   Supermemory
+   Emberspack Brain
         │
         ├── Memory Engine     Extracts facts, tracks updates, resolves contradictions,
         │                     auto-forgets expired info
@@ -391,21 +391,21 @@ Your app / AI tool
         └── File Processing   PDFs, images, videos, code → searchable chunks
 ```
 
-**Memory is not RAG.** RAG retrieves document chunks — stateless, same results for everyone. Memory extracts and tracks *facts about users* over time. It understands that "I just moved to SF" supersedes "I live in NYC." Supermemory runs both together by default, so you get knowledge base retrieval *and* personalized context in every query. Read more about this here - https://supermemory.ai/docs/concepts/memory-vs-rag
+**Memory is not RAG.** RAG retrieves document chunks — stateless, same results for everyone. Memory extracts and tracks *facts about users* over time. It understands that "I just moved to SF" supersedes "I live in NYC." Emberspack Brain runs both together by default, so you get knowledge base retrieval *and* personalized context in every query. Read more about this here - https://emberspack-brain.ai/docs/concepts/memory-vs-rag
 
-**Automatic forgetting.** Supermemory knows when memories become irrelevant. Temporary facts ("I have an exam tomorrow") expire after the date passes. Contradictions are resolved automatically. Noise never becomes permanent memory.
+**Automatic forgetting.** Emberspack Brain knows when memories become irrelevant. Temporary facts ("I have an exam tomorrow") expire after the date passes. Contradictions are resolved automatically. Noise never becomes permanent memory.
 
 ---
 
 ## Links
 
-- 📖 [Documentation](https://supermemory.ai/docs)
-- 🚀 [Quickstart](https://supermemory.ai/docs/quickstart)
-- 🖥️ [Self-hosting (Supermemory local)](https://supermemory.ai/docs/self-hosting/overview)
-- 🧪 [MemoryBench](https://supermemory.ai/docs/memorybench/overview)
-- 🔌 [Integrations](https://supermemory.ai/docs/integrations)
-- 💬 [Discord](https://supermemory.link/discord)
-- 𝕏 [Twitter](https://twitter.com/supermemory)
+- 📖 [Documentation](https://emberspack-brain.ai/docs)
+- 🚀 [Quickstart](https://emberspack-brain.ai/docs/quickstart)
+- 🖥️ [Self-hosting (Emberspack Brain local)](https://emberspack-brain.ai/docs/self-hosting/overview)
+- 🧪 [MemoryBench](https://emberspack-brain.ai/docs/memorybench/overview)
+- 🔌 [Integrations](https://emberspack-brain.ai/docs/integrations)
+- 💬 [Discord](https://emberspack-brain.link/discord)
+- 𝕏 [Twitter](https://twitter.com/emberspack-brain)
 
 ---
 

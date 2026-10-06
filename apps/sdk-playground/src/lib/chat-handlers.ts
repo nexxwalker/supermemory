@@ -1,15 +1,15 @@
 import { createOpenAI } from "@ai-sdk/openai"
 import { generateText, stepCountIs, type ModelMessage } from "ai"
 import OpenAI from "openai"
-import { supermemoryTools as aiSdkPackageTools } from "@supermemory/ai-sdk"
-import { withSupermemory as withSupermemoryAiSdk } from "@supermemory/tools/ai-sdk"
+import { emberspack-brainTools as aiSdkPackageTools } from "@emberspack-brain/ai-sdk"
+import { withEmberspack Brain as withEmberspack BrainAiSdk } from "@emberspack-brain/tools/ai-sdk"
 import {
 	createToolCallsExecutor,
 	getToolDefinitions,
-	withSupermemory as withSupermemoryOpenAi,
-} from "@supermemory/tools/openai"
-import { supermemoryTools as aiSdkTools } from "@supermemory/tools/ai-sdk"
-import type { SupermemoryToolsConfig } from "@supermemory/tools"
+	withEmberspack Brain as withEmberspack BrainOpenAi,
+} from "@emberspack-brain/tools/openai"
+import { emberspack-brainTools as aiSdkTools } from "@emberspack-brain/tools/ai-sdk"
+import type { Emberspack BrainToolsConfig } from "@emberspack-brain/tools"
 import type { PlaygroundApiKeys } from "./api-keys"
 import {
 	buildMiddlewareMemoryDebug,
@@ -121,7 +121,7 @@ function getModelName(): string {
 function getToolsConfig(
 	containerTags?: string[],
 	projectId?: string,
-): SupermemoryToolsConfig {
+): Emberspack BrainToolsConfig {
 	return {
 		baseUrl: process.env.SUPERMEMORY_BASE_URL,
 		...(containerTags?.length ? { containerTags } : {}),
@@ -175,10 +175,10 @@ async function chatAiSdkMiddleware(
 	signal: AbortSignal,
 ): Promise<ChatResult> {
 	const openai = createOpenAI({ apiKey: keys.openaiApiKey })
-	const model = withSupermemoryAiSdk(openai(getModelName()), {
+	const model = withEmberspack BrainAiSdk(openai(getModelName()), {
 		containerTag,
 		customId: conversationId,
-		apiKey: keys.supermemoryApiKey,
+		apiKey: keys.emberspack-brainApiKey,
 		mode: memoryMode,
 		addMemory: middlewareConfig.addMemory,
 		verbose: middlewareConfig.verbose,
@@ -212,10 +212,10 @@ async function chatOpenAiMiddleware(
 		timeout: MODEL_REQUEST_TIMEOUT_MS,
 		maxRetries: 1,
 	})
-	const client = withSupermemoryOpenAi(openai, {
+	const client = withEmberspack BrainOpenAi(openai, {
 		containerTag,
 		customId: conversationId,
-		apiKey: keys.supermemoryApiKey,
+		apiKey: keys.emberspack-brainApiKey,
 		mode: memoryMode,
 		addMemory: middlewareConfig.addMemory,
 		verbose: middlewareConfig.verbose,
@@ -248,7 +248,7 @@ async function chatAiSdkTools(
 ): Promise<ChatResult> {
 	const openai = createOpenAI({ apiKey: keys.openaiApiKey })
 	const tools = toolsFactory(
-		keys.supermemoryApiKey,
+		keys.emberspack-brainApiKey,
 		getToolsConfig(containerTags, projectId),
 	)
 
@@ -283,7 +283,7 @@ async function chatOpenAiTools(
 	})
 	const config = getToolsConfig(containerTags, projectId)
 	const executeToolCalls = createToolCallsExecutor(
-		keys.supermemoryApiKey,
+		keys.emberspack-brainApiKey,
 		config,
 	)
 	const toolDefs = getToolDefinitions()
@@ -429,7 +429,7 @@ export async function runTypeScriptChat(
 						skipMemoryOnError: middlewareConfig.skipMemoryOnError,
 					}
 				: { flavor: "openai" },
-			keys.supermemoryApiKey,
+			keys.emberspack-brainApiKey,
 			signal,
 		),
 	)

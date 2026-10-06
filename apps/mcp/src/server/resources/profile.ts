@@ -1,5 +1,5 @@
 import type { McpServer } from "@modelcontextprotocol/server"
-import { DEFAULT_PROJECT_ID, type SupermemoryClient } from "../client"
+import { DEFAULT_PROJECT_ID, type Emberspack BrainClient } from "../client"
 import {
 	compactDescription,
 	formatFactSection,
@@ -11,12 +11,12 @@ const PROFILE_FACT_LIMIT = 12
 
 export function registerProfileResource(
 	server: McpServer,
-	getClient: (containerTag?: string) => SupermemoryClient,
+	getClient: (containerTag?: string) => Emberspack BrainClient,
 	resolveContainerTag: () => Promise<string | undefined>,
 ) {
 	server.registerResource(
 		"Active Space Profile",
-		"supermemory://profile",
+		"emberspack-brain://profile",
 		{},
 		async () => {
 			const selectedTag = await resolveContainerTag()
@@ -71,7 +71,7 @@ export function registerProfileResource(
 			return {
 				contents: [
 					{
-						uri: "supermemory://profile",
+						uri: "emberspack-brain://profile",
 						mimeType: "text/plain",
 						text: parts.join("\n"),
 					},

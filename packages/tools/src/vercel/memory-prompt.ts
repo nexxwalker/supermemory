@@ -72,7 +72,7 @@ export const injectMemoriesIntoParams = (
 	)
 
 	if (systemPromptExists) {
-		logger.debug("Replaced Supermemory context in existing system prompt")
+		logger.debug("Replaced Emberspack Brain context in existing system prompt")
 		let injected = false
 		// biome-ignore lint/suspicious/noExplicitAny: Union type compatibility between V2 and V3 prompt types
 		const newPrompt = params.prompt.map((prompt: any) => {

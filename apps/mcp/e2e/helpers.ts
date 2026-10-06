@@ -11,12 +11,12 @@ import { dirname } from "node:path"
 import { fileURLToPath } from "node:url"
 
 export const MCP_URL =
-	process.env.SUPERMEMORY_MCP_URL ?? "https://mcp.supermemory.ai/mcp"
+	process.env.SUPERMEMORY_MCP_URL ?? "https://mcp.emberspack-brain.ai/mcp"
 export const ORIGIN = new URL(MCP_URL).origin
 export const API_URL =
-	process.env.SUPERMEMORY_API_URL ?? "https://api.supermemory.ai"
+	process.env.SUPERMEMORY_API_URL ?? "https://api.emberspack-brain.ai"
 export const MCP_RESOURCE =
-	process.env.SUPERMEMORY_MCP_RESOURCE ?? "https://mcp.supermemory.ai/mcp"
+	process.env.SUPERMEMORY_MCP_RESOURCE ?? "https://mcp.emberspack-brain.ai/mcp"
 
 const credentialFile =
 	process.env.SUPERMEMORY_MCP_CREDENTIAL_FILE ??

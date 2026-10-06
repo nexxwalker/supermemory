@@ -1,13 +1,13 @@
 import { convertToModelMessages, gateway, streamText, type UIMessage } from "ai"
 import { withTracing } from "@posthog/ai"
-import { withSupermemory } from "../../../../../src/ai-sdk"
+import { withEmberspack Brain } from "../../../../../src/ai-sdk"
 import { PostHog } from "posthog-node"
 
 const SUPERMEMORY_USER_ID = "user-1"
 
 const gatewayModel = gateway("google/gemini-2.5-flash")
 
-const supermemoryOptions = {
+const emberspack-brainOptions = {
 	containerTag: SUPERMEMORY_USER_ID,
 	customId: "stream-session",
 	apiKey: process.env.SUPERMEMORY_API_KEY ?? "",
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 			})
 		: gatewayModel
 
-	const model = withSupermemory(innerModel, supermemoryOptions)
+	const model = withEmberspack Brain(innerModel, emberspack-brainOptions)
 
 	const result = streamText({
 		model,

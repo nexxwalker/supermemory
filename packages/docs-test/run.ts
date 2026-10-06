@@ -80,7 +80,7 @@ async function runTest(test: TestFile): Promise<boolean> {
 }
 
 async function main() {
-	console.log("Supermemory Docs Test Runner")
+	console.log("Emberspack Brain Docs Test Runner")
 	console.log("============================\n")
 
 	let tests = getTests()

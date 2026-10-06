@@ -1,4 +1,4 @@
-const DEFAULT_BASE_URL = "https://api.supermemory.ai"
+const DEFAULT_BASE_URL = "https://api.emberspack-brain.ai"
 const FETCH_TIMEOUT_MS = 30_000
 
 export interface ForgetMemoryParams {
@@ -15,7 +15,7 @@ export interface ForgetMemoryRequestOptions {
 /**
  * Marks a memory as forgotten via `DELETE /v4/memories`.
  *
- * The supermemory SDK version this package depends on (v3) has no
+ * The emberspack-brain SDK version this package depends on (v3) has no
  * `memories.forget` method, so the endpoint is called directly — the same
  * pattern the middleware already uses for `/v4/profile` and
  * `/v4/conversations`.
@@ -39,7 +39,7 @@ export async function forgetMemoryRequest(
 	if (!response.ok) {
 		const errorText = await response.text().catch(() => "Unknown error")
 		throw new Error(
-			`Supermemory forget memory failed: ${response.status} ${response.statusText}. ${errorText}`,
+			`Emberspack Brain forget memory failed: ${response.status} ${response.statusText}. ${errorText}`,
 		)
 	}
 }

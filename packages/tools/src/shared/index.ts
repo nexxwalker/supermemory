@@ -9,7 +9,7 @@ export type {
 	Logger,
 	ProfileStructure,
 	ProfileMarkdownData,
-	SupermemoryBaseOptions,
+	Emberspack BrainBaseOptions,
 } from "./types"
 
 // Logger
@@ -28,14 +28,14 @@ export { MemoryCache, makeTurnKey } from "./cache"
 // Context
 export {
 	normalizeBaseUrl,
-	createSupermemoryClient,
+	createEmberspack BrainClient,
 	validateApiKey,
-	type CreateSupermemoryClientOptions,
+	type CreateEmberspack BrainClientOptions,
 } from "./context"
 
 // Memory client
 export {
-	supermemoryProfileSearch,
+	emberspack-brainProfileSearch,
 	buildMemoriesText,
 	extractQueryText,
 	getLastUserMessageText,

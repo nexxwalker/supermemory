@@ -1,26 +1,26 @@
-# @supermemory/tools
+# @emberspack-brain/tools
 
-Memory tools for AI SDK, OpenAI, and Mastra with supermemory
+Memory tools for AI SDK, OpenAI, and Mastra with emberspack-brain
 
-This package provides supermemory tools for AI SDK, OpenAI, and Mastra through dedicated submodule exports, each with function-based architectures optimized for their respective use cases.
+This package provides emberspack-brain tools for AI SDK, OpenAI, and Mastra through dedicated submodule exports, each with function-based architectures optimized for their respective use cases.
 
 ## Installation
 
 ```bash
-npm install @supermemory/tools
+npm install @emberspack-brain/tools
 ```
 
 ## Usage
 
 The package provides three submodule imports:
-- `@supermemory/tools/ai-sdk` - For use with the AI SDK framework (includes `withSupermemory` middleware)
-- `@supermemory/tools/openai` - For use with OpenAI SDK (includes `withSupermemory` middleware and function calling tools)
-- `@supermemory/tools/mastra` - For use with Mastra AI agents (includes `withSupermemory` wrapper and processors)
+- `@emberspack-brain/tools/ai-sdk` - For use with the AI SDK framework (includes `withEmberspack Brain` middleware)
+- `@emberspack-brain/tools/openai` - For use with OpenAI SDK (includes `withEmberspack Brain` middleware and function calling tools)
+- `@emberspack-brain/tools/mastra` - For use with Mastra AI agents (includes `withEmberspack Brain` wrapper and processors)
 
 ### AI SDK Usage
 
 ```typescript
-import { supermemoryTools, searchMemoriesTool, addMemoryTool } from "@supermemory/tools/ai-sdk"
+import { emberspack-brainTools, searchMemoriesTool, addMemoryTool } from "@emberspack-brain/tools/ai-sdk"
 import { createOpenAI } from "@ai-sdk/openai"
 import { generateText, stepCountIs } from "ai"
 
@@ -29,7 +29,7 @@ const openai = createOpenAI({
 })
 
 // Create all tools
-const tools = supermemoryTools(process.env.SUPERMEMORY_API_KEY!, {
+const tools = emberspack-brainTools(process.env.SUPERMEMORY_API_KEY!, {
   containerTags: ["your-user-id"],
 })
 
@@ -56,18 +56,18 @@ const addTool = addMemoryTool(process.env.SUPERMEMORY_API_KEY!, {
 })
 ```
 
-#### AI SDK Middleware with Supermemory
+#### AI SDK Middleware with Emberspack Brain
 
-- `withSupermemory` will take advantage supermemory profile v4 endpoint personalized based on container tag
-- You can provide the Supermemory API key via the `apiKey` option to `withSupermemory` (recommended for browser usage), or fall back to `SUPERMEMORY_API_KEY` in the environment for server usage.
+- `withEmberspack Brain` will take advantage emberspack-brain profile v4 endpoint personalized based on container tag
+- You can provide the Emberspack Brain API key via the `apiKey` option to `withEmberspack Brain` (recommended for browser usage), or fall back to `SUPERMEMORY_API_KEY` in the environment for server usage.
 - **Per-turn caching**: Memory injection is cached for tool-call continuations within the same user turn. The middleware detects when the AI SDK is continuing a multi-step flow (e.g., after a tool call) and reuses the cached memories instead of making redundant API calls. A fresh fetch occurs on each new user message turn.
 
 ```typescript
 import { generateText } from "ai"
-import { withSupermemory } from "@supermemory/tools/ai-sdk"
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk"
 import { openai } from "@ai-sdk/openai"
 
-const modelWithMemory = withSupermemory(openai("gpt-5"), {
+const modelWithMemory = withEmberspack Brain(openai("gpt-5"), {
 	containerTag: "user_id_life",
 	customId: "conversation-456",
 })
@@ -86,10 +86,10 @@ Enable verbose logging to see detailed information about memory search and trans
 
 ```typescript
 import { generateText } from "ai"
-import { withSupermemory } from "@supermemory/tools/ai-sdk"
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk"
 import { openai } from "@ai-sdk/openai"
 
-const modelWithMemory = withSupermemory(openai("gpt-5"), {
+const modelWithMemory = withEmberspack Brain(openai("gpt-5"), {
 	containerTag: "user_id_life",
 	customId: "conversation-456",
 	verbose: true,
@@ -105,12 +105,12 @@ console.log(result.text)
 
 When verbose mode is enabled, you'll see console output like:
 ```
-[supermemory] Searching memories for container: user_id_life
-[supermemory] User message: where do i live?
-[supermemory] System prompt exists: false
-[supermemory] Found 3 memories
-[supermemory] Memory content: You live in San Francisco, California. Your address is 123 Main Street...
-[supermemory] Creating new system prompt with memories
+[emberspack-brain] Searching memories for container: user_id_life
+[emberspack-brain] User message: where do i live?
+[emberspack-brain] System prompt exists: false
+[emberspack-brain] Found 3 memories
+[emberspack-brain] Memory content: You live in San Francisco, California. Your address is 123 Main Street...
+[emberspack-brain] Creating new system prompt with memories
 ```
 
 #### Memory Search Modes
@@ -120,17 +120,17 @@ The middleware supports different modes for memory retrieval:
 **Profile Mode (Default)** - Retrieves user profile memories without query filtering:
 ```typescript
 import { generateText } from "ai"
-import { withSupermemory } from "@supermemory/tools/ai-sdk"
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk"
 import { openai } from "@ai-sdk/openai"
 
 // Uses profile mode by default - gets all user profile memories
-const modelWithMemory = withSupermemory(openai("gpt-4"), {
+const modelWithMemory = withEmberspack Brain(openai("gpt-4"), {
   containerTag: "user-123",
   customId: "conversation-456",
 })
 
 // Explicitly specify profile mode
-const modelWithProfile = withSupermemory(openai("gpt-4"), {
+const modelWithProfile = withEmberspack Brain(openai("gpt-4"), {
   containerTag: "user-123",
   customId: "conversation-456",
   mode: "profile",
@@ -145,10 +145,10 @@ const result = await generateText({
 **Query Mode** - Searches memories based on the user's message:
 ```typescript
 import { generateText } from "ai"
-import { withSupermemory } from "@supermemory/tools/ai-sdk"
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk"
 import { openai } from "@ai-sdk/openai"
 
-const modelWithQuery = withSupermemory(openai("gpt-4"), {
+const modelWithQuery = withEmberspack Brain(openai("gpt-4"), {
   containerTag: "user-123",
   customId: "conversation-456",
   mode: "query",
@@ -163,10 +163,10 @@ const result = await generateText({
 **Full Mode** - Combines both profile and query results:
 ```typescript
 import { generateText } from "ai"
-import { withSupermemory } from "@supermemory/tools/ai-sdk"
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk"
 import { openai } from "@ai-sdk/openai"
 
-const modelWithFull = withSupermemory(openai("gpt-4"), {
+const modelWithFull = withEmberspack Brain(openai("gpt-4"), {
   containerTag: "user-123",
   customId: "conversation-456",
   mode: "full",
@@ -185,10 +185,10 @@ The middleware can automatically save user messages as memories:
 **Always Save Memories** - Automatically stores every user message as a memory:
 ```typescript
 import { generateText } from "ai"
-import { withSupermemory } from "@supermemory/tools/ai-sdk"
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk"
 import { openai } from "@ai-sdk/openai"
 
-const modelWithAutoSave = withSupermemory(openai("gpt-4"), {
+const modelWithAutoSave = withEmberspack Brain(openai("gpt-4"), {
   containerTag: "user-123",
   customId: "conversation-456",
   addMemory: "always",
@@ -203,7 +203,7 @@ const result = await generateText({
 
 **Never Save Memories** - Only retrieves memories without storing new ones:
 ```typescript
-const modelWithNoSave = withSupermemory(openai("gpt-4"), {
+const modelWithNoSave = withEmberspack Brain(openai("gpt-4"), {
   containerTag: "user-123",
   customId: "conversation-456",
   addMemory: "never",  // explicit since default is now "always"
@@ -212,7 +212,7 @@ const modelWithNoSave = withSupermemory(openai("gpt-4"), {
 
 **Combined Options** - Use verbose logging with specific modes and memory storage:
 ```typescript
-const modelWithOptions = withSupermemory(openai("gpt-4"), {
+const modelWithOptions = withEmberspack Brain(openai("gpt-4"), {
   containerTag: "user-123",
   customId: "conversation-456",
   mode: "profile",
@@ -230,7 +230,7 @@ Customize how memories are formatted and injected into the system prompt using t
 
 ```typescript
 import { generateText } from "ai"
-import { withSupermemory, type MemoryPromptData } from "@supermemory/tools/ai-sdk"
+import { withEmberspack Brain, type MemoryPromptData } from "@emberspack-brain/tools/ai-sdk"
 import { openai } from "@ai-sdk/openai"
 
 const customPrompt = (data: MemoryPromptData) => `
@@ -241,7 +241,7 @@ ${data.generalSearchMemories}
 </user_memories>
 `.trim()
 
-const modelWithCustomPrompt = withSupermemory(openai("gpt-4"), {
+const modelWithCustomPrompt = withEmberspack Brain(openai("gpt-4"), {
   containerTag: "user-123",
   customId: "conversation-456",
   mode: "full",
@@ -261,15 +261,15 @@ The `MemoryPromptData` object provides:
 
 ### OpenAI SDK Usage
 
-#### OpenAI Middleware with Supermemory
+#### OpenAI Middleware with Emberspack Brain
 
-The `withSupermemory` function creates an OpenAI client with SuperMemory middleware automatically injected:
+The `withEmberspack Brain` function creates an OpenAI client with SuperMemory middleware automatically injected:
 
 ```typescript
-import { withSupermemory } from "@supermemory/tools/openai"
+import { withEmberspack Brain } from "@emberspack-brain/tools/openai"
 
-// Create OpenAI client with supermemory middleware
-const openaiWithSupermemory = withSupermemory(openai, {
+// Create OpenAI client with emberspack-brain middleware
+const openaiWithEmberspack Brain = withEmberspack Brain(openai, {
   containerTag: "user-123",      // Required: identifies the user/container
   customId: "conversation-456",  // Required: groups messages into the same document 
   apiKey: process.env.SUPERMEMORY_API_KEY, // Optional env fallback
@@ -280,7 +280,7 @@ const openaiWithSupermemory = withSupermemory(openai, {
 })
 
 // Use directly with chat completions - memories are automatically injected
-const completion = await openaiWithSupermemory.chat.completions.create({
+const completion = await openaiWithEmberspack Brain.chat.completions.create({
   model: "gpt-4o-mini",
   messages: [
     { role: "user", content: "What do you remember about my preferences?" }
@@ -295,7 +295,7 @@ console.log(completion.choices[0]?.message?.content)
 The middleware supports the same configuration options as the AI SDK version:
 
 ```typescript
-const openaiWithSupermemory = withSupermemory(openai, {
+const openaiWithEmberspack Brain = withEmberspack Brain(openai, {
   containerTag: "user-123",      // Required: identifies the user/container
   customId: "conversation-456",  // Required: groups messages for contextual memory
   apiKey: process.env.SUPERMEMORY_API_KEY, // Optional; captured per client
@@ -312,7 +312,7 @@ Here's a complete example for a Next.js API route:
 
 ```typescript
 // app/api/chat/route.ts
-import { withSupermemory } from "@supermemory/tools/openai"
+import { withEmberspack Brain } from "@emberspack-brain/tools/openai"
 import type { OpenAI as OpenAIType } from "openai"
 
 export async function POST(req: Request) {
@@ -321,7 +321,7 @@ export async function POST(req: Request) {
     conversationId: string
   }
 
-  const openaiWithSupermemory = withSupermemory(openai, {
+  const openaiWithEmberspack Brain = withEmberspack Brain(openai, {
     containerTag: "user-123",
     customId: conversationId,
     apiKey: process.env.SUPERMEMORY_API_KEY,
@@ -331,7 +331,7 @@ export async function POST(req: Request) {
     verbose: true,
   })
 
-  const completion = await openaiWithSupermemory.chat.completions.create({
+  const completion = await openaiWithEmberspack Brain.chat.completions.create({
     model: "gpt-4o-mini",
     messages,
   })
@@ -344,7 +344,7 @@ export async function POST(req: Request) {
 ### OpenAI Function Calling Usage
 
 ```typescript
-import { supermemoryTools, getToolDefinitions, createToolCallExecutor } from "@supermemory/tools/openai"
+import { emberspack-brainTools, getToolDefinitions, createToolCallExecutor } from "@emberspack-brain/tools/openai"
 import OpenAI from "openai"
 
 const client = new OpenAI({
@@ -380,7 +380,7 @@ if (completion.choices[0]?.message.tool_calls) {
 }
 
 // Or create individual function-based tools
-const tools = supermemoryTools(process.env.SUPERMEMORY_API_KEY!, {
+const tools = emberspack-brainTools(process.env.SUPERMEMORY_API_KEY!, {
   containerTags: ["your-user-id"],
 })
 
@@ -398,19 +398,19 @@ const addResult = await tools.addMemory({
 
 Add persistent memory to [Mastra](https://mastra.ai) AI agents. The integration provides processors that:
 - **Input Processor**: Fetches relevant memories and injects them into the system prompt before LLM calls
-- **Output Processor**: Saves conversations to Supermemory after responses (enabled by default)
+- **Output Processor**: Saves conversations to Emberspack Brain after responses (enabled by default)
 
-#### Quick Start with `withSupermemory` Wrapper
+#### Quick Start with `withEmberspack Brain` Wrapper
 
 The simplest way to add memory to a Mastra agent - wrap your config before creating the Agent:
 
 ```typescript
 import { Agent } from "@mastra/core/agent"
-import { withSupermemory } from "@supermemory/tools/mastra"
+import { withEmberspack Brain } from "@emberspack-brain/tools/mastra"
 import { openai } from "@ai-sdk/openai"
 
 // Create agent with memory-enhanced config
-const agent = new Agent(withSupermemory(
+const agent = new Agent(withEmberspack Brain(
   {
     id: "my-assistant",
     name: "My Assistant",
@@ -434,10 +434,10 @@ For fine-grained control, use processors directly:
 
 ```typescript
 import { Agent } from "@mastra/core/agent"
-import { createSupermemoryProcessors } from "@supermemory/tools/mastra"
+import { createEmberspack BrainProcessors } from "@emberspack-brain/tools/mastra"
 import { openai } from "@ai-sdk/openai"
 
-const { input, output } = createSupermemoryProcessors({
+const { input, output } = createEmberspack BrainProcessors({
   containerTag: "user-123",
   customId: "conv-456",
   mode: "full",
@@ -462,14 +462,14 @@ Here's a full example showing a multi-turn conversation with memory:
 
 ```typescript
 import { Agent } from "@mastra/core/agent"
-import { createSupermemoryProcessors } from "@supermemory/tools/mastra"
+import { createEmberspack BrainProcessors } from "@emberspack-brain/tools/mastra"
 import { openai } from "@ai-sdk/openai"
 
 async function main() {
   const userId = "user-alex-123"
   const customId = `thread-${Date.now()}`
 
-  const { input, output } = createSupermemoryProcessors({
+  const { input, output } = createEmberspack BrainProcessors({
     containerTag: userId,
     customId,
     mode: "profile",      // Fetch user profile memories
@@ -508,21 +508,21 @@ main()
 
 ```typescript
 // Profile mode - good for general personalization
-const { input } = createSupermemoryProcessors({
+const { input } = createEmberspack BrainProcessors({
   containerTag: "user-123",
   customId: "conv-456",
   mode: "profile",
 })
 
 // Query mode - good for specific lookups
-const { input } = createSupermemoryProcessors({
+const { input } = createEmberspack BrainProcessors({
   containerTag: "user-123",
   customId: "conv-456",
   mode: "query",
 })
 
 // Full mode - comprehensive context
-const { input } = createSupermemoryProcessors({
+const { input } = createEmberspack BrainProcessors({
   containerTag: "user-123",
   customId: "conv-456",
   mode: "full",
@@ -534,7 +534,7 @@ const { input } = createSupermemoryProcessors({
 Customize how memories are formatted in the system prompt:
 
 ```typescript
-import { createSupermemoryProcessors, type MemoryPromptData } from "@supermemory/tools/mastra"
+import { createEmberspack BrainProcessors, type MemoryPromptData } from "@emberspack-brain/tools/mastra"
 
 const customTemplate = (data: MemoryPromptData) => `
 <user_context>
@@ -543,7 +543,7 @@ ${data.generalSearchMemories}
 </user_context>
 `.trim()
 
-const { input, output } = createSupermemoryProcessors({
+const { input, output } = createEmberspack BrainProcessors({
   containerTag: "user-123",
   customId: "conv-456",
   mode: "full",
@@ -558,9 +558,9 @@ For server setups where one agent instance handles multiple concurrent conversat
 ```typescript
 import { Agent } from "@mastra/core/agent"
 import { RequestContext, MASTRA_THREAD_ID_KEY } from "@mastra/core/request-context"
-import { createSupermemoryProcessors } from "@supermemory/tools/mastra"
+import { createEmberspack BrainProcessors } from "@emberspack-brain/tools/mastra"
 
-const { input, output } = createSupermemoryProcessors({
+const { input, output } = createEmberspack BrainProcessors({
   containerTag: "user-123",
   customId: "fallback-conv",  // Used only when RequestContext doesn't provide a threadId
   mode: "profile",
@@ -587,10 +587,10 @@ const response = await agent.generate("Hello!", { requestContext: ctx })
 #### Mastra Configuration Options
 
 ```typescript
-interface SupermemoryMastraOptions {
+interface Emberspack BrainMastraOptions {
   containerTag: string         // Required: User/container tag for scoping memories
   customId: string             // Required: Groups messages into a single document for contextual memory
-  apiKey?: string              // Supermemory API key (or use SUPERMEMORY_API_KEY env var)
+  apiKey?: string              // Emberspack Brain API key (or use SUPERMEMORY_API_KEY env var)
   baseUrl?: string             // Custom API endpoint
   mode?: "profile" | "query" | "full"  // Memory search mode (default: "profile")
   addMemory?: "always" | "never"       // Auto-save conversations (default: "always")
@@ -604,7 +604,7 @@ interface SupermemoryMastraOptions {
 Both modules accept the same configuration interface:
 
 ```typescript
-interface SupermemoryToolsConfig {
+interface Emberspack BrainToolsConfig {
   baseUrl?: string
   containerTags?: string[]
   projectId?: string
@@ -612,7 +612,7 @@ interface SupermemoryToolsConfig {
 }
 ```
 
-- **baseUrl**: Custom base URL for the supermemory API
+- **baseUrl**: Custom base URL for the emberspack-brain API
 - **containerTags**: Non-empty array of custom container tags (mutually exclusive with `projectId`). `searchMemories`, `getProfile`, and `memoryForget` use the first tag because v4 memory APIs are single-space. Add operations attach every configured tag, while `documentList` and `documentDelete` use the configured tags as their supported union scope. `documentDelete` still refuses a document with any tag outside that scope or a nonterminal processing status.
 - **projectId**: Project ID which gets converted to container tag format (mutually exclusive with containerTags)
 - **strict**: Enable strict schema mode for OpenAI strict validation. When `true`, all schema properties are required (satisfies OpenAI strict mode). When `false` (default), optional fields remain optional for maximum compatibility with all models.
@@ -622,7 +622,7 @@ interface SupermemoryToolsConfig {
 When using OpenAI-compatible providers with strict schema validation (e.g., OpenRouter with Azure OpenAI backend), enable strict mode to ensure all schema properties are included in the `required` array:
 
 ```typescript
-import { searchMemoriesTool, addMemoryTool } from "@supermemory/tools/ai-sdk"
+import { searchMemoriesTool, addMemoryTool } from "@emberspack-brain/tools/ai-sdk"
 import { createOpenRouter } from "@openrouter/ai-sdk-provider"
 import { streamText } from "ai"
 
@@ -648,18 +648,18 @@ const result = streamText({
 
 Without `strict: true`, optional fields like `includeFullDocs` and `limit` won't be in the `required` array, which will cause validation errors with OpenAI strict mode.
 
-### withSupermemory Middleware Options
+### withEmberspack Brain Middleware Options
 
-The `withSupermemory` middleware accepts a configuration object as the second argument:
+The `withEmberspack Brain` middleware accepts a configuration object as the second argument:
 
 ```typescript
-interface WithSupermemoryOptions {
+interface WithEmberspack BrainOptions {
   containerTag: string  // Required: identifies the user/container
   customId: string      // Required: groups messages into the same document 
   verbose?: boolean
   mode?: "profile" | "query" | "full"
   addMemory?: "always" | "never"  // Default: "always"
-  /** Optional Supermemory API key. Use this in browser environments. */
+  /** Optional Emberspack Brain API key. Use this in browser environments. */
   apiKey?: string
   baseUrl?: string
   promptTemplate?: (data: MemoryPromptData) => string
@@ -694,19 +694,19 @@ Adds a new memory to the system.
 
 ## Claude Memory Tool
 
-Enable Claude to store and retrieve persistent memory across conversations using supermemory as the backend.
+Enable Claude to store and retrieve persistent memory across conversations using emberspack-brain as the backend.
 
 ### Installation
 
 ```bash
-npm install @supermemory/tools @anthropic-ai/sdk
+npm install @emberspack-brain/tools @anthropic-ai/sdk
 ```
 
 ### Basic Usage
 
 ```typescript
 import Anthropic from '@anthropic-ai/sdk'
-import { createClaudeMemoryTool } from '@supermemory/tools/claude-memory'
+import { createClaudeMemoryTool } from '@emberspack-brain/tools/claude-memory'
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY!,
@@ -758,12 +758,12 @@ Claude can perform these memory operations automatically:
 - **`delete`** - Delete memory files
 - **`rename`** - Rename or move memory files
 
-All memory files are stored in supermemory with normalized paths and can be searched and retrieved across conversations.
+All memory files are stored in emberspack-brain with normalized paths and can be searched and retrieved across conversations.
 
 ## Environment Variables
 
 ```env
-SUPERMEMORY_API_KEY=your_supermemory_api_key
+SUPERMEMORY_API_KEY=your_emberspack-brain_api_key
 ANTHROPIC_API_KEY=your_anthropic_api_key  # for Claude Memory Tool
 SUPERMEMORY_BASE_URL=https://your-custom-url  # optional
 ```

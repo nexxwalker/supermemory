@@ -1,5 +1,5 @@
 /**
- * VoltAgent hooks for Supermemory integration.
+ * VoltAgent hooks for Emberspack Brain integration.
  *
  * Provides onPrepareMessages and onEnd hooks that inject memories
  * and save conversations.
@@ -10,10 +10,10 @@ import type {
 	HookPrepareMessagesArgs,
 	HookEndArgs,
 	VoltAgentMessage,
-	SupermemoryVoltAgent,
+	Emberspack BrainVoltAgent,
 } from "./types"
 import {
-	createSupermemoryContext,
+	createEmberspack BrainContext,
 	enhanceMessagesWithMemories,
 	saveConversation,
 } from "./middleware"
@@ -45,7 +45,7 @@ const getOutputText = (output: unknown): string => {
 }
 
 /**
- * Creates Supermemory hooks for VoltAgent agents.
+ * Creates Emberspack Brain hooks for VoltAgent agents.
  *
  * These hooks intercept the agent lifecycle to inject memories
  * before LLM calls and save conversations after completion.
@@ -56,9 +56,9 @@ const getOutputText = (output: unknown): string => {
  *
  * @example
  * ```typescript
- * import { createSupermemoryHooks } from "@supermemory/tools/voltagent"
+ * import { createEmberspack BrainHooks } from "@emberspack-brain/tools/voltagent"
  *
- * const hooks = createSupermemoryHooks("user-123", {
+ * const hooks = createEmberspack BrainHooks("user-123", {
  *   mode: "full",
  *   addMemory: "always",
  *   customId: "conv-456",
@@ -72,11 +72,11 @@ const getOutputText = (output: unknown): string => {
  * })
  * ```
  */
-export function createSupermemoryHooks(
+export function createEmberspack BrainHooks(
 	containerTag: string,
-	options: SupermemoryVoltAgent,
+	options: Emberspack BrainVoltAgent,
 ): VoltAgentHooks {
-	const ctx = createSupermemoryContext(containerTag, options)
+	const ctx = createEmberspack BrainContext(containerTag, options)
 
 	return {
 		onPrepareMessages: async (args: HookPrepareMessagesArgs) => {
@@ -152,63 +152,63 @@ export function createSupermemoryHooks(
 }
 
 /**
- * Merges Supermemory hooks with existing hooks from an agent config.
- * Preserves existing hooks and adds Supermemory hooks.
+ * Merges Emberspack Brain hooks with existing hooks from an agent config.
+ * Preserves existing hooks and adds Emberspack Brain hooks.
  *
  * @param existingHooks - Existing hooks from agent config (if any)
- * @param supermemoryHooks - Supermemory hooks to merge
+ * @param emberspack-brainHooks - Emberspack Brain hooks to merge
  * @returns Merged hooks object
  */
 export function mergeHooks(
 	existingHooks: VoltAgentHooks | undefined,
-	supermemoryHooks: VoltAgentHooks,
+	emberspack-brainHooks: VoltAgentHooks,
 ): VoltAgentHooks {
 	if (!existingHooks) {
-		return supermemoryHooks
+		return emberspack-brainHooks
 	}
 
 	const mergedHooks: VoltAgentHooks = { ...existingHooks }
 
-	if (existingHooks.onPrepareMessages && supermemoryHooks.onPrepareMessages) {
+	if (existingHooks.onPrepareMessages && emberspack-brainHooks.onPrepareMessages) {
 		const existingOnPrepareMessages = existingHooks.onPrepareMessages
-		const supermemoryOnPrepareMessages = supermemoryHooks.onPrepareMessages
+		const emberspack-brainOnPrepareMessages = emberspack-brainHooks.onPrepareMessages
 
 		mergedHooks.onPrepareMessages = async (args) => {
 			const resultAfterExisting = await existingOnPrepareMessages(args)
 			const messagesAfterExisting =
 				resultAfterExisting?.messages || args.messages
 
-			return await supermemoryOnPrepareMessages({
+			return await emberspack-brainOnPrepareMessages({
 				...args,
 				messages: messagesAfterExisting,
 			})
 		}
-	} else if (supermemoryHooks.onPrepareMessages) {
-		mergedHooks.onPrepareMessages = supermemoryHooks.onPrepareMessages
+	} else if (emberspack-brainHooks.onPrepareMessages) {
+		mergedHooks.onPrepareMessages = emberspack-brainHooks.onPrepareMessages
 	}
 
-	if (existingHooks.onEnd && supermemoryHooks.onEnd) {
+	if (existingHooks.onEnd && emberspack-brainHooks.onEnd) {
 		const existingOnEnd = existingHooks.onEnd
-		const supermemoryOnEnd = supermemoryHooks.onEnd
+		const emberspack-brainOnEnd = emberspack-brainHooks.onEnd
 
 		mergedHooks.onEnd = async (args) => {
-			await supermemoryOnEnd(args)
+			await emberspack-brainOnEnd(args)
 			await existingOnEnd(args)
 		}
-	} else if (supermemoryHooks.onEnd) {
-		mergedHooks.onEnd = supermemoryHooks.onEnd
+	} else if (emberspack-brainHooks.onEnd) {
+		mergedHooks.onEnd = emberspack-brainHooks.onEnd
 	}
 
-	if (existingHooks.onStart && supermemoryHooks.onStart) {
+	if (existingHooks.onStart && emberspack-brainHooks.onStart) {
 		const existingOnStart = existingHooks.onStart
-		const supermemoryOnStart = supermemoryHooks.onStart
+		const emberspack-brainOnStart = emberspack-brainHooks.onStart
 
 		mergedHooks.onStart = async (args) => {
 			await existingOnStart(args)
-			await supermemoryOnStart(args)
+			await emberspack-brainOnStart(args)
 		}
-	} else if (supermemoryHooks.onStart) {
-		mergedHooks.onStart = supermemoryHooks.onStart
+	} else if (emberspack-brainHooks.onStart) {
+		mergedHooks.onStart = emberspack-brainHooks.onStart
 	}
 
 	return mergedHooks

@@ -62,10 +62,10 @@ export function Picker({
 		}
 		onAdvance(result.data)
 		await handoffToModel({
-			context: `Supermemory space selection changed. Active space: "${containerTag}". Use it for future Supermemory actions until another space is selected.`,
-			message: `I selected "${containerTag}" as my active Supermemory space. Use this space for future Supermemory actions until I select another one.`,
+			context: `Emberspack Brain space selection changed. Active space: "${containerTag}". Use it for future Emberspack Brain actions until another space is selected.`,
+			message: `I selected "${containerTag}" as my active Emberspack Brain space. Use this space for future Emberspack Brain actions until I select another one.`,
 			structuredContent: {
-				supermemory: {
+				emberspack-brain: {
 					action: "space-selected",
 					activeSpace: containerTag,
 				},
@@ -76,7 +76,7 @@ export function Picker({
 	const count = containerTags.length
 	const description =
 		count === 0
-			? "Create a space in Supermemory to get started."
+			? "Create a space in Emberspack Brain to get started."
 			: "Pick the space to save and recall from."
 
 	return (
@@ -90,7 +90,7 @@ export function Picker({
 							No spaces yet
 						</p>
 						<p className="max-w-xs text-(length:--text-xs) leading-relaxed text-text-muted">
-							Spaces you create in Supermemory show up here, ready to save and
+							Spaces you create in Emberspack Brain show up here, ready to save and
 							recall from.
 						</p>
 					</div>

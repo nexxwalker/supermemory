@@ -2,58 +2,58 @@ import "dotenv/config"
 import { openai } from "@ai-sdk/openai"
 import { createAnthropic } from "@ai-sdk/anthropic"
 import {
-	withSupermemory,
-	supermemoryTools,
+	withEmberspack Brain,
+	emberspack-brainTools,
 	searchMemoriesTool,
 	addMemoryTool,
 	type MemoryPromptData,
-} from "@supermemory/tools/ai-sdk"
+} from "@emberspack-brain/tools/ai-sdk"
 
 async function testMiddleware() {
 	console.log("=== Middleware ===")
 
 	// Basic wrapper
-	const model = withSupermemory(openai("gpt-4"), {
+	const model = withEmberspack Brain(openai("gpt-4"), {
 		containerTag: "user-123",
 		customId: "conv-1",
 	})
-	console.log("✓ withSupermemory basic")
+	console.log("✓ withEmberspack Brain basic")
 
 	// With addMemory option
-	const modelWithAdd = withSupermemory(openai("gpt-4"), {
+	const modelWithAdd = withEmberspack Brain(openai("gpt-4"), {
 		containerTag: "user-123",
 		customId: "conv-1",
 		addMemory: "always",
 	})
-	console.log("✓ withSupermemory with addMemory")
+	console.log("✓ withEmberspack Brain with addMemory")
 
 	// With verbose logging
-	const modelVerbose = withSupermemory(openai("gpt-4"), {
+	const modelVerbose = withEmberspack Brain(openai("gpt-4"), {
 		containerTag: "user-123",
 		customId: "conv-1",
 		verbose: true,
 	})
-	console.log("✓ withSupermemory with verbose")
+	console.log("✓ withEmberspack Brain with verbose")
 }
 
 async function testSearchModes() {
 	console.log("\n=== Search Modes ===")
 
-	const profileModel = withSupermemory(openai("gpt-4"), {
+	const profileModel = withEmberspack Brain(openai("gpt-4"), {
 		containerTag: "user-123",
 		customId: "conv-1",
 		mode: "profile",
 	})
 	console.log("✓ mode: profile")
 
-	const queryModel = withSupermemory(openai("gpt-4"), {
+	const queryModel = withEmberspack Brain(openai("gpt-4"), {
 		containerTag: "user-123",
 		customId: "conv-1",
 		mode: "query",
 	})
 	console.log("✓ mode: query")
 
-	const fullModel = withSupermemory(openai("gpt-4"), {
+	const fullModel = withEmberspack Brain(openai("gpt-4"), {
 		containerTag: "user-123",
 		customId: "conv-1",
 		mode: "full",
@@ -74,7 +74,7 @@ async function testCustomPrompt() {
 </context>
 `.trim()
 
-	const model = withSupermemory(anthropic("claude-3-sonnet-20240229"), {
+	const model = withEmberspack Brain(anthropic("claude-3-sonnet-20240229"), {
 		containerTag: "user-123",
 		customId: "conv-1",
 		mode: "full",
@@ -87,8 +87,8 @@ async function testTools() {
 	console.log("\n=== Memory Tools ===")
 
 	// All tools
-	const tools = supermemoryTools("YOUR_API_KEY")
-	console.log("✓ supermemoryTools")
+	const tools = emberspack-brainTools("YOUR_API_KEY")
+	console.log("✓ emberspack-brainTools")
 
 	// Individual tools
 	const searchTool = searchMemoriesTool("API_KEY", { projectId: "personal" })

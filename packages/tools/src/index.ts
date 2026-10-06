@@ -1,8 +1,8 @@
-export type { SupermemoryToolsConfig } from "./types"
+export type { Emberspack BrainToolsConfig } from "./types"
 
 export type { OpenAIMiddlewareOptions } from "./openai"
 
-export type { SupermemoryVoltAgent } from "./voltagent/options"
+export type { Emberspack BrainVoltAgent } from "./voltagent/options"
 
 export {
 	TOOL_DESCRIPTIONS,

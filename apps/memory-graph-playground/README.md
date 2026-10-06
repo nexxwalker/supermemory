@@ -1,6 +1,6 @@
 # Memory Graph Playground
 
-A demo app showcasing the `@supermemory/memory-graph` package.
+A demo app showcasing the `@emberspack-brain/memory-graph` package.
 
 ## Getting Started
 
@@ -9,12 +9,12 @@ bun install
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and enter your Supermemory API key.
+Open [http://localhost:3000](http://localhost:3000) and enter your Emberspack Brain API key.
 
 ## Usage Example
 
 ```tsx
-import { MemoryGraph, type DocumentWithMemories } from '@supermemory/memory-graph'
+import { MemoryGraph, type DocumentWithMemories } from '@emberspack-brain/memory-graph'
 
 function App() {
   const [documents, setDocuments] = useState<DocumentWithMemories[]>([])

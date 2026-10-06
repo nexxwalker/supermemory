@@ -1,11 +1,11 @@
-# Supermemory API Reference
+# Emberspack Brain API Reference
 
-Complete REST API documentation for Supermemory.
+Complete REST API documentation for Emberspack Brain.
 
 ## Base URL
 
 ```
-https://api.supermemory.ai
+https://api.emberspack-brain.ai
 ```
 
 ## Authentication
@@ -16,7 +16,7 @@ All requests require authentication via Bearer token in the Authorization header
 Authorization: Bearer YOUR_API_KEY
 ```
 
-Get your API key at [console.supermemory.ai](https://console.supermemory.ai).
+Get your API key at [console.emberspack-brain.ai](https://console.emberspack-brain.ai).
 
 ## Endpoints
 
@@ -26,7 +26,7 @@ Add a document for processing and memory extraction.
 
 **Endpoint:**
 ```
-POST https://api.supermemory.ai/v3/documents
+POST https://api.emberspack-brain.ai/v3/documents
 ```
 
 **Headers:**
@@ -48,7 +48,7 @@ Content-Type: application/json
 **Example Request:**
 
 ```bash
-curl -X POST https://api.supermemory.ai/v3/documents \
+curl -X POST https://api.emberspack-brain.ai/v3/documents \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -106,7 +106,7 @@ Search memories using semantic understanding with advanced filtering.
 
 **Endpoint:**
 ```
-POST https://api.supermemory.ai/v4/search
+POST https://api.emberspack-brain.ai/v4/search
 ```
 
 **Headers:**
@@ -161,7 +161,7 @@ Content-Type: application/json
 **Example Request:**
 
 ```bash
-curl -X POST https://api.supermemory.ai/v4/search \
+curl -X POST https://api.emberspack-brain.ai/v4/search \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -229,7 +229,7 @@ Create memories directly, bypassing document ingestion. Generates embeddings and
 
 **Endpoint:**
 ```
-POST https://api.supermemory.ai/v4/memories
+POST https://api.emberspack-brain.ai/v4/memories
 ```
 
 **Headers:**
@@ -251,7 +251,7 @@ Content-Type: application/json
 **Example Request:**
 
 ```bash
-curl -X POST https://api.supermemory.ai/v4/memories \
+curl -X POST https://api.emberspack-brain.ai/v4/memories \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -379,7 +379,7 @@ HTTP/1.1 429 Too Many Requests
 Retry-After: 3600
 ```
 
-Check your plan details in the [console](https://console.supermemory.ai) for specific rate limit information.
+Check your plan details in the [console](https://console.emberspack-brain.ai) for specific rate limit information.
 
 ## Best Practices
 
@@ -388,7 +388,7 @@ Check your plan details in the [console](https://console.supermemory.ai) for spe
 Use `customId` for idempotency to prevent duplicate processing:
 
 ```bash
-curl -X POST https://api.supermemory.ai/v3/documents \
+curl -X POST https://api.emberspack-brain.ai/v3/documents \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -403,7 +403,7 @@ curl -X POST https://api.supermemory.ai/v3/documents \
 Always check status codes and handle errors gracefully:
 
 ```javascript
-const response = await fetch('https://api.supermemory.ai/v3/documents', {
+const response = await fetch('https://api.emberspack-brain.ai/v3/documents', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${API_KEY}`,
@@ -470,14 +470,14 @@ For large documents, check processing status:
 
 ```bash
 # Add document
-curl -X POST https://api.supermemory.ai/v3/documents \
+curl -X POST https://api.emberspack-brain.ai/v3/documents \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{ "content": "large-document.pdf", "containerTag": "docs" }'
 
 # Returns: { "id": "doc_123", "status": "queued" }
 
 # Later, list documents to check status
-curl -X GET https://api.supermemory.ai/v3/documents?containerTag=docs \
+curl -X GET https://api.emberspack-brain.ai/v3/documents?containerTag=docs \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -500,7 +500,7 @@ curl -X GET https://api.supermemory.ai/v3/documents?containerTag=docs \
 ### Add Text Content
 
 ```bash
-curl -X POST https://api.supermemory.ai/v3/documents \
+curl -X POST https://api.emberspack-brain.ai/v3/documents \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -516,7 +516,7 @@ curl -X POST https://api.supermemory.ai/v3/documents \
 ### Add URL
 
 ```bash
-curl -X POST https://api.supermemory.ai/v3/documents \
+curl -X POST https://api.emberspack-brain.ai/v3/documents \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -533,7 +533,7 @@ curl -X POST https://api.supermemory.ai/v3/documents \
 ### Search with Filters (Hybrid Mode for RAG)
 
 ```bash
-curl -X POST https://api.supermemory.ai/v4/search \
+curl -X POST https://api.emberspack-brain.ai/v4/search \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -560,7 +560,7 @@ curl -X POST https://api.supermemory.ai/v4/search \
 ### Create Direct Memories
 
 ```bash
-curl -X POST https://api.supermemory.ai/v4/memories \
+curl -X POST https://api.emberspack-brain.ai/v4/memories \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -586,6 +586,6 @@ Coming soon: Webhooks for document processing status updates.
 
 ## Support
 
-- **API Issues**: Check [status.supermemory.ai](https://status.supermemory.ai)
-- **Documentation**: [supermemory.ai/docs](https://supermemory.ai/docs)
-- **Console**: [console.supermemory.ai](https://console.supermemory.ai)
+- **API Issues**: Check [status.emberspack-brain.ai](https://status.emberspack-brain.ai)
+- **Documentation**: [emberspack-brain.ai/docs](https://emberspack-brain.ai/docs)
+- **Console**: [console.emberspack-brain.ai](https://console.emberspack-brain.ai)

@@ -1,5 +1,5 @@
 import type OpenAI from "openai"
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 import {
 	CLIENT_OPTIONS,
 	DEFAULT_VALUES,
@@ -11,21 +11,21 @@ import {
 	getContainerTags,
 } from "../tools-shared"
 import { forgetMemoryRequest } from "../shared/forget-memory"
-import type { SupermemoryToolsConfig } from "../types"
+import type { Emberspack BrainToolsConfig } from "../types"
 
 /**
  * Result types for memory operations
  */
 export interface MemorySearchResult {
 	success: boolean
-	results?: Awaited<ReturnType<Supermemory["search"]>>["results"]
+	results?: Awaited<ReturnType<Emberspack Brain["search"]>>["results"]
 	count?: number
 	error?: string
 }
 
 export interface MemoryAddResult {
 	success: boolean
-	memory?: Awaited<ReturnType<Supermemory["add"]>>
+	memory?: Awaited<ReturnType<Emberspack Brain["add"]>>
 	error?: string
 }
 
@@ -35,15 +35,15 @@ export interface ProfileResult {
 		static: string[]
 		dynamic: string[]
 	}
-	searchResults?: Awaited<ReturnType<Supermemory["profile"]>>["searchResults"]
+	searchResults?: Awaited<ReturnType<Emberspack Brain["profile"]>>["searchResults"]
 	error?: string
 }
 
 export interface DocumentListResult {
 	success: boolean
-	documents?: Awaited<ReturnType<Supermemory["documents"]["list"]>>["memories"]
+	documents?: Awaited<ReturnType<Emberspack Brain["documents"]["list"]>>["memories"]
 	pagination?: Awaited<
-		ReturnType<Supermemory["documents"]["list"]>
+		ReturnType<Emberspack Brain["documents"]["list"]>
 	>["pagination"]
 	error?: string
 }
@@ -56,7 +56,7 @@ export interface DocumentDeleteResult {
 
 export interface DocumentAddResult {
 	success: boolean
-	document?: Awaited<ReturnType<Supermemory["documents"]["add"]>>
+	document?: Awaited<ReturnType<Emberspack Brain["documents"]["add"]>>
 	error?: string
 }
 
@@ -226,10 +226,10 @@ export const memoryToolSchemas = {
 } as const
 
 /**
- * Create a Supermemory client with configuration
+ * Create a Emberspack Brain client with configuration
  */
-function createClient(apiKey: string, config?: SupermemoryToolsConfig) {
-	const client = new Supermemory({
+function createClient(apiKey: string, config?: Emberspack BrainToolsConfig) {
+	const client = new Emberspack Brain({
 		apiKey,
 		...CLIENT_OPTIONS,
 		...(config?.baseUrl && { baseURL: config.baseUrl }),
@@ -245,7 +245,7 @@ function createClient(apiKey: string, config?: SupermemoryToolsConfig) {
  */
 export function createSearchMemoriesFunction(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const { client, containerTags } = createClient(apiKey, config)
 
@@ -285,7 +285,7 @@ export function createSearchMemoriesFunction(
  */
 export function createAddMemoryFunction(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const { client, containerTags } = createClient(apiKey, config)
 
@@ -321,7 +321,7 @@ export function createAddMemoryFunction(
  */
 export function createGetProfileFunction(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const { client, containerTags } = createClient(apiKey, config)
 
@@ -359,7 +359,7 @@ export function createGetProfileFunction(
  */
 export function createDocumentListFunction(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const { client, containerTags } = createClient(apiKey, config)
 
@@ -402,7 +402,7 @@ export function createDocumentListFunction(
  */
 export function createDocumentDeleteFunction(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const { client, containerTags } = createClient(apiKey, config)
 
@@ -437,7 +437,7 @@ export function createDocumentDeleteFunction(
  */
 export function createDocumentAddFunction(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const { client, containerTags } = createClient(apiKey, config)
 
@@ -479,7 +479,7 @@ export function createDocumentAddFunction(
  */
 export function createMemoryForgetFunction(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const containerTags = getContainerTags(config)
 
@@ -531,9 +531,9 @@ export function createMemoryForgetFunction(
 /**
  * Create all memory tools functions
  */
-export function supermemoryTools(
+export function emberspack-brainTools(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const searchMemories = createSearchMemoriesFunction(apiKey, config)
 	const addMemory = createAddMemoryFunction(apiKey, config)
@@ -582,9 +582,9 @@ function parseToolArguments(argumentsJson: string) {
  */
 export function createToolCallExecutor(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
-	const tools = supermemoryTools(apiKey, config)
+	const tools = emberspack-brainTools(apiKey, config)
 
 	return async function executeToolCall(
 		toolCall: OpenAI.Chat.Completions.ChatCompletionMessageToolCall,
@@ -628,7 +628,7 @@ export function createToolCallExecutor(
  */
 export function createToolCallsExecutor(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const executeToolCall = createToolCallExecutor(apiKey, config)
 
@@ -655,7 +655,7 @@ export function createToolCallsExecutor(
  */
 export function createSearchMemoriesTool(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const searchMemories = createSearchMemoriesFunction(apiKey, config)
 
@@ -670,7 +670,7 @@ export function createSearchMemoriesTool(
 
 export function createAddMemoryTool(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const addMemory = createAddMemoryFunction(apiKey, config)
 
@@ -685,7 +685,7 @@ export function createAddMemoryTool(
 
 export function createGetProfileTool(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const getProfile = createGetProfileFunction(apiKey, config)
 
@@ -700,7 +700,7 @@ export function createGetProfileTool(
 
 export function createDocumentListTool(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const documentList = createDocumentListFunction(apiKey, config)
 
@@ -715,7 +715,7 @@ export function createDocumentListTool(
 
 export function createDocumentDeleteTool(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const documentDelete = createDocumentDeleteFunction(apiKey, config)
 
@@ -730,7 +730,7 @@ export function createDocumentDeleteTool(
 
 export function createDocumentAddTool(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const documentAdd = createDocumentAddFunction(apiKey, config)
 
@@ -745,7 +745,7 @@ export function createDocumentAddTool(
 
 export function createMemoryForgetTool(
 	apiKey: string,
-	config?: SupermemoryToolsConfig,
+	config?: Emberspack BrainToolsConfig,
 ) {
 	const memoryForget = createMemoryForgetFunction(apiKey, config)
 

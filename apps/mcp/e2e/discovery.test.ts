@@ -85,8 +85,8 @@ describeWithAuth("MCP — discovery & identity", () => {
 	it("lists profile and space resources", async () => {
 		const { resources } = await s.client.listResources()
 		const uris = resources.map((r) => r.uri)
-		expect(uris).toContain("supermemory://profile")
-		expect(uris).toContain("supermemory://spaces")
+		expect(uris).toContain("emberspack-brain://profile")
+		expect(uris).toContain("emberspack-brain://spaces")
 	})
 
 	it("lists the context prompt", async () => {

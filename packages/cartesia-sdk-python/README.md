@@ -1,11 +1,11 @@
-# Supermemory Cartesia SDK
+# Emberspack Brain Cartesia SDK
 
-Memory-enhanced voice agents with [Supermemory](https://supermemory.ai) and [Cartesia Line](https://cartesia.ai/agents).
+Memory-enhanced voice agents with [Emberspack Brain](https://emberspack-brain.ai) and [Cartesia Line](https://cartesia.ai/agents).
 
 ## Installation
 
 ```bash
-pip install supermemory-cartesia
+pip install emberspack-brain-cartesia
 ```
 
 ## Quick Start
@@ -14,7 +14,7 @@ pip install supermemory-cartesia
 import os
 from line.llm_agent import LlmAgent, LlmConfig
 from line.voice_agent_app import VoiceAgentApp
-from supermemory_cartesia import SupermemoryCartesiaAgent
+from emberspack-brain_cartesia import Emberspack BrainCartesiaAgent
 
 async def get_agent(env, call_request):
     # Extract container_tag from call metadata (typically user ID)
@@ -30,8 +30,8 @@ async def get_agent(env, call_request):
         )
     )
 
-    # Wrap with Supermemory
-    memory_agent = SupermemoryCartesiaAgent(
+    # Wrap with Emberspack Brain
+    memory_agent = Emberspack BrainCartesiaAgent(
         agent=base_agent,
         api_key=os.getenv("SUPERMEMORY_API_KEY"),
         container_tag=container_tag,
@@ -58,22 +58,22 @@ if __name__ == "__main__":
 | `custom_id`     | str          | **Yes**  | Custom ID for grouping conversation messages into a single document|
 | `add_memory`    | Literal      | No       | Memory persistence mode: "always" (default) or "never"             |
 | `container_tags`| List[str]    | No       | Additional container tags for organization (e.g., ["org", "prod"]) |
-| `api_key`       | str          | No       | Supermemory API key (or set `SUPERMEMORY_API_KEY` env var)         |
+| `api_key`       | str          | No       | Emberspack Brain API key (or set `SUPERMEMORY_API_KEY` env var)         |
 | `config`        | MemoryConfig | No       | Advanced configuration                                             |
 | `base_url`      | str          | No       | Custom API endpoint                                                |
 
 ### Advanced Configuration
 
 ```python
-from supermemory_cartesia import SupermemoryCartesiaAgent
+from emberspack-brain_cartesia import Emberspack BrainCartesiaAgent
 
-memory_agent = SupermemoryCartesiaAgent(
+memory_agent = Emberspack BrainCartesiaAgent(
     agent=base_agent,
     container_tag="user-123",
     custom_id="conversation-456",
     add_memory="always",           # "always" (default) or "never"
     container_tags=["org-acme", "prod"],  # Optional: additional tags
-    config=SupermemoryCartesiaAgent.MemoryConfig(
+    config=Emberspack BrainCartesiaAgent.MemoryConfig(
         search_limit=10,           # Max memories to retrieve
         search_threshold=0.1,      # Similarity threshold
         mode="full",               # "profile", "query", or "full"
@@ -82,7 +82,7 @@ memory_agent = SupermemoryCartesiaAgent(
 )
 
 # Read-only mode - retrieve memories but don't save new ones
-read_only_agent = SupermemoryCartesiaAgent(
+read_only_agent = Emberspack BrainCartesiaAgent(
     agent=base_agent,
     container_tag="user-123",
     custom_id="conversation-456",
@@ -101,14 +101,14 @@ read_only_agent = SupermemoryCartesiaAgent(
 ## How It Works
 
 1. **Intercepts events** - Listens for `UserTurnEnded` events from Cartesia Line
-2. **Retrieves memories** - Queries Supermemory `/v4/profile` API with user's message
+2. **Retrieves memories** - Queries Emberspack Brain `/v4/profile` API with user's message
 3. **Enriches context** - Passes memories as non-persistent context for the current turn
-4. **Stores messages** - Sends conversation to Supermemory (background, non-blocking)
+4. **Stores messages** - Sends conversation to Emberspack Brain (background, non-blocking)
 5. **Passes to agent** - Forwards enriched event to wrapped LlmAgent
 
 ### What Gets Stored
 
-User and assistant messages are sent to Supermemory:
+User and assistant messages are sent to Emberspack Brain:
 
 ```json
 {
@@ -135,7 +135,7 @@ UserTurnEnded Event {content: "user message", history: [...]}
 │  process(env, event):                        │
 │    1. Intercept UserTurnEnded                │
 │    2. Extract user message                   │
-│    3. Query Supermemory API                  │
+│    3. Query Emberspack Brain API                  │
 │    4. Add memories as per-turn context       │
 │    5. Pass to wrapped LlmAgent               │
 │    6. Store conversation (async background)  │
@@ -165,7 +165,7 @@ import os
 from line.llm_agent import LlmAgent, LlmConfig
 from line.tools import LoopbackTool
 from line.voice_agent_app import VoiceAgentApp
-from supermemory_cartesia import SupermemoryCartesiaAgent
+from emberspack-brain_cartesia import Emberspack BrainCartesiaAgent
 
 # Define custom tools
 async def get_weather(location: str) -> str:
@@ -192,14 +192,14 @@ async def get_agent(env, call_request):
         )
     )
 
-    # Wrap with Supermemory
-    memory_agent = SupermemoryCartesiaAgent(
+    # Wrap with Emberspack Brain
+    memory_agent = Emberspack BrainCartesiaAgent(
         agent=base_agent,
         api_key=os.getenv("SUPERMEMORY_API_KEY"),
         container_tag=container_tag,
         custom_id=call_request.call_id,
         container_tags=[org_id] if org_id else None,
-        config=SupermemoryCartesiaAgent.MemoryConfig(
+        config=Emberspack BrainCartesiaAgent.MemoryConfig(
             mode="full",
             search_limit=15,
             search_threshold=0.15,
@@ -215,8 +215,8 @@ app = VoiceAgentApp(get_agent=get_agent)
 
 ```bash
 # Clone repository
-git clone https://github.com/supermemoryai/supermemory
-cd supermemory/packages/cartesia-sdk-python
+git clone https://github.com/emberspack-brainai/emberspack-brain
+cd emberspack-brain/packages/cartesia-sdk-python
 
 # Install in development mode
 pip install -e ".[dev]"

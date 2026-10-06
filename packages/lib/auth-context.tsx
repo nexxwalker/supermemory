@@ -16,7 +16,7 @@ type OrganizationListItem = NonNullable<
 	ReturnType<typeof authClient.useListOrganizations>["data"]
 >[number]
 
-const STORAGE_KEY = "supermemory-consumer-last-org-slug"
+const STORAGE_KEY = "emberspack-brain-consumer-last-org-slug"
 
 // Reads ?org=<slug> from the URL once and removes it, so a deep link that
 // selects an org doesn't re-fire on refresh or back-navigation.
@@ -215,10 +215,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 		try {
 			const pendingMethod = localStorage.getItem(
-				"supermemory-pending-login-method",
+				"emberspack-brain-pending-login-method",
 			)
 			const pendingTsRaw = localStorage.getItem(
-				"supermemory-pending-login-timestamp",
+				"emberspack-brain-pending-login-timestamp",
 			)
 
 			if (pendingMethod) {
@@ -227,13 +227,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 				const isFresh = Number.isFinite(ts) && now - ts < 10 * 60 * 1000
 
 				if (isFresh) {
-					localStorage.setItem("supermemory-last-login-method", pendingMethod)
+					localStorage.setItem("emberspack-brain-last-login-method", pendingMethod)
 				}
 			}
 		} catch {}
 		try {
-			localStorage.removeItem("supermemory-pending-login-method")
-			localStorage.removeItem("supermemory-pending-login-timestamp")
+			localStorage.removeItem("emberspack-brain-pending-login-method")
+			localStorage.removeItem("emberspack-brain-pending-login-timestamp")
 		} catch {}
 	}, [session?.session])
 

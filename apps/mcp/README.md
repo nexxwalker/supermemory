@@ -1,6 +1,6 @@
-# Supermemory MCP Server
+# Emberspack Brain MCP Server
 
-The Supermemory MCP server gives authenticated AI clients access to a user's
+The Emberspack Brain MCP server gives authenticated AI clients access to a user's
 memories, profile, spaces, and interactive MCP Apps.
 
 ## Runtime Model
@@ -16,7 +16,7 @@ The space used by an operation resolves in this order:
 
 1. An explicit `containerTag` tool or prompt argument
 2. The account's durable active space
-3. The Supermemory client default, `sm_project_default`
+3. The Emberspack Brain client default, `sm_project_default`
 
 An explicit override applies only to that call. It does not mutate the active
 space.
@@ -24,7 +24,7 @@ space.
 ## Server URL
 
 ```text
-https://mcp.supermemory.ai/mcp
+https://mcp.emberspack-brain.ai/mcp
 ```
 
 Example client configuration:
@@ -32,8 +32,8 @@ Example client configuration:
 ```json
 {
   "mcpServers": {
-    "supermemory": {
-      "url": "https://mcp.supermemory.ai/mcp"
+    "emberspack-brain": {
+      "url": "https://mcp.emberspack-brain.ai/mcp"
     }
   }
 }
@@ -81,9 +81,9 @@ These tools are available to the embedded MCP App and hidden from the model.
 
 | Kind | Name or URI | Purpose |
 | --- | --- | --- |
-| Resource | `supermemory://profile` | Profile facts in the effective space |
-| Resource | `supermemory://spaces` | Visible spaces |
-| Resource | `ui://supermemory/app-<sha256>.html` | Embedded MCP App bundle |
+| Resource | `emberspack-brain://profile` | Profile facts in the effective space |
+| Resource | `emberspack-brain://spaces` | Visible spaces |
+| Resource | `ui://emberspack-brain/app-<sha256>.html` | Embedded MCP App bundle |
 | Prompt | `context` | Profile and recent context for an optional space |
 
 The App resource and tool metadata include both current nested `ui` metadata and
@@ -105,7 +105,7 @@ cd apps/mcp
 bun run dev
 ```
 
-The portless URL is `http://mcp.dev.supermemory`.
+The portless URL is `http://mcp.dev.emberspack-brain`.
 
 Useful commands:
 
@@ -129,8 +129,8 @@ discovery and rejection tests still run.
 
 | Variable | Purpose | Default |
 | --- | --- | --- |
-| `API_URL` | Supermemory API and OAuth issuer | `https://api.supermemory.ai` |
-| `MCP_RESOURCE` | Expected OAuth audience | `https://mcp.supermemory.ai/mcp` |
+| `API_URL` | Emberspack Brain API and OAuth issuer | `https://api.emberspack-brain.ai` |
+| `MCP_RESOURCE` | Expected OAuth audience | `https://mcp.emberspack-brain.ai/mcp` |
 | `ALLOWED_MCP_ORIGIN_HOSTNAMES` | Additional comma-separated browser origins | Built-in host allowlist |
 | `POSTHOG_API_KEY` | Server-side MCP tool analytics project key | Disabled |
 | `POSTHOG_HOST` | PostHog ingestion host | `https://us.i.posthog.com` |
@@ -140,7 +140,7 @@ discovery and rejection tests still run.
 `SpaceState` stores only the active space's container tag. It never stores bearer
 tokens, MCP client identity, or protocol messages.
 
-The old `SupermemoryMCP` class and binding remain inert for one rollout. This
+The old `Emberspack BrainMCP` class and binding remain inert for one rollout. This
 keeps the migration non-destructive and rollback-safe. A later deployment can
 delete the old protocol class after production traffic and rollback windows
 have been checked.

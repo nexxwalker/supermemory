@@ -1,8 +1,8 @@
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 import type {
 	DocumentGetResponse,
 	DocumentListResponse as SdkDocumentListResponse,
-} from "supermemory/resources/documents"
+} from "emberspack-brain/resources/documents"
 import { z } from "zod"
 import {
 	containerTagSchema,
@@ -20,7 +20,7 @@ import {
 const MAX_CHARS = 200000
 export const DEFAULT_PROJECT_ID = "sm_project_default"
 const FETCH_TIMEOUT_MS = 30_000
-const MCP_SOURCE = "supermemory-mcp"
+const MCP_SOURCE = "emberspack-brain-mcp"
 
 export type {
 	ContainerTag,
@@ -132,8 +132,8 @@ function extractApiErrorMessage(raw: unknown): string | undefined {
 	return raw
 }
 
-export class SupermemoryClient {
-	private client: Supermemory
+export class Emberspack BrainClient {
+	private client: Emberspack Brain
 	private containerTag: string
 	private hasExplicitContainerTag: boolean
 	private bearerToken: string
@@ -142,11 +142,11 @@ export class SupermemoryClient {
 	constructor(
 		bearerToken: string,
 		containerTag?: string,
-		apiUrl = "https://api.supermemory.ai",
+		apiUrl = "https://api.emberspack-brain.ai",
 	) {
 		this.bearerToken = bearerToken
 		this.apiUrl = apiUrl
-		this.client = new Supermemory({
+		this.client = new Emberspack Brain({
 			apiKey: bearerToken,
 			baseURL: apiUrl,
 			timeout: FETCH_TIMEOUT_MS,
@@ -434,7 +434,7 @@ export class SupermemoryClient {
 			error instanceof Error &&
 			(error.name === "AbortError" || error.name === "TimeoutError")
 		) {
-			throw new Error("Request to Supermemory API timed out")
+			throw new Error("Request to Emberspack Brain API timed out")
 		}
 
 		// Handle network/fetch errors
@@ -457,7 +457,7 @@ export class SupermemoryClient {
 				case 401:
 					throw new Error("Authentication failed. Please re-authenticate.")
 				case 402:
-					throw new Error("Memory limit reached. Upgrade at supermemory.ai")
+					throw new Error("Memory limit reached. Upgrade at emberspack-brain.ai")
 				case 403:
 					throw new Error(
 						message ||

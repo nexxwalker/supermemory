@@ -1,4 +1,4 @@
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 import {
 	addConversation,
 	type ContentPart,
@@ -149,7 +149,7 @@ export const convertToConversationMessages = (
 }
 
 export const saveMemoryAfterResponse = async (
-	_client: Supermemory,
+	_client: Emberspack Brain,
 	containerTag: string,
 	customId: string,
 	assistantResponseText: string,
@@ -188,12 +188,12 @@ export const saveMemoryAfterResponse = async (
 }
 
 /**
- * Configuration options for the Supermemory middleware.
+ * Configuration options for the Emberspack Brain middleware.
  */
-interface SupermemoryMiddlewareOptions {
+interface Emberspack BrainMiddlewareOptions {
 	/** Container tag/identifier for memory search (e.g., user ID, project ID) */
 	containerTag: string
-	/** Supermemory API key */
+	/** Emberspack Brain API key */
 	apiKey: string
 	/** Custom ID to group messages into a single document. Required. */
 	customId: string
@@ -212,7 +212,7 @@ interface SupermemoryMiddlewareOptions {
 	 * - "never": Only retrieve memories, don't store new ones
 	 */
 	addMemory?: "always" | "never"
-	/** Custom Supermemory API base URL */
+	/** Custom Emberspack Brain API base URL */
 	baseUrl?: string
 	/**
 	 * Persist assistant tool calls and tool results as part of the saved
@@ -222,12 +222,12 @@ interface SupermemoryMiddlewareOptions {
 	includeToolCalls?: boolean
 	/** Custom function to format memory data into the system prompt */
 	promptTemplate?: PromptTemplate
-	/** Max wait (ms) for the pre-LLM `/v4/profile` retrieval. Omit for no limit (e.g. tests). `withSupermemory` sets this internally. */
+	/** Max wait (ms) for the pre-LLM `/v4/profile` retrieval. Omit for no limit (e.g. tests). `withEmberspack Brain` sets this internally. */
 	memoryRetrievalTimeoutMs?: number
 }
 
-interface SupermemoryMiddlewareContext {
-	client: Supermemory
+interface Emberspack BrainMiddlewareContext {
+	client: Emberspack Brain
 	logger: Logger
 	containerTag: string
 	customId: string
@@ -245,9 +245,9 @@ interface SupermemoryMiddlewareContext {
 	memoryCache: MemoryCache<string>
 }
 
-export const createSupermemoryContext = (
-	options: SupermemoryMiddlewareOptions,
-): SupermemoryMiddlewareContext => {
+export const createEmberspack BrainContext = (
+	options: Emberspack BrainMiddlewareOptions,
+): Emberspack BrainMiddlewareContext => {
 	const {
 		containerTag,
 		apiKey,
@@ -264,9 +264,9 @@ export const createSupermemoryContext = (
 	const logger = createLogger(verbose)
 	const normalizedBaseUrl = normalizeBaseUrl(baseUrl)
 
-	const client = new Supermemory({
+	const client = new Emberspack Brain({
 		apiKey,
-		...(normalizedBaseUrl !== "https://api.supermemory.ai"
+		...(normalizedBaseUrl !== "https://api.emberspack-brain.ai"
 			? { baseURL: normalizedBaseUrl }
 			: {}),
 	})
@@ -294,7 +294,7 @@ export const createSupermemoryContext = (
  * Uses the shared MemoryCache.makeTurnKey implementation.
  */
 const makeTurnKey = (
-	ctx: SupermemoryMiddlewareContext,
+	ctx: Emberspack BrainMiddlewareContext,
 	userMessage: string,
 ): string => {
 	return MemoryCache.makeTurnKey(
@@ -315,7 +315,7 @@ const isNewUserTurn = (params: LanguageModelCallOptions): boolean => {
 
 export const transformParamsWithMemory = async (
 	params: LanguageModelCallOptions,
-	ctx: SupermemoryMiddlewareContext,
+	ctx: Emberspack BrainMiddlewareContext,
 ): Promise<LanguageModelCallOptions> => {
 	const userMessage = getLastUserMessage(params)
 

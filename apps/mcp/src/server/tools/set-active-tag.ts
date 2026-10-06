@@ -9,7 +9,7 @@ export function register(deps: ToolDeps) {
 	deps.server.registerTool(
 		"set-active-tag",
 		{
-			description: "Set the active Supermemory space for this account",
+			description: "Set the active Emberspack Brain space for this account",
 			inputSchema: z.object({
 				containerTag: containerTagSchema,
 				viewId: z.string().uuid().optional(),

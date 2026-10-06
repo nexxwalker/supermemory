@@ -1,11 +1,11 @@
-# Supermemory Pipecat SDK
+# Emberspack Brain Pipecat SDK
 
-Memory-enhanced conversational AI pipelines with [Supermemory](https://supermemory.ai) and [Pipecat](https://github.com/pipecat-ai/pipecat).
+Memory-enhanced conversational AI pipelines with [Emberspack Brain](https://emberspack-brain.ai) and [Pipecat](https://github.com/pipecat-ai/pipecat).
 
 ## Installation
 
 ```bash
-pip install supermemory-pipecat
+pip install emberspack-brain-pipecat
 ```
 
 ## Quick Start
@@ -14,10 +14,10 @@ pip install supermemory-pipecat
 import os
 from pipecat.pipeline.pipeline import Pipeline
 from pipecat.processors.aggregators.llm_context import LLMContext
-from supermemory_pipecat import SupermemoryPipecatService
+from emberspack-brain_pipecat import Emberspack BrainPipecatService
 
 # Create memory service
-memory = SupermemoryPipecatService(
+memory = Emberspack BrainPipecatService(
     api_key=os.getenv("SUPERMEMORY_API_KEY"),
     user_id="user-123",  # Required: used as container_tag
     session_id="conversation-456",  # Optional: groups memories by session
@@ -47,19 +47,19 @@ pipeline = Pipeline([
 | ------------ | ----------- | -------- | ---------------------------------------------------------- |
 | `user_id`    | str         | **Yes**  | User identifier - used as container_tag for memory scoping |
 | `session_id` | str         | No       | Session/conversation ID for grouping memories              |
-| `api_key`    | str         | No       | Supermemory API key (or set `SUPERMEMORY_API_KEY` env var) |
+| `api_key`    | str         | No       | Emberspack Brain API key (or set `SUPERMEMORY_API_KEY` env var) |
 | `params`     | InputParams | No       | Advanced configuration                                     |
 | `base_url`   | str         | No       | Custom API endpoint                                        |
 
 ### Advanced Configuration
 
 ```python
-from supermemory_pipecat import SupermemoryPipecatService
+from emberspack-brain_pipecat import Emberspack BrainPipecatService
 
-memory = SupermemoryPipecatService(
+memory = Emberspack BrainPipecatService(
     user_id="user-123",
     session_id="conv-456",
-    params=SupermemoryPipecatService.InputParams(
+    params=Emberspack BrainPipecatService.InputParams(
         search_limit=10,           # Max memories to retrieve
         search_threshold=0.1,      # Similarity threshold
         mode="full",               # "profile", "query", or "full"
@@ -98,7 +98,7 @@ User: What's the weather like today?
 Assistant: It's sunny today.
 ```
 
-is sent to Supermemory as:
+is sent to Emberspack Brain as:
 
 ```json
 {
@@ -124,7 +124,7 @@ from pipecat.transports.websocket.fastapi import (
     FastAPIWebsocketTransport,
     FastAPIWebsocketParams,
 )
-from supermemory_pipecat import SupermemoryPipecatService
+from emberspack-brain_pipecat import Emberspack BrainPipecatService
 
 app = FastAPI()
 
@@ -146,8 +146,8 @@ async def websocket_endpoint(websocket: WebSocket):
     context = LLMContext([{"role": "system", "content": "You are a helpful assistant."}])
     context_aggregator = llm.create_context_aggregator(context)
 
-    # Supermemory memory service
-    memory = SupermemoryPipecatService(
+    # Emberspack Brain memory service
+    memory = Emberspack BrainPipecatService(
         user_id="alice",
         session_id="session-123",
     )

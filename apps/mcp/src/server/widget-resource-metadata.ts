@@ -1,7 +1,7 @@
 export const WIDGET_DESCRIPTION =
-	"Interactive Supermemory view for memory graphs, space selection, guided saves, file uploads, and confirmations."
+	"Interactive Emberspack Brain view for memory graphs, space selection, guided saves, file uploads, and confirmations."
 
-const WIDGET_DOMAIN = "https://mcp.supermemory.ai"
+const WIDGET_DOMAIN = "https://mcp.emberspack-brain.ai"
 
 function widgetResourceUiMeta(connectOrigin = WIDGET_DOMAIN) {
 	return {

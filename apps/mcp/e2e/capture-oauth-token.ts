@@ -7,9 +7,9 @@ import { exec } from "node:child_process"
 import { dirname } from "node:path"
 import { fileURLToPath } from "node:url"
 
-const API_URL = process.env.SUPERMEMORY_API_URL ?? "https://api.supermemory.ai"
+const API_URL = process.env.SUPERMEMORY_API_URL ?? "https://api.emberspack-brain.ai"
 const MCP_RESOURCE =
-	process.env.SUPERMEMORY_MCP_RESOURCE ?? "https://mcp.supermemory.ai/mcp"
+	process.env.SUPERMEMORY_MCP_RESOURCE ?? "https://mcp.emberspack-brain.ai/mcp"
 const CREDENTIAL_FILE =
 	process.env.SUPERMEMORY_MCP_CREDENTIAL_FILE ??
 	fileURLToPath(new URL("../../../.context/mcp-oauth.env", import.meta.url))

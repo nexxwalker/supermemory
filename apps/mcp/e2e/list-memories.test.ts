@@ -167,7 +167,7 @@ describe.skipIf(!OAUTH_CREDENTIALS_AVAILABLE)(
 			formData.append("containerTag", containerTag)
 			formData.append(
 				"metadata",
-				JSON.stringify({ sm_source: "supermemory-mcp" }),
+				JSON.stringify({ sm_source: "emberspack-brain-mcp" }),
 			)
 
 			const response = await fetch(preparation.uploadUrl, {

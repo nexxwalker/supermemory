@@ -2,24 +2,24 @@
 
 ## Overview
 
-This package adds persistent memory to Pipecat voice AI pipelines using Supermemory.
+This package adds persistent memory to Pipecat voice AI pipelines using Emberspack Brain.
 
-**Tech Stack:** Python >=3.10, Pipecat, Supermemory SDK
+**Tech Stack:** Python >=3.10, Pipecat, Emberspack Brain SDK
 
 ## Commands
 
 ```bash
-pip install supermemory-pipecat
+pip install emberspack-brain-pipecat
 ```
 
 ## Integration Pattern
 
-Place `SupermemoryPipecatService` between context aggregator and LLM in the pipeline:
+Place `Emberspack BrainPipecatService` between context aggregator and LLM in the pipeline:
 
 ```python
-from supermemory_pipecat import SupermemoryPipecatService
+from emberspack-brain_pipecat import Emberspack BrainPipecatService
 
-memory = SupermemoryPipecatService(
+memory = Emberspack BrainPipecatService(
     user_id="user-123",       # Required: identifies the user
     session_id="session-456", # Optional: groups conversations
 )
@@ -39,11 +39,11 @@ pipeline = Pipeline([
 ## Configuration
 
 ```python
-memory = SupermemoryPipecatService(
+memory = Emberspack BrainPipecatService(
     api_key="...",             # Or use SUPERMEMORY_API_KEY env var
     user_id="user-123",
     session_id="session-456",
-    params=SupermemoryPipecatService.InputParams(
+    params=Emberspack BrainPipecatService.InputParams(
         search_limit=10,       # Max memories to retrieve
         search_threshold=0.1,  # Similarity threshold 0.0-1.0
         mode="full",           # "profile" | "query" | "full"
@@ -62,7 +62,7 @@ memory = SupermemoryPipecatService(
 
 ## Environment Variables
 
-- `SUPERMEMORY_API_KEY` - Supermemory API key
+- `SUPERMEMORY_API_KEY` - Emberspack Brain API key
 - `OPENAI_API_KEY` - For OpenAI services (STT/LLM/TTS)
 
 ## Boundaries

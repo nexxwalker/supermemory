@@ -24,9 +24,9 @@ export const CHAT_SDK_REGISTRY: ChatSdkDefinition[] = [
 		label: "AI SDK + middleware",
 		language: "typescript",
 		mode: "middleware",
-		package: "@supermemory/tools/ai-sdk",
+		package: "@emberspack-brain/tools/ai-sdk",
 		description:
-			"withSupermemory wraps the model — auto-injects profile/search and saves conversations",
+			"withEmberspack Brain wraps the model — auto-injects profile/search and saves conversations",
 		available: true,
 	},
 	{
@@ -34,9 +34,9 @@ export const CHAT_SDK_REGISTRY: ChatSdkDefinition[] = [
 		label: "OpenAI SDK + middleware",
 		language: "typescript",
 		mode: "middleware",
-		package: "@supermemory/tools/openai",
+		package: "@emberspack-brain/tools/openai",
 		description:
-			"withSupermemory on OpenAI client — same automatic memory path",
+			"withEmberspack Brain on OpenAI client — same automatic memory path",
 		available: true,
 	},
 	{
@@ -44,9 +44,9 @@ export const CHAT_SDK_REGISTRY: ChatSdkDefinition[] = [
 		label: "AI SDK + tools",
 		language: "typescript",
 		mode: "tools",
-		package: "@supermemory/tools/ai-sdk",
+		package: "@emberspack-brain/tools/ai-sdk",
 		description:
-			"Agent explicitly calls the 7 Supermemory tools via generateText",
+			"Agent explicitly calls the 7 Emberspack Brain tools via generateText",
 		available: true,
 	},
 	{
@@ -54,16 +54,16 @@ export const CHAT_SDK_REGISTRY: ChatSdkDefinition[] = [
 		label: "OpenAI SDK + tools",
 		language: "typescript",
 		mode: "tools",
-		package: "@supermemory/tools/openai",
-		description: "OpenAI function calling with the 7 Supermemory tools",
+		package: "@emberspack-brain/tools/openai",
+		description: "OpenAI function calling with the 7 Emberspack Brain tools",
 		available: true,
 	},
 	{
 		id: "ts-ai-sdk-package",
-		label: "@supermemory/ai-sdk",
+		label: "@emberspack-brain/ai-sdk",
 		language: "typescript",
 		mode: "tools",
-		package: "@supermemory/ai-sdk",
+		package: "@emberspack-brain/ai-sdk",
 		description: "Re-export of tools/ai-sdk — same 7-tool agent",
 		available: true,
 	},
@@ -72,9 +72,9 @@ export const CHAT_SDK_REGISTRY: ChatSdkDefinition[] = [
 		label: "OpenAI + middleware",
 		language: "python",
 		mode: "middleware",
-		package: "supermemory-openai-sdk",
+		package: "emberspack-brain-openai-sdk",
 		description:
-			"with_supermemory — automatic profile injection + conversation save",
+			"with_emberspack-brain — automatic profile injection + conversation save",
 		available: true,
 	},
 	{
@@ -82,16 +82,16 @@ export const CHAT_SDK_REGISTRY: ChatSdkDefinition[] = [
 		label: "OpenAI + tools",
 		language: "python",
 		mode: "tools",
-		package: "supermemory-openai-sdk",
-		description: "SupermemoryTools function-calling loop (7 tools)",
+		package: "emberspack-brain-openai-sdk",
+		description: "Emberspack BrainTools function-calling loop (7 tools)",
 		available: true,
 	},
 	{
-		id: "py-supermemory-direct",
-		label: "supermemory + manual context",
+		id: "py-emberspack-brain-direct",
+		label: "emberspack-brain + manual context",
 		language: "python",
 		mode: "direct",
-		package: "supermemory",
+		package: "emberspack-brain",
 		description: "profile() then OpenAI — manual integration pattern from docs",
 		available: true,
 	},
@@ -100,7 +100,7 @@ export const CHAT_SDK_REGISTRY: ChatSdkDefinition[] = [
 export const PYTHON_SERVER_URL =
 	process.env.SDK_PLAYGROUND_PYTHON_URL ?? "http://127.0.0.1:8792"
 
-export const TOOLS_SYSTEM_PROMPT = `You are a helpful assistant with Supermemory long-term memory.
+export const TOOLS_SYSTEM_PROMPT = `You are a helpful assistant with Emberspack Brain long-term memory.
 
 You have tools to manage memory. Use them proactively:
 - searchMemories: hybrid recall — search before answering whenever user-specific context could help (do not wait to be asked)

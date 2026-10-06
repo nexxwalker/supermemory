@@ -1,6 +1,6 @@
 /**
  * Integration tests for the Mastra integration
- * Tests processors and wrapper with real Supermemory API calls
+ * Tests processors and wrapper with real Emberspack Brain API calls
  */
 
 import { describe, it, expect, vi } from "vitest"
@@ -9,10 +9,10 @@ import {
 	MASTRA_THREAD_ID_KEY,
 } from "@mastra/core/request-context"
 import {
-	SupermemoryInputProcessor,
-	SupermemoryOutputProcessor,
-	createSupermemoryProcessors,
-	withSupermemory,
+	Emberspack BrainInputProcessor,
+	Emberspack BrainOutputProcessor,
+	createEmberspack BrainProcessors,
+	withEmberspack Brain,
 } from "../../src/mastra"
 import type {
 	ProcessInputArgs,
@@ -35,7 +35,7 @@ import "dotenv/config"
 
 const INTEGRATION_CONFIG = {
 	apiKey: process.env.SUPERMEMORY_API_KEY || "",
-	baseUrl: process.env.SUPERMEMORY_BASE_URL || "https://api.supermemory.ai",
+	baseUrl: process.env.SUPERMEMORY_BASE_URL || "https://api.emberspack-brain.ai",
 	containerTag: "integration-test-mastra",
 	customId: "integration-test-conversation",
 }
@@ -100,9 +100,9 @@ const createIntegrationMessageList = (): MessageList & {
 describe.skipIf(!shouldRunIntegration)(
 	"Integration: Mastra processors with real API",
 	() => {
-		describe("SupermemoryInputProcessor", () => {
+		describe("Emberspack BrainInputProcessor", () => {
 			it("should fetch real memories and inject into messageList", async () => {
-				const processor = new SupermemoryInputProcessor({
+				const processor = new Emberspack BrainInputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -133,7 +133,7 @@ describe.skipIf(!shouldRunIntegration)(
 			it("should use query mode with user message as search query", async () => {
 				const fetchSpy = vi.spyOn(globalThis, "fetch")
 
-				const processor = new SupermemoryInputProcessor({
+				const processor = new Emberspack BrainInputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -177,7 +177,7 @@ describe.skipIf(!shouldRunIntegration)(
 			it("should use full mode with both profile and query", async () => {
 				const fetchSpy = vi.spyOn(globalThis, "fetch")
 
-				const processor = new SupermemoryInputProcessor({
+				const processor = new Emberspack BrainInputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -216,7 +216,7 @@ describe.skipIf(!shouldRunIntegration)(
 			it("should cache memories for repeated calls with same message", async () => {
 				const fetchSpy = vi.spyOn(globalThis, "fetch")
 
-				const processor = new SupermemoryInputProcessor({
+				const processor = new Emberspack BrainInputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -267,7 +267,7 @@ describe.skipIf(!shouldRunIntegration)(
 					generalSearchMemories: string
 				}) => `<mastra-memories>${data.userMemories}</mastra-memories>`
 
-				const processor = new SupermemoryInputProcessor({
+				const processor = new Emberspack BrainInputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -292,13 +292,13 @@ describe.skipIf(!shouldRunIntegration)(
 			})
 		})
 
-		describe("SupermemoryOutputProcessor", () => {
+		describe("Emberspack BrainOutputProcessor", () => {
 			it("should save conversation when addMemory is always", async () => {
 				const fetchSpy = vi.spyOn(globalThis, "fetch")
 
 				const customId = `test-mastra-${Date.now()}`
 
-				const processor = new SupermemoryOutputProcessor({
+				const processor = new Emberspack BrainOutputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -331,7 +331,7 @@ describe.skipIf(!shouldRunIntegration)(
 			it("should not save when addMemory is never", async () => {
 				const fetchSpy = vi.spyOn(globalThis, "fetch")
 
-				const processor = new SupermemoryOutputProcessor({
+				const processor = new Emberspack BrainOutputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: "test-thread",
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -364,7 +364,7 @@ describe.skipIf(!shouldRunIntegration)(
 			it("should use threadId from RequestContext when available", async () => {
 				const fetchSpy = vi.spyOn(globalThis, "fetch")
 
-				const processor = new SupermemoryOutputProcessor({
+				const processor = new Emberspack BrainOutputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -400,9 +400,9 @@ describe.skipIf(!shouldRunIntegration)(
 			})
 		})
 
-		describe("createSupermemoryProcessors", () => {
+		describe("createEmberspack BrainProcessors", () => {
 			it("should create working input and output processors", async () => {
-				const { input, output } = createSupermemoryProcessors({
+				const { input, output } = createEmberspack BrainProcessors({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: `processors-test-${Date.now()}`,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -437,7 +437,7 @@ describe.skipIf(!shouldRunIntegration)(
 			})
 		})
 
-		describe("withSupermemory wrapper", () => {
+		describe("withEmberspack Brain wrapper", () => {
 			it("should enhance config with working processors", async () => {
 				const config: MockAgentConfig = {
 					id: "test-mastra-agent",
@@ -445,7 +445,7 @@ describe.skipIf(!shouldRunIntegration)(
 					model: "gpt-4o",
 				}
 
-				const enhanced = withSupermemory(config, {
+				const enhanced = withEmberspack Brain(config, {
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: `wrapper-test-${Date.now()}`,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -461,7 +461,7 @@ describe.skipIf(!shouldRunIntegration)(
 				expect(enhanced.outputProcessors).toHaveLength(1)
 
 				const inputProcessor = enhanced.inputProcessors?.[0]
-				expect(inputProcessor?.id).toBe("supermemory-input")
+				expect(inputProcessor?.id).toBe("emberspack-brain-input")
 
 				if (inputProcessor?.processInput) {
 					const messageList = createIntegrationMessageList()
@@ -498,7 +498,7 @@ describe.skipIf(!shouldRunIntegration)(
 					outputProcessors: [existingOutputProcessor],
 				}
 
-				const enhanced = withSupermemory(config, {
+				const enhanced = withEmberspack Brain(config, {
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -509,17 +509,17 @@ describe.skipIf(!shouldRunIntegration)(
 				expect(enhanced.inputProcessors).toHaveLength(2)
 				expect(enhanced.outputProcessors).toHaveLength(2)
 
-				expect(enhanced.inputProcessors?.[0]?.id).toBe("supermemory-input")
+				expect(enhanced.inputProcessors?.[0]?.id).toBe("emberspack-brain-input")
 				expect(enhanced.inputProcessors?.[1]?.id).toBe("existing-input")
 
 				expect(enhanced.outputProcessors?.[0]?.id).toBe("existing-output")
-				expect(enhanced.outputProcessors?.[1]?.id).toBe("supermemory-output")
+				expect(enhanced.outputProcessors?.[1]?.id).toBe("emberspack-brain-output")
 			})
 		})
 
 		describe("Options", () => {
 			it("verbose mode should not break functionality", async () => {
-				const processor = new SupermemoryInputProcessor({
+				const processor = new Emberspack BrainInputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -545,7 +545,7 @@ describe.skipIf(!shouldRunIntegration)(
 			it("custom baseUrl should be used for API calls", async () => {
 				const fetchSpy = vi.spyOn(globalThis, "fetch")
 
-				const processor = new SupermemoryInputProcessor({
+				const processor = new Emberspack BrainInputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: INTEGRATION_CONFIG.apiKey,
@@ -578,7 +578,7 @@ describe.skipIf(!shouldRunIntegration)(
 
 		describe("Error handling", () => {
 			it("should handle invalid API key gracefully", async () => {
-				const processor = new SupermemoryInputProcessor({
+				const processor = new Emberspack BrainInputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: INTEGRATION_CONFIG.customId,
 					apiKey: "invalid-api-key-12345",
@@ -601,7 +601,7 @@ describe.skipIf(!shouldRunIntegration)(
 			})
 
 			it("output processor should handle save errors gracefully", async () => {
-				const processor = new SupermemoryOutputProcessor({
+				const processor = new Emberspack BrainOutputProcessor({
 					containerTag: INTEGRATION_CONFIG.containerTag,
 					customId: "error-test",
 					apiKey: "invalid-api-key-12345",

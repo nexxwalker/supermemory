@@ -9,7 +9,7 @@ import { defineConfig } from "vite"
 export default defineConfig({
 	plugins: [tailwindcss(), react()],
 	root: resolve(__dirname, "src/widget"),
-	// Force a single react/react-dom copy. @supermemory/memory-graph (and its
+	// Force a single react/react-dom copy. @emberspack-brain/memory-graph (and its
 	// dep optimization) can otherwise pull react-dom through a different
 	// resolution path than the app's react, tripping react-dom's
 	// "Incompatible React versions" identity check. Prod doesn't need this —

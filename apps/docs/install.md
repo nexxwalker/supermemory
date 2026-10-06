@@ -1,6 +1,6 @@
-You are integrating Supermemory into my application. Supermemory provides user memory, semantic search, and automatic knowledge extraction for AI applications.
+You are integrating Emberspack Brain into my application. Emberspack Brain provides user memory, semantic search, and automatic knowledge extraction for AI applications.
 
-You can always reference the documentation by using the **SearchSupermemoryDocs MCP** or running a web search tool for content on **supermemory.ai/docs**.
+You can always reference the documentation by using the **SearchEmberspack BrainDocs MCP** or running a web search tool for content on **emberspack-brain.ai/docs**.
 
 ## STEP 1: ASK ME THESE QUESTIONS
 
@@ -12,9 +12,9 @@ You can always reference the documentation by using the **SearchSupermemoryDocs 
    - Other
 
 2. How do you want to integrate?
-   - Vercel AI SDK (@supermemory/tools)
+   - Vercel AI SDK (@emberspack-brain/tools)
    - OpenAI plugins
-   - Direct SDK (supermemory npm/pip)
+   - Direct SDK (emberspack-brain npm/pip)
    - Direct API calls
 
 3. Data model?
@@ -34,17 +34,17 @@ You can always reference the documentation by using the **SearchSupermemoryDocs 
 ## STEP 2: INSTALL
 
 ```bash
-# Get API key: https://console.supermemory.ai
-npm install supermemory  # or: pip install supermemory
-# For Vercel AI SDK: npm install @supermemory/tools
+# Get API key: https://console.emberspack-brain.ai
+npm install emberspack-brain  # or: pip install emberspack-brain
+# For Vercel AI SDK: npm install @emberspack-brain/tools
 export SUPERMEMORY_API_KEY="sm_..."
 ```
 
 ## STEP 3: CONFIGURE SETTINGS (DO THIS FIRST)
 
 ```typescript
-// PATCH https://api.supermemory.ai/v3/settings
-fetch('https://api.supermemory.ai/v3/settings', {
+// PATCH https://api.emberspack-brain.ai/v3/settings
+fetch('https://api.emberspack-brain.ai/v3/settings', {
   method: 'PATCH',
   headers: {
     'Authorization': `Bearer ${process.env.SUPERMEMORY_API_KEY}`,
@@ -95,21 +95,21 @@ Based on their integration choice:
 ```typescript
 import { streamText } from 'ai'
 import { anthropic } from '@ai-sdk/anthropic'
-import { supermemoryTools } from '@supermemory/tools/ai-sdk'
+import { emberspack-brainTools } from '@emberspack-brain/tools/ai-sdk'
 
 // Option 1: Agent tools (recommended for agentic flows)
 const result = await streamText({
   model: anthropic('claude-3-5-sonnet-20241022'),
   prompt: userMessage,
-  tools: supermemoryTools(process.env.SUPERMEMORY_API_KEY, {
+  tools: emberspack-brainTools(process.env.SUPERMEMORY_API_KEY, {
     containerTags: [userId]
   })
 })
 // Agent gets searchMemories, addMemory, fetchMemory tools
 
 // Option 2: Profile middleware (automatic context injection)
-import { withSupermemory } from '@supermemory/tools/ai-sdk'
-const modelWithMemory = withSupermemory(anthropic('claude-3-5-sonnet-20241022'), {
+import { withEmberspack Brain } from '@emberspack-brain/tools/ai-sdk'
+const modelWithMemory = withEmberspack Brain(anthropic('claude-3-5-sonnet-20241022'), {
   containerTag: userId,
   customId: 'conversation-1',
 })
@@ -124,9 +124,9 @@ const result = await generateText({
 ### DIRECT SDK (WITH PROFILES)
 
 ```typescript
-import Supermemory from 'supermemory'
+import Emberspack Brain from 'emberspack-brain'
 
-const client = new Supermemory()
+const client = new Emberspack Brain()
 
 // Before each LLM call:
 const { profile, searchResults } = await client.profile({
@@ -158,9 +158,9 @@ await client.memories.add({
 ### DIRECT SDK (NO PROFILES)
 
 ```typescript
-import Supermemory from 'supermemory'
+import Emberspack Brain from 'emberspack-brain'
 
-const client = new Supermemory()
+const client = new Emberspack Brain()
 
 // Search for relevant memories
 const results = await client.search({
@@ -189,9 +189,9 @@ await client.memories.add({
 ### PYTHON VERSION
 
 ```python
-from supermemory import Supermemory
+from emberspack-brain import Emberspack Brain
 
-client = Supermemory()
+client = Emberspack Brain()
 
 # With profiles (if they want it)
 profile_data = client.profile(
@@ -212,19 +212,19 @@ client.add(content=f"user: {user_message}\\nassistant: {response}", container_ta
 
 ```bash
 # Add memory
-curl -X POST https://api.supermemory.ai/v3/documents \
+curl -X POST https://api.emberspack-brain.ai/v3/documents \
   -H "Authorization: Bearer $SUPERMEMORY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"content": "conversation", "containerTag": "userId"}'
 
 # Get profile
-curl -X POST https://api.supermemory.ai/v4/profile \
+curl -X POST https://api.emberspack-brain.ai/v4/profile \
   -H "Authorization: Bearer $SUPERMEMORY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"containerTag": "userId", "q": "search query"}'
 
 # Search
-curl -X POST https://api.supermemory.ai/v4/search \
+curl -X POST https://api.emberspack-brain.ai/v4/search \
   -H "Authorization: Bearer $SUPERMEMORY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"q": "query", "containerTag": "userId", "searchMode": "hybrid"}'
@@ -238,7 +238,7 @@ const formData = new FormData()
 formData.append('file', fileBlob)
 formData.append('containerTag', userId)
 
-await fetch('https://api.supermemory.ai/v3/documents/file', {
+await fetch('https://api.emberspack-brain.ai/v3/documents/file', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${process.env.SUPERMEMORY_API_KEY}`,
@@ -290,19 +290,19 @@ await client.search({
 
 ```bash
 # 1. Configure settings
-curl -X PATCH https://api.supermemory.ai/v3/settings \
+curl -X PATCH https://api.emberspack-brain.ai/v3/settings \
   -H "Authorization: Bearer $SUPERMEMORY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"shouldLLMFilter": true, "filterPrompt": "..."}'
 
 # 2. Add test memory
-curl -X POST https://api.supermemory.ai/v3/documents \
+curl -X POST https://api.emberspack-brain.ai/v3/documents \
   -H "Authorization: Bearer $SUPERMEMORY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"content": "Test", "containerTag": "test_user"}'
 
 # 3. Get profile
-curl -X POST https://api.supermemory.ai/v4/profile \
+curl -X POST https://api.emberspack-brain.ai/v4/profile \
   -H "Authorization: Bearer $SUPERMEMORY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"containerTag": "test_user"}'
@@ -314,4 +314,4 @@ curl -X POST https://api.supermemory.ai/v4/profile \
 2. Generate complete working code based on my answers
 3. Include installation, settings config, and full integration
 
-**DOCS:** https://supermemory.ai/docs
+**DOCS:** https://emberspack-brain.ai/docs

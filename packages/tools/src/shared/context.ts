@@ -1,4 +1,4 @@
-import Supermemory from "supermemory"
+import Emberspack Brain from "emberspack-brain"
 
 /**
  * Normalizes a base URL by removing trailing slashes.
@@ -7,35 +7,35 @@ import Supermemory from "supermemory"
  * @returns Normalized URL without trailing slash, or default API URL
  */
 export const normalizeBaseUrl = (url?: string): string => {
-	const defaultUrl = "https://api.supermemory.ai"
+	const defaultUrl = "https://api.emberspack-brain.ai"
 	if (!url) return defaultUrl
 	return url.endsWith("/") ? url.slice(0, -1) : url
 }
 
 /**
- * Options for creating a Supermemory client.
+ * Options for creating a Emberspack Brain client.
  */
-export interface CreateSupermemoryClientOptions {
-	/** Supermemory API key */
+export interface CreateEmberspack BrainClientOptions {
+	/** Emberspack Brain API key */
 	apiKey: string
 	/** Optional custom base URL */
 	baseUrl?: string
 }
 
 /**
- * Creates a configured Supermemory client instance.
+ * Creates a configured Emberspack Brain client instance.
  *
  * @param options - Client configuration options
- * @returns Configured Supermemory client
+ * @returns Configured Emberspack Brain client
  */
-export function createSupermemoryClient(
-	options: CreateSupermemoryClientOptions,
-): Supermemory {
+export function createEmberspack BrainClient(
+	options: CreateEmberspack BrainClientOptions,
+): Emberspack Brain {
 	const normalizedBaseUrl = normalizeBaseUrl(options.baseUrl)
 
-	return new Supermemory({
+	return new Emberspack Brain({
 		apiKey: options.apiKey,
-		...(normalizedBaseUrl !== "https://api.supermemory.ai"
+		...(normalizedBaseUrl !== "https://api.emberspack-brain.ai"
 			? { baseURL: normalizedBaseUrl }
 			: {}),
 	})

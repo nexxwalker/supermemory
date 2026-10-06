@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 
-const SUPERMEMORY_API_BASE_URL = "https://api.supermemory.ai"
+const SUPERMEMORY_API_BASE_URL = "https://api.emberspack-brain.ai"
 
 export async function POST(request: Request) {
 	try {

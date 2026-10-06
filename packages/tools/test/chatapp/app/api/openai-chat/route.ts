@@ -1,5 +1,5 @@
 import { OpenAI } from "openai"
-import { withSupermemory } from "@supermemory/tools/openai"
+import { withEmberspack Brain } from "@emberspack-brain/tools/openai"
 
 export const runtime = "nodejs"
 
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 		apiKey: process.env.OPENAI_API_KEY,
 	})
 
-	const openaiWithSupermemory = withSupermemory(openai, {
+	const openaiWithEmberspack Brain = withEmberspack Brain(openai, {
 		containerTag: "user-123",
 		customId: conversationId,
 		mode: "full",
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
 		baseUrl: process.env.SUPERMEMORY_BASE_URL,
 	})
 
-	const completion = await openaiWithSupermemory.chat.completions.create({
+	const completion = await openaiWithEmberspack Brain.chat.completions.create({
 		model: "gpt-4o-mini",
 		messages,
 	})

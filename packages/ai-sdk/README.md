@@ -1,17 +1,17 @@
-# supermemory AI SDK Utilities
+# emberspack-brain AI SDK Utilities
 
-Vercel AI SDK utilities for supermemory
+Vercel AI SDK utilities for emberspack-brain
 
 ## Installation
 
 ```bash
-npm install @supermemory/ai-sdk
+npm install @emberspack-brain/ai-sdk
 # or
-bun add @supermemory/ai-sdk
+bun add @emberspack-brain/ai-sdk
 # or
-pnpm add @supermemory/ai-sdk
+pnpm add @emberspack-brain/ai-sdk
 # or
-yarn add @supermemory/ai-sdk
+yarn add @emberspack-brain/ai-sdk
 ```
 
 ## Features
@@ -19,28 +19,28 @@ yarn add @supermemory/ai-sdk
 Choose **one** of the following approaches (they cannot be used together):
 
 - **Infinite Chat Provider**: Connect to various LLM providers with unlimited context support
-- **Memory Tools**: Search, add, inspect, and manage Supermemory data using AI agents
+- **Memory Tools**: Search, add, inspect, and manage Emberspack Brain data using AI agents
 
 ## Infinite Chat Provider
 
-The infinite chat provider allows you to connect to various LLM providers with supermemory's context management.
+The infinite chat provider allows you to connect to various LLM providers with emberspack-brain's context management.
 
 ```typescript
 import { generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 
 // Using a custom provider URL
-const supermemoryOpenai = createOpenAI({
-  baseUrl: 'https://api.supermemory.ai/v3/https://api.openai.com/v1',
+const emberspack-brainOpenai = createOpenAI({
+  baseUrl: 'https://api.emberspack-brain.ai/v3/https://api.openai.com/v1',
   apiKey: 'your-provider-api-key',
   headers: {
-    'x-supermemory-api-key': 'supermemory-api-key',
+    'x-emberspack-brain-api-key': 'emberspack-brain-api-key',
     'x-sm-conversation-id': 'conversation-id'
   }
 })
 
 const result = await generateText({
-  model: supermemoryOpenai('gpt-5'),
+  model: emberspack-brainOpenai('gpt-5'),
   messages: [
     { role: 'user', content: 'Hello, how are you?' }
   ]
@@ -53,22 +53,22 @@ const result = await generateText({
 import { generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 
-const supermemoryApiKey = process.env.SUPERMEMORY_API_KEY!
+const emberspack-brainApiKey = process.env.SUPERMEMORY_API_KEY!
 const openaiApiKey = process.env.OPENAI_API_KEY!
 
 // Initialize infinite chat provider
-const supermemoryOpenai = createOpenAI({
-  baseUrl: 'https://api.supermemory.ai/v3/https://api.openai.com/v1',
+const emberspack-brainOpenai = createOpenAI({
+  baseUrl: 'https://api.emberspack-brain.ai/v3/https://api.openai.com/v1',
   apiKey: 'your-provider-api-key',
   headers: {
-    'x-supermemory-api-key': 'supermemory-api-key',
+    'x-emberspack-brain-api-key': 'emberspack-brain-api-key',
     'x-sm-conversation-id': 'conversation-id'
   }
 })
 
 async function chat(userMessage: string) {
   const result = await generateText({
-    model: supermemoryOpenai('gpt-5'),
+    model: emberspack-brainOpenai('gpt-5'),
     messages: [
       {
         role: 'system',
@@ -106,10 +106,10 @@ interface ConfigWithProviderUrl {
 
 ## Memory Tools
 
-Supermemory tools allow AI agents to search, add, inspect, and manage scoped Supermemory data.
+Emberspack Brain tools allow AI agents to search, add, inspect, and manage scoped Emberspack Brain data.
 
 ```typescript
-import { supermemoryTools } from '@supermemory/ai-sdk'
+import { emberspack-brainTools } from '@emberspack-brain/ai-sdk'
 import { generateText, stepCountIs } from 'ai'
 import { openai } from '@ai-sdk/openai'
 
@@ -119,7 +119,7 @@ const result = await generateText({
     { role: 'user', content: 'What do you remember about my preferences?' }
   ],
   tools: {
-    ...supermemoryTools('your-supermemory-api-key', {
+    ...emberspack-brainTools('your-emberspack-brain-api-key', {
       // Use either projectId OR containerTags, not both.
       containerTags: ['user-123']
     })
@@ -128,16 +128,16 @@ const result = await generateText({
 })
 ```
 
-> **Important:** `supermemoryTools()` includes destructive operations: `documentDelete` permanently deletes a source document, while `memoryForget` soft-forgets an extracted profile memory. Do not expose the complete aggregate to an agent unless it should be allowed to perform those operations.
+> **Important:** `emberspack-brainTools()` includes destructive operations: `documentDelete` permanently deletes a source document, while `memoryForget` soft-forgets an extracted profile memory. Do not expose the complete aggregate to an agent unless it should be allowed to perform those operations.
 
 ### Complete Memory Tools Example
 
 ```typescript
-import { supermemoryTools } from '@supermemory/ai-sdk'
+import { emberspack-brainTools } from '@emberspack-brain/ai-sdk'
 import { generateText, stepCountIs } from 'ai'
 import { openai } from '@ai-sdk/openai'
 
-const supermemoryApiKey = process.env.SUPERMEMORY_API_KEY!
+const emberspack-brainApiKey = process.env.SUPERMEMORY_API_KEY!
 
 async function chatWithTools(userMessage: string) {
   const result = await generateText({
@@ -153,7 +153,7 @@ async function chatWithTools(userMessage: string) {
       }
     ],
     tools: {
-      ...supermemoryTools(supermemoryApiKey, {
+      ...emberspack-brainTools(emberspack-brainApiKey, {
         containerTags: ['my-user-id']
       })
     },
@@ -167,8 +167,8 @@ async function chatWithTools(userMessage: string) {
 ### Configuration
 
 ```typescript
-interface SupermemoryToolsConfig {
-  // Optional API base URL (default: https://api.supermemory.ai)
+interface Emberspack BrainToolsConfig {
+  // Optional API base URL (default: https://api.emberspack-brain.ai)
   baseUrl?: string
 
   // One or more non-empty scope tags (cannot be used with projectId)
@@ -189,17 +189,17 @@ In strict mode, fields covered by a strict schema are required or defaulted. For
 
 ### Migrating from v1
 
-Version 1 returned only `searchMemories` and `addMemory` from `supermemoryTools()`. Version 2 returns all seven tools listed below, including deletion and forgetting, so review any code that spreads the aggregate directly into an agent.
+Version 1 returned only `searchMemories` and `addMemory` from `emberspack-brainTools()`. Version 2 returns all seven tools listed below, including deletion and forgetting, so review any code that spreads the aggregate directly into an agent.
 
 Version 1 also left `containerTags` undefined when no scope was configured. Version 2 sends `['sm_project_default']` instead. Before upgrading, choose an explicit `projectId` or `containerTags`, or migrate data that should live in the new default scope.
 
-### Self-Hosted supermemory
+### Self-Hosted emberspack-brain
 
-If you're running a self-hosted supermemory instance:
+If you're running a self-hosted emberspack-brain instance:
 
 ```typescript
-const tools = supermemoryTools('your-api-key', {
-  baseUrl: 'https://your-supermemory-instance.com',
+const tools = emberspack-brainTools('your-api-key', {
+  baseUrl: 'https://your-emberspack-brain-instance.com',
   containerTags: ['production', 'user-memories']
 })
 ```
@@ -235,7 +235,7 @@ import {
   documentDeleteTool,
   documentAddTool,
   memoryForgetTool
-} from '@supermemory/ai-sdk'
+} from '@emberspack-brain/ai-sdk'
 
 const searchTool = searchMemoriesTool('your-api-key', {
   projectId: 'your-project-id'
@@ -255,7 +255,7 @@ const result = await generateText({
 To expose a non-destructive subset, create the aggregate once and select only the tools the agent needs:
 
 ```typescript
-const allTools = supermemoryTools('your-api-key', {
+const allTools = emberspack-brainTools('your-api-key', {
   containerTags: ['user-123']
 })
 
@@ -301,12 +301,12 @@ bun run test:unit
 
 Local initialization and unit checks do not require API keys. Network integration checks run only when both of these are set; otherwise they are skipped:
 
-- `SUPERMEMORY_API_KEY`: Supermemory API key
+- `SUPERMEMORY_API_KEY`: Emberspack Brain API key
 - `OPENAI_API_KEY`: OpenAI API key
 
 **Optional:**
 
-- `SUPERMEMORY_BASE_URL`: Custom Supermemory base URL
+- `SUPERMEMORY_BASE_URL`: Custom Emberspack Brain base URL
 - `MODEL_NAME`: OpenAI model used by integration checks (defaults to `gpt-5-nano`)
 
 ## License
@@ -315,4 +315,4 @@ MIT
 
 ## Support
 
-Email our [24/7 Founder/CEO/Support Executive](dhravya@supermemory.com)
+Email our [24/7 Founder/CEO/Support Executive](dhravya@emberspack-brain.com)

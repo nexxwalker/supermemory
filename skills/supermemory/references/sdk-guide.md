@@ -1,50 +1,50 @@
-# Supermemory SDK Guide
+# Emberspack Brain SDK Guide
 
-Complete reference for the Supermemory SDK in TypeScript and Python.
+Complete reference for the Emberspack Brain SDK in TypeScript and Python.
 
 ## Installation
 
-Supermemory works with the following SDKs natively:
+Emberspack Brain works with the following SDKs natively:
 
 ### TypeScript/JavaScript
 ```bash
-npm install supermemory
+npm install emberspack-brain
 # or
-yarn add supermemory
+yarn add emberspack-brain
 # or
-pnpm add supermemory
+pnpm add emberspack-brain
 
 # Agent tools and Vercel AI SDK middleware
-npm install @supermemory/tools
+npm install @emberspack-brain/tools
 ```
 
-📦 View on npm: [https://www.npmjs.com/package/supermemory](https://www.npmjs.com/package/supermemory)
+📦 View on npm: [https://www.npmjs.com/package/emberspack-brain](https://www.npmjs.com/package/emberspack-brain)
 
 ### Python
 ```bash
-pip install supermemory
+pip install emberspack-brain
 # Or for async support with aiohttp
-pip install 'supermemory[aiohttp]'
+pip install 'emberspack-brain[aiohttp]'
 
 # OpenAI function tools and middleware
-pip install supermemory-openai-sdk
+pip install emberspack-brain-openai-sdk
 ```
 
-📦 View on PyPI: [https://pypi.org/project/supermemory/](https://pypi.org/project/supermemory/)
+📦 View on PyPI: [https://pypi.org/project/emberspack-brain/](https://pypi.org/project/emberspack-brain/)
 
 ### Other SDKs and Integrations
 
-Discover all available SDKs, community integrations, and framework-specific guides at [supermemory.ai/docs](https://supermemory.ai/docs)
+Discover all available SDKs, community integrations, and framework-specific guides at [emberspack-brain.ai/docs](https://emberspack-brain.ai/docs)
 
 ## Initialization
 
 ### TypeScript
 ```typescript
-import { Supermemory } from 'supermemory';
+import { Emberspack Brain } from 'emberspack-brain';
 
-const client = new Supermemory({
+const client = new Emberspack Brain({
   apiKey: process.env.SUPERMEMORY_API_KEY, // Optional if env var is set
-  baseURL: 'https://api.supermemory.ai' // Optional, defaults to this
+  baseURL: 'https://api.emberspack-brain.ai' // Optional, defaults to this
 });
 ```
 
@@ -52,18 +52,18 @@ const client = new Supermemory({
 ```python
 import os
 
-from supermemory import Supermemory
+from emberspack-brain import Emberspack Brain
 
 # Synchronous client
-client = Supermemory(
+client = Emberspack Brain(
     api_key=os.environ["SUPERMEMORY_API_KEY"],  # Optional if env var is set
-    base_url="https://api.supermemory.ai"  # Optional, defaults to this
+    base_url="https://api.emberspack-brain.ai"  # Optional, defaults to this
 )
 
 # Asynchronous client
-from supermemory import AsyncSupermemory
+from emberspack-brain import AsyncEmberspack Brain
 
-async_client = AsyncSupermemory(
+async_client = AsyncEmberspack Brain(
     api_key=os.environ["SUPERMEMORY_API_KEY"]
 )
 ```
@@ -72,7 +72,7 @@ async_client = AsyncSupermemory(
 
 ### `add()` - Store Memories
 
-Add content to Supermemory for processing and memory extraction.
+Add content to Emberspack Brain for processing and memory extraction.
 
 #### TypeScript
 ```typescript
@@ -421,7 +421,7 @@ await client.add({
 });
 ```
 
-The `entityContext` helps Supermemory understand what type of information to extract and prioritize.
+The `entityContext` helps Emberspack Brain understand what type of information to extract and prioritize.
 
 ### Container Tag Patterns
 
@@ -458,16 +458,16 @@ await client.add({
 
 ### Vercel AI SDK
 
-#### Agent tools (`@supermemory/tools/ai-sdk` / `@supermemory/ai-sdk`)
+#### Agent tools (`@emberspack-brain/tools/ai-sdk` / `@emberspack-brain/ai-sdk`)
 
 For models that call memory operations explicitly, use the 7-tool set instead of hand-rolling SDK calls:
 
 ```typescript
 import { generateText, stepCountIs } from "ai"
 import { openai } from "@ai-sdk/openai"
-import { supermemoryTools } from "@supermemory/tools/ai-sdk"
+import { emberspack-brainTools } from "@emberspack-brain/tools/ai-sdk"
 
-const allTools = supermemoryTools(process.env.SUPERMEMORY_API_KEY!, {
+const allTools = emberspack-brainTools(process.env.SUPERMEMORY_API_KEY!, {
   containerTags: ["user_123"],
 })
 
@@ -494,17 +494,17 @@ Use `searchMemories` for targeted hybrid recall; `getProfile` for broad static/d
 
 If you configure multiple container tags, `searchMemories`, `getProfile`, and `memoryForget` use the first tag because v4 memory operations are single-space. Add, list, and delete operations use the broader configured scope where supported.
 
-`supermemoryTools()` includes destructive operations. Expose `documentDelete` and `memoryForget` only when the agent is authorized to remove data, and require user confirmation when appropriate. `stopWhen` allows the model to consume tool results and produce a final answer instead of stopping immediately after the first tool call.
+`emberspack-brainTools()` includes destructive operations. Expose `documentDelete` and `memoryForget` only when the agent is authorized to remove data, and require user confirmation when appropriate. `stopWhen` allows the model to consume tool results and produce a final answer instead of stopping immediately after the first tool call.
 
-#### Middleware (`withSupermemory`)
+#### Middleware (`withEmberspack Brain`)
 
-For automatic profile injection and conversation saving without tool calls, import `withSupermemory` from `@supermemory/tools/ai-sdk`:
+For automatic profile injection and conversation saving without tool calls, import `withEmberspack Brain` from `@emberspack-brain/tools/ai-sdk`:
 
 ```typescript
-import { withSupermemory } from "@supermemory/tools/ai-sdk"
+import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk"
 import { openai } from "@ai-sdk/openai"
 
-const modelWithMemory = withSupermemory(openai("gpt-4o"), {
+const modelWithMemory = withEmberspack Brain(openai("gpt-4o"), {
   containerTag: "user_123",
   customId: "conversation_456",
 })
@@ -513,11 +513,11 @@ const modelWithMemory = withSupermemory(openai("gpt-4o"), {
 #### Manual SDK integration
 
 ```typescript
-import { Supermemory } from 'supermemory';
+import { Emberspack Brain } from 'emberspack-brain';
 import { openai } from '@ai-sdk/openai';
 import { generateText } from 'ai';
 
-const memory = new Supermemory();
+const memory = new Emberspack Brain();
 
 async function chat(userId: string, message: string) {
   // 1. Get context
@@ -551,11 +551,11 @@ async function chat(userId: string, message: string) {
 ### LangChain
 
 ```typescript
-import { Supermemory } from 'supermemory';
+import { Emberspack Brain } from 'emberspack-brain';
 import { ChatOpenAI } from '@langchain/openai';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 
-const memory = new Supermemory();
+const memory = new Emberspack Brain();
 const llm = new ChatOpenAI({ model: 'gpt-4' });
 
 async function chatWithMemory(userId: string, userMessage: string) {
@@ -586,10 +586,10 @@ async function chatWithMemory(userId: string, userMessage: string) {
 ### CrewAI
 
 ```python
-from supermemory import Supermemory
+from emberspack-brain import Emberspack Brain
 from crewai import Agent, Task, Crew
 
-memory = Supermemory()
+memory = Emberspack Brain()
 
 def create_memory_enhanced_agent(user_id: str):
     # Get user context
@@ -701,6 +701,6 @@ try {
 
 ## Support
 
-- **Documentation**: [supermemory.ai/docs](https://supermemory.ai/docs)
-- **SDK Issues**: [github.com/supermemoryai/supermemory](https://github.com/supermemoryai/supermemory)
-- **Console**: [console.supermemory.ai](https://console.supermemory.ai)
+- **Documentation**: [emberspack-brain.ai/docs](https://emberspack-brain.ai/docs)
+- **SDK Issues**: [github.com/emberspack-brainai/emberspack-brain](https://github.com/emberspack-brainai/emberspack-brain)
+- **Console**: [console.emberspack-brain.ai](https://console.emberspack-brain.ai)

@@ -5,7 +5,7 @@ import {
 	hasPersistableUserContent,
 } from "./util"
 import {
-	createSupermemoryContext,
+	createEmberspack BrainContext,
 	transformParamsWithMemory,
 	extractAssistantResponseText,
 	saveMemoryAfterResponse,
@@ -35,9 +35,9 @@ interface WrapVercelLanguageModelOptions {
 	 * - "never": Only retrieve memories, don't store new ones
 	 */
 	addMemory?: "always" | "never"
-	/** Supermemory API key (falls back to SUPERMEMORY_API_KEY env var) */
+	/** Emberspack Brain API key (falls back to SUPERMEMORY_API_KEY env var) */
 	apiKey?: string
-	/** Custom Supermemory API base URL */
+	/** Custom Emberspack Brain API base URL */
 	baseUrl?: string
 	/**
 	 * Persist assistant tool calls and tool results as part of the saved
@@ -62,7 +62,7 @@ interface WrapVercelLanguageModelOptions {
 	 */
 	promptTemplate?: PromptTemplate
 	/**
-	 * When Supermemory memory retrieval / injection fails or times out:
+	 * When Emberspack Brain memory retrieval / injection fails or times out:
 	 * - `true` (default): log and call the base model with the original prompt (no memories).
 	 * - `false`: propagate the error (fail closed on memory).
 	 */
@@ -70,10 +70,10 @@ interface WrapVercelLanguageModelOptions {
 }
 
 /**
- * Wraps a language model with supermemory middleware to automatically inject relevant memories
+ * Wraps a language model with emberspack-brain middleware to automatically inject relevant memories
  * into the system prompt based on the user's message content.
  *
- * This wrapper searches the supermemory API for relevant memories using the container tag
+ * This wrapper searches the emberspack-brain API for relevant memories using the container tag
  * and user message, then either appends memories to an existing system prompt or creates
  * a new system prompt with the memories. Pre-LLM profile retrieval uses a fixed internal
  * time budget and cannot be configured via options.
@@ -81,25 +81,25 @@ interface WrapVercelLanguageModelOptions {
  * Supports both Vercel AI SDK 5 (LanguageModelV2) and SDK 6 (LanguageModelV3) via runtime
  * detection of `model.specificationVersion`.
  *
- * @param model - The language model to wrap with supermemory capabilities (V2 or V3)
- * @param options - Configuration options for Supermemory integration
+ * @param model - The language model to wrap with emberspack-brain capabilities (V2 or V3)
+ * @param options - Configuration options for Emberspack Brain integration
  * @param options.containerTag - Required. The container tag/identifier for memory search (e.g., user ID, project ID)
  * @param options.customId - Required. Custom ID to group messages into a single document for contextual memory generation
  * @param options.verbose - Optional flag to enable detailed logging of memory search and injection process (default: false)
  * @param options.mode - Optional mode for memory search: "profile", "query", or "full" (default: "profile")
  * @param options.addMemory - Optional mode for memory search: "always", "never" (default: "always")
- * @param options.apiKey - Optional Supermemory API key to use instead of the environment variable
- * @param options.baseUrl - Optional base URL for the Supermemory API (default: "https://api.supermemory.ai")
+ * @param options.apiKey - Optional Emberspack Brain API key to use instead of the environment variable
+ * @param options.baseUrl - Optional base URL for the Emberspack Brain API (default: "https://api.emberspack-brain.ai")
  * @param options.skipMemoryOnError - When memory retrieval fails or times out: `true` (default) continues without injected memories; `false` throws
  *
  * @returns A wrapped language model that automatically includes relevant memories in prompts
  *
  * @example
  * ```typescript
- * import { withSupermemory } from "@supermemory/tools/ai-sdk"
+ * import { withEmberspack Brain } from "@emberspack-brain/tools/ai-sdk"
  * import { openai } from "@ai-sdk/openai"
  *
- * const modelWithMemory = withSupermemory(openai("gpt-4"), {
+ * const modelWithMemory = withEmberspack Brain(openai("gpt-4"), {
  *   containerTag: "user-123",
  *   customId: "conversation-456",
  *   mode: "full",
@@ -113,7 +113,7 @@ interface WrapVercelLanguageModelOptions {
  * ```
  *
  * @throws {Error} When neither `options.apiKey` nor `process.env.SUPERMEMORY_API_KEY` are set
- * @throws {Error} When supermemory memory retrieval fails and `skipMemoryOnError` is `false`
+ * @throws {Error} When emberspack-brain memory retrieval fails and `skipMemoryOnError` is `false`
  */
 const wrapVercelLanguageModel = <T extends LanguageModel>(
 	model: T,
@@ -133,7 +133,7 @@ const wrapVercelLanguageModel = <T extends LanguageModel>(
 		)
 	}
 
-	const ctx = createSupermemoryContext({
+	const ctx = createEmberspack BrainContext({
 		containerTag: options.containerTag,
 		apiKey: providedApiKey,
 		customId: options.customId,
@@ -159,7 +159,7 @@ const wrapVercelLanguageModel = <T extends LanguageModel>(
 					} catch (memoryError) {
 						if (skipMemoryOnError) {
 							ctx.logger.warn(
-								"Supermemory retrieval failed; continuing without injected memories",
+								"Emberspack Brain retrieval failed; continuing without injected memories",
 								{
 									error:
 										memoryError instanceof Error
@@ -223,7 +223,7 @@ const wrapVercelLanguageModel = <T extends LanguageModel>(
 					} catch (memoryError) {
 						if (skipMemoryOnError) {
 							ctx.logger.warn(
-								"Supermemory retrieval failed; continuing without injected memories",
+								"Emberspack Brain retrieval failed; continuing without injected memories",
 								{
 									error:
 										memoryError instanceof Error
@@ -298,8 +298,8 @@ const wrapVercelLanguageModel = <T extends LanguageModel>(
 }
 
 export {
-	wrapVercelLanguageModel as withSupermemory,
-	type WrapVercelLanguageModelOptions as WithSupermemoryOptions,
+	wrapVercelLanguageModel as withEmberspack Brain,
+	type WrapVercelLanguageModelOptions as WithEmberspack BrainOptions,
 	type PromptTemplate,
 	type MemoryPromptData,
 }

@@ -1,4 +1,4 @@
-import type Supermemory from "supermemory"
+import type Emberspack Brain from "emberspack-brain"
 import type {
 	LanguageModelV2CallOptions,
 	LanguageModelV2Message,
@@ -39,7 +39,7 @@ const persistMessages = async (
 	globalThis.fetch = fetchStub
 
 	await saveMemoryAfterResponse(
-		{} as Supermemory,
+		{} as Emberspack Brain,
 		"user-id",
 		"conversation-id",
 		assistantResponseText,

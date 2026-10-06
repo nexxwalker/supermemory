@@ -1,8 +1,8 @@
 /**
- * Shared constants and descriptions for Supermemory tools
+ * Shared constants and descriptions for Emberspack Brain tools
  */
 
-import type Supermemory from "supermemory"
+import type Emberspack Brain from "emberspack-brain"
 import type { MemoryMode } from "./shared/types"
 
 // Tool descriptions
@@ -18,7 +18,7 @@ export const TOOL_DESCRIPTIONS = {
 	documentDelete:
 		"Permanently delete a stored source document. Memories extracted from that source are soft-forgotten so they no longer appear in profile or search; they are not hard-deleted. Use a document ID or customId when removing an entire conversation, file, URL, or other source. The effective scope is the configured container-tag union, or the explicit one-tag override; if documentList used an override, pass the same value here. For safety, deletion is refused while the document is processing or nonterminal, or when its authoritative tag set is empty, unavailable, or contains any tag outside the effective scope. To forget one learned fact, use memoryForget instead.",
 	documentAdd:
-		"Store a source document for asynchronous processing and automatic memory extraction. Use when the user gives you raw content to ingest — a pasted text blob, conversation transcript, chat history, notes, URL, article link, or other substantial text — rather than a single atomic fact (use addMemory for one short generalizable sentence). The document is queued immediately; Supermemory post-processes it in the background (chunking, embedding, indexing) and extracts profile memories automatically — you do not need to call addMemory for facts buried inside the document. Good for saving full conversations, long-form notes, knowledge-base articles, meeting transcripts, or any large body of text the user wants remembered beyond this chat turn. Processing may take a moment; extracted memories appear in profile/search after indexing completes.",
+		"Store a source document for asynchronous processing and automatic memory extraction. Use when the user gives you raw content to ingest — a pasted text blob, conversation transcript, chat history, notes, URL, article link, or other substantial text — rather than a single atomic fact (use addMemory for one short generalizable sentence). The document is queued immediately; Emberspack Brain post-processes it in the background (chunking, embedding, indexing) and extracts profile memories automatically — you do not need to call addMemory for facts buried inside the document. Good for saving full conversations, long-form notes, knowledge-base articles, meeting transcripts, or any large body of text the user wants remembered beyond this chat turn. Processing may take a moment; extracted memories appear in profile/search after indexing completes.",
 	memoryForget:
 		"Soft-forget a single extracted profile memory (a learned fact) in the primary configured container tag, unless containerTag explicitly overrides it, so the fact no longer appears in profile or search. Does NOT delete source documents. Provide memoryId from query-backed getProfile searchResults or from a searchMemories result containing a memory field, or provide memoryContent for an exact text match. Chunk-result IDs from searchMemories are not valid. Use when the user retracts or corrects a specific fact. To remove an entire source, use documentDelete instead.",
 } as const
@@ -77,7 +77,7 @@ export function clampSearchLimit(value: unknown): number {
 	)
 }
 
-// Supermemory client options shared by the tool surfaces: bound each request
+// Emberspack Brain client options shared by the tool surfaces: bound each request
 // and limit retries so a slow API cannot stall an agent turn indefinitely.
 export const CLIENT_OPTIONS = {
 	timeout: 30_000,
@@ -99,13 +99,13 @@ export function getContainerTags(config?: {
 }): [string, ...string[]] {
 	if (config?.projectId !== undefined && config.containerTags !== undefined) {
 		throw new Error(
-			"Supermemory tools config accepts either projectId or containerTags, not both.",
+			"Emberspack Brain tools config accepts either projectId or containerTags, not both.",
 		)
 	}
 	if (config?.projectId !== undefined) {
 		if (config.projectId.trim() === "") {
 			throw new Error(
-				"Supermemory tools config requires a non-empty projectId.",
+				"Emberspack Brain tools config requires a non-empty projectId.",
 			)
 		}
 		return [`${CONTAINER_TAG_CONSTANTS.projectPrefix}${config.projectId}`]
@@ -117,7 +117,7 @@ export function getContainerTags(config?: {
 			config.containerTags.some((tag) => tag.trim() === "")
 		) {
 			throw new Error(
-				"Supermemory tools config requires at least one non-empty containerTag.",
+				"Emberspack Brain tools config requires at least one non-empty containerTag.",
 			)
 		}
 		return [firstTag, ...remainingTags]
@@ -127,7 +127,7 @@ export function getContainerTags(config?: {
 
 /** Delete exactly one document by its internal ID. */
 export async function deleteDocumentById(
-	client: Supermemory,
+	client: Emberspack Brain,
 	documentId: string,
 ): Promise<void> {
 	const response = await client.documents.deleteBulk({ ids: [documentId] })
@@ -149,7 +149,7 @@ export async function deleteDocumentById(
  * customId matches.
  */
 export async function deleteDocumentByIdentifier(
-	client: Supermemory,
+	client: Emberspack Brain,
 	documentIdentifier: string,
 	containerTags: readonly [string, ...string[]],
 ): Promise<void> {
@@ -234,7 +234,7 @@ export async function deleteDocumentByIdentifier(
 	)
 }
 
-async function getDocumentIfFound(client: Supermemory, documentId: string) {
+async function getDocumentIfFound(client: Emberspack Brain, documentId: string) {
 	try {
 		return await client.documents.get(documentId)
 	} catch (error) {
@@ -255,7 +255,7 @@ function isNotFoundError(error: unknown): boolean {
 const TERMINAL_DOCUMENT_STATUSES = new Set(["done", "failed"])
 
 function assertDocumentCanBeDeleted(
-	document: Awaited<ReturnType<Supermemory["documents"]["get"]>>,
+	document: Awaited<ReturnType<Emberspack Brain["documents"]["get"]>>,
 	expectedContainerTags: readonly string[],
 ): void {
 	if (

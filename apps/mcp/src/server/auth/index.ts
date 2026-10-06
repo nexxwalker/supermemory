@@ -52,7 +52,7 @@ export async function fetchSession(
 	return result.data
 }
 
-// Opaque Supermemory API keys (sm_...) authenticate via the session endpoint
+// Opaque Emberspack Brain API keys (sm_...) authenticate via the session endpoint
 // instead of JWT verification. Successful lookups are cached per isolate so a
 // busy MCP session doesn't re-validate on every JSON-RPC message.
 const API_KEY_PATTERN = /^sm_\S{17,}$/

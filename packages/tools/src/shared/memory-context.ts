@@ -1,11 +1,11 @@
 export const MEMORY_CONTEXT_START =
-	'<supermemory context="user-memories" readonly>'
-export const MEMORY_CONTEXT_END = "</supermemory>"
+	'<emberspack-brain context="user-memories" readonly>'
+export const MEMORY_CONTEXT_END = "</emberspack-brain>"
 
 const MEMORY_CONTEXT_PATTERN =
-	/(?:\r?\n)?<supermemory context="user-memories" readonly>[\s\S]*?<\/supermemory>/g
+	/(?:\r?\n)?<emberspack-brain context="user-memories" readonly>[\s\S]*?<\/emberspack-brain>/g
 
-const SUPERMEMORY_TAG_PATTERN = /<\s*\/?\s*supermemory\b[^>]*>/gi
+const SUPERMEMORY_TAG_PATTERN = /<\s*\/?\s*emberspack-brain\b[^>]*>/gi
 
 /** Prevent retrieved text from terminating or nesting the SDK-owned block. */
 function escapeMemoryContextDelimiters(memories: string): string {
@@ -14,7 +14,7 @@ function escapeMemoryContextDelimiters(memories: string): string {
 	)
 }
 
-/** Remove every context block previously owned by the Supermemory middleware. */
+/** Remove every context block previously owned by the Emberspack Brain middleware. */
 export function stripMemoryContext(content: string): string {
 	return content.replace(MEMORY_CONTEXT_PATTERN, "")
 }

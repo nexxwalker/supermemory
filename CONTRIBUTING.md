@@ -1,6 +1,6 @@
-# Contributing to supermemory
+# Contributing to emberspack-brain
 
-Thank you for your interest in contributing to supermemory! We welcome contributions from developers of all skill levels. This guide will help you get started with contributing to our AI-powered memory layer API.
+Thank you for your interest in contributing to emberspack-brain! We welcome contributions from developers of all skill levels. This guide will help you get started with contributing to our AI-powered memory layer API.
 
 ## 🚀 Quick Start
 
@@ -16,8 +16,8 @@ Before you begin, ensure you have the following installed:
 1. **Fork and Clone the Repository**
 
    ```bash
-   git clone https://github.com/supermemoryai/supermemory.git
-   cd supermemory
+   git clone https://github.com/emberspack-brainai/emberspack-brain.git
+   cd emberspack-brain
    ```
 
 2. **Install Dependencies**
@@ -42,16 +42,16 @@ Before you begin, ensure you have the following installed:
    bun run dev:local
    ```
 
-   This starts each app on plain `localhost` ports (web on 3000, mcp on 8788, docs on 3003, graph on 3004) and points the web app at the public API at `https://api.supermemory.ai` via `NEXT_PUBLIC_BACKEND_URL` in `.env.example`. Sign in with magic-link/email-OTP — Google/GitHub OAuth sign-in won't round-trip back to localhost.
+   This starts each app on plain `localhost` ports (web on 3000, mcp on 8788, docs on 3003, graph on 3004) and points the web app at the public API at `https://api.emberspack-brain.ai` via `NEXT_PUBLIC_BACKEND_URL` in `.env.example`. Sign in with magic-link/email-OTP — Google/GitHub OAuth sign-in won't round-trip back to localhost.
 
-   > **Internal team note:** `bun run dev` (without `:local`) routes through [portless](https://github.com/portless/portless) to give every app a stable `*.dev.supermemory.ai` HTTPS URL with shared cookies and a working OAuth proxy. That path requires `bun run setup:dev` once (binds port 443, trusts a local CA). OSS contributors don't need it.
+   > **Internal team note:** `bun run dev` (without `:local`) routes through [portless](https://github.com/portless/portless) to give every app a stable `*.dev.emberspack-brain.ai` HTTPS URL with shared cookies and a working OAuth proxy. That path requires `bun run setup:dev` once (binds port 443, trusts a local CA). OSS contributors don't need it.
 
 ## 📁 Project Structure
 
-supermemory is organized as a monorepo using Turbo:
+emberspack-brain is organized as a monorepo using Turbo:
 
 ```
-supermemory/
+emberspack-brain/
 ├── apps/
 │   ├── web/                 # Next.js web application
 │   ├── browser-extension/  # Browser extension (WXT-based)
@@ -78,7 +78,7 @@ supermemory/
 ### Available Scripts
 
 - `bun run dev:local` - Start dev servers on plain localhost ports (recommended for OSS contributors)
-- `bun run dev` - Start dev servers through portless (`*.dev.supermemory.ai`, internal team)
+- `bun run dev` - Start dev servers through portless (`*.dev.emberspack-brain.ai`, internal team)
 - `bun run build` - Build all applications
 - `bun run format-lint` - Format and lint code using Biome
 - `bun run check-types` - Type check all packages
@@ -121,7 +121,7 @@ We welcome various types of contributions:
 
 ### Finding Issues to Work On
 
-1. Check our [Issues](https://github.com/supermemoryai/supermemory/issues) page
+1. Check our [Issues](https://github.com/emberspack-brainai/emberspack-brain/issues) page
 2. Look for issues labeled `good first issue` for beginners
 3. Issues labeled `help wanted` are great for contributors
 4. Feel free to propose new features by opening an issue first
@@ -282,14 +282,14 @@ For feature requests, please provide:
 
 ### Getting Help
 
-- **Discord**: [Join our Discord server](https://supermemory.link/discord)
+- **Discord**: [Join our Discord server](https://emberspack-brain.link/discord)
 - **GitHub Discussions**: For questions and ideas
 - **Issues**: For bug reports and feature requests
-- **Email**: [support@supermemory.ai](mailto:support@supermemory.ai)
+- **Email**: [support@emberspack-brain.ai](mailto:support@emberspack-brain.ai)
 
 ## 📄 License
 
-By contributing to supermemory, you agree that your contributions will be licensed under the same license as the project.
+By contributing to emberspack-brain, you agree that your contributions will be licensed under the same license as the project.
 
 ## 🙏 Recognition
 
@@ -297,4 +297,4 @@ All contributors will be recognized in our README and release notes. We apprecia
 
 ---
 
-Thank you for contributing to supermemory! Together, we're building the future of AI-powered knowledge management. 🚀
+Thank you for contributing to emberspack-brain! Together, we're building the future of AI-powered knowledge management. 🚀
